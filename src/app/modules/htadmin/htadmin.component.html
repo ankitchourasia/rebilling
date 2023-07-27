@@ -1,0 +1,31 @@
+<app-header-navbar></app-header-navbar>
+<div class="d-flex">
+    <div class="bg-white border" style="width: 250px; height: 100vh">
+        <!-- <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                    Meter
+                </button>
+                <div class="collapse show" id="home-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a routerLink="meter-add" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-dark d-inline-flex text-decoration-none rounded">Create</a></li>
+                        <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">View</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul> -->
+        <div class="list-group">
+            <button class="btn dropdown-toggle rounded-0 text-center bg-primary-subtle py-2" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Meter
+            </button>
+            <div class="collapse show" id="collapseExample">
+                <a href="#" class="list-group-item list-group-item-action" routerLink="meter-add" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Create</a>
+                <a href="#" class="list-group-item list-group-item-action" routerLink="meter-view" routerLinkActive="" [routerLinkActiveOptions]="{exact: true}">View</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid p-0">
+        <router-outlet></router-outlet>
+    </div>
+</div>

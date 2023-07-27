@@ -1,0 +1,84 @@
+<div class="card rounded-0">
+    <div class="card-header bg-primary-subtle text-center">
+        Meter View
+    </div>
+    <div class="card-body">
+        <div class="d-flex justify-content-around mb-3">
+            <div>
+                <label>View Meter By</label>
+                <select class="form-select" [(ngModel)]="meterBy" required>
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option>Status</option>
+                    <option>Meter-No</option>
+                </select>
+            </div>
+
+            <div *ngIf="meterBy === 'Meter-No'">
+                <label>Meter No</label>
+                <input type="text" class="form-control" name="meterNumber" [(ngModel)]="meterNumber" #meterNo="ngModel" required
+                [ngClass]="{'is-invalid': meterNo.errors && (meterNo.dirty || meterNo.touched)}">
+                <div class="invalid-feedback" *ngIf="meterNo.errors && (meterNo.dirty || meterNo.touched)">
+                    <div *ngIf="meterNo.errors['required']">required field</div>
+                </div>
+            </div>
+
+            <div *ngIf="meterBy">
+                <label>Status</label>
+                <select class="form-select" [(ngModel)]="status" required>
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">In-Active</option>
+                </select>
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="searchClicked()" [disabled]="(meterBy==='Meter-No' && !meterNumber) || !status || loading">Submit</button>
+            </div>
+
+        </div>
+
+        <div>
+            <table class="table table-bordered text-center">
+                <tr class="bg-dark text-white">
+                    <td>S.No</td>
+                    <td>Meter No</td>
+                    <td>Make</td>
+                    <td>Category</td>
+                    <td>Type</td>
+                    <td>Class</td>
+                    <td>CTR</td>
+                    <td>PTR</td>
+                    <td>ME CTR</td>
+                    <td>ME PTR</td>
+                    <td>DIAL MF</td>
+                    <td>Equip Class</td>
+                    <td>Phase</td>
+                    <td>Meter Group</td>
+                    <td>MF</td>
+                    <td>Install Date</td>
+                </tr>
+                
+                <tr *ngFor="let meter of meters; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{meter.meterNumber}}</td>
+                    <td>{{meter.make}}</td>
+                    <td>{{meter.category}}</td>
+                    <td>{{meter.type}}</td>
+                    <td>{{meter.meterClass}}</td>
+                    <td>{{meter.meterCtr}}</td>
+                    <td>{{meter.meterPtr}}</td>
+                    <td>{{meter.meCtr}}</td>
+                    <td>{{meter.mePtr}}</td>
+                    <td>{{meter.dialBmf}}</td>
+                    <td>{{meter.equipClass}}</td>
+                    <td>{{meter.phase}}</td>
+                    <td>{{meter.meterGroup}}</td>
+                    <td>{{meter.mf}}</td>
+                    <td>{{meter.installDate}}</td>
+                </tr>
+                <tr *ngIf="!meters || meters.length <= 0">
+                    <td colspan="16">No Meter Found</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

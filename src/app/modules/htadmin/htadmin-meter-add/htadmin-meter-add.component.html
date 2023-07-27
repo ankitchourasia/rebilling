@@ -1,0 +1,120 @@
+<div class="card rounded-0">
+    <div class="card-header bg-primary-subtle text-center">
+        Meter Create
+    </div>
+    <form class="card-body" #f="ngForm">
+        <div class="row gx-5 gy-3 justify-content-around">
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Meter No</label>
+                <input type="text" class="form-control" ngModel name="meterNumber" #meterNo="ngModel" required
+                [ngClass]="{'is-invalid': meterNo.errors && (meterNo.dirty || meterNo.touched)}">
+                <div class="invalid-feedback" *ngIf="meterNo.errors && (meterNo.dirty || meterNo.touched)">
+                    <div *ngIf="meterNo.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Meter Make</label>
+                <select class="form-select" ngModel name="make" [ngModel]=null required>
+                    <option disabled selected [ngValue]=null>Select</option>
+                    <option *ngFor="let make of meterMakes">{{make['make']}}</option>
+                </select>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Category</label>
+                <select class="form-select" ngModel name="category" [ngModel]=null required>
+                    <option disabled selected [ngValue]=null>Select</option>
+                    <option *ngFor="let cat of categorires">{{cat}}</option>
+                </select>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Type</label>
+                <select class="form-select" ngModel name="type" [ngModel]=null required>
+                    <option disabled selected [ngValue]=null>Select</option>
+                    <option *ngFor="let type of types">{{type}}</option>
+                </select>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Meter Installation Date</label>
+                <input type="date" class="form-control" ngModel #installationDate="ngModel" name="installDate" max="{{d | date : 'yyyy-MM-dd'}}" required
+                [ngClass]="{'is-invalid': installationDate.errors && (installationDate.dirty || installationDate.touched)}">
+                <div class="invalid-feedback" *ngIf="installationDate.errors && (installationDate.dirty || installationDate.touched)">
+                    <div *ngIf="installationDate.errors['required']">required field</div>
+                    <div *ngIf="installationDate.errors['max']"> can not be more than {{installationDate.errors['max'].max | date : 'dd-MM-yyyy'}} </div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Meter Class</label>
+                <input type="text" class="form-control" ngModel name="meterClass" #class="ngModel" required
+                [ngClass]="{'is-invalid': class.errors && (class.dirty || class.touched)}">
+                <div class="invalid-feedback" *ngIf="class.errors && (class.dirty || class.touched)">
+                    <div *ngIf="class.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Meter CTR</label>
+                <select class="form-select" ngModel name="meterCtr" [ngModel]=null (change)="calculateMF(f)" required>
+                    <option disabled selected [ngValue]=null>Select</option>
+                    <option *ngFor="let ctr of meterCTRs" [ngValue]="ctr">{{ctr['capacity']}}</option>
+                </select>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Meter PTR</label>
+                <select class="form-select" ngModel name="meterPtr" [ngModel]=null (change)="calculateMF(f)" required>
+                    <option disabled selected [ngValue]=null>Select</option>
+                    <option *ngFor="let ptr of meterPTRs" [ngValue]="ptr">{{ptr['capacity']}}</option>
+                </select>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">ME CTR</label>
+                <select class="form-select" ngModel name="meCtr" [ngModel]=null (change)="calculateMF(f)" required>
+                    <option disabled selected [ngValue]=null>Select</option>
+                    <option *ngFor="let meCTR of meterMECTRs" [ngValue]="meCTR">{{meCTR['capacity']}}</option>
+                </select>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">ME PTR</label>
+                <select class="form-select" ngModel name="mePtr" [ngModel]=null (change)="calculateMF(f)" required>
+                    <option disabled selected [ngValue]=null>Select</option>
+                    <option *ngFor="let mePTR of meterMEPTRs" [ngValue]="mePTR">{{mePTR['capacity']}}</option>
+                </select>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Dial MF</label>
+                <select class="form-select" ngModel name="dialBmf" [ngModel]=null (change)="calculateMF(f)" required>
+                    <option disabled selected [ngValue]=null>Select</option>
+                    <option *ngFor="let dmf of meterDMFs" [ngValue]="dmf">{{dmf['capacity']}}</option>
+                </select>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Equipment Class</label>
+                <input type="text" class="form-control" ngModel name="equipClass" #equipmentClass="ngModel" required
+                [ngClass]="{'is-invalid': equipmentClass.errors && (equipmentClass.dirty || equipmentClass.touched)}">
+                <div class="invalid-feedback" *ngIf="equipmentClass.errors && (equipmentClass.dirty || equipmentClass.touched)">
+                    <div *ngIf="equipmentClass.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">MF</label>
+                <input type="text" class="form-control" ngModel name="mf" readonly required>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Meter Group</label>
+                <select class="form-select" ngModel name="meterGroup" [ngModel]=null required>
+                    <option disabled selected [ngValue]=null>Select</option>
+                    <option *ngFor="let group of meterGroups">{{group}}</option>
+                </select>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Phase</label>
+                <select class="form-select" ngModel name="phase" [ngModel]=null required>
+                    <option disabled selected [ngValue]=null>Select</option>
+                    <option *ngFor="let phase of meterPhases">{{phase}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-4 pt-4 border-top">
+            <button class="btn btn-primary me-2" (click)="onSubmit(f)" [disabled]="f.form.invalid || f.form.disabled || loading">Submit</button>
+            <button type="reset" class="btn btn-warning ms-2">Reset</button>
+        </div>
+    </form>
+</div>

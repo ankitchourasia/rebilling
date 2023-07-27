@@ -1,0 +1,14 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid d-flex fles-direction-between text-white">
+        <a class="navbar-brand">RE Billing</a>
+        <div>
+            <span>Welcome : {{user}}</span>
+            <button class="badge bg-secondary">
+                Session : <app-session-timer></app-session-timer>
+            </button>
+            <button class="badge rounded-pill bg-danger" type="button" (click)="logoutClicked()">
+                logout
+            </button>
+        </div>
+    </div>
+</nav>
