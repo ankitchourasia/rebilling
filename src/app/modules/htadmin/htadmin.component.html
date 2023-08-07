@@ -1,31 +1,64 @@
 <app-header-navbar></app-header-navbar>
-<div class="d-flex">
-    <div class="bg-white border" style="width: 250px; height: 100vh">
-        <!-- <ul class="list-unstyled ps-0">
-            <li class="mb-1">
-                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                    data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-                    Meter
-                </button>
-                <div class="collapse show" id="home-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a routerLink="meter-add" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-dark d-inline-flex text-decoration-none rounded">Create</a></li>
-                        <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">View</a></li>
-                    </ul>
-                </div>
-            </li>
-        </ul> -->
+<div class="container-fluid">
+<div class="row">
+    <div class="bg-white border col-2">
         <div class="list-group">
-            <button class="btn dropdown-toggle rounded-0 text-center bg-primary-subtle py-2" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <button class="btn dropdown-toggle rounded-0 text-center bg-dark text-white py-2" data-bs-toggle="collapse" href="#meter" role="button" aria-expanded="false" aria-controls="collapseExample">
                 Meter
             </button>
-            <div class="collapse show" id="collapseExample">
+            <div class="collapse show" id="meter">
                 <a href="#" class="list-group-item list-group-item-action" routerLink="meter-add" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Create</a>
                 <a href="#" class="list-group-item list-group-item-action" routerLink="meter-view" routerLinkActive="" [routerLinkActiveOptions]="{exact: true}">View</a>
             </div>
         </div>
+        <div class="list-group">
+            <button class="btn dropdown-toggle rounded-0 text-center bg-dark text-white py-2" data-bs-toggle="collapse" href="#feeder" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Feeder
+            </button>
+            <div class="collapse show" id="feeder">
+                <a href="#" class="list-group-item list-group-item-action" routerLink="feeder-add" routerLinkActive="" [routerLinkActiveOptions]="{exact: true}">Create</a>
+                <a href="#" class="list-group-item list-group-item-action" routerLink="feeder-view" routerLinkActive="" [routerLinkActiveOptions]="{exact: true}">View</a>
+            </div>
+        </div>
+        <div class="list-group">
+            <button class="btn dropdown-toggle rounded-0 text-center bg-dark text-white py-2" data-bs-toggle="collapse" href="#developer" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Developer
+            </button>
+            <div class="collapse show" id="developer">
+                <a href="#" class="list-group-item list-group-item-action" routerLink="developer-add" routerLinkActive="" [routerLinkActiveOptions]="{exact: true}">Create</a>
+                <a href="#" class="list-group-item list-group-item-action" routerLink="developer-view" routerLinkActive="" [routerLinkActiveOptions]="{exact: true}">View</a>
+            </div>
+        </div>
+        <div class="list-group">
+            <button class="btn dropdown-toggle rounded-0 text-center bg-dark text-white py-2" data-bs-toggle="collapse" href="#investor" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Investor
+            </button>
+            <div class="collapse show" id="investor">
+                <a href="#" class="list-group-item list-group-item-action" routerLink="investor-add" routerLinkActive="" [routerLinkActiveOptions]="{exact: true}">Create</a>
+                <a href="#" class="list-group-item list-group-item-action" routerLink="investor-view" routerLinkActive="" [routerLinkActiveOptions]="{exact: true}">View</a>
+            </div>
+        </div>
+        <div class="list-group">
+            <button class="btn dropdown-toggle rounded-0 text-center bg-dark text-white py-2" data-bs-toggle="collapse" href="#plant" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Plant
+            </button>
+            <div class="collapse show" id="plant">
+                <a href="#" class="list-group-item list-group-item-action" routerLink="plant-add" routerLinkActive="" [routerLinkActiveOptions]="{exact: true}">Create</a>
+                <a href="#" class="list-group-item list-group-item-action" routerLink="plant-view" routerLinkActive="" [routerLinkActiveOptions]="{exact: true}">View</a>
+            </div>
+        </div>
+        <div class="list-group">
+            <button class="btn dropdown-toggle rounded-0 text-center bg-dark text-white py-2" data-bs-toggle="collapse" href="#machine" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Machine
+            </button>
+            <div class="collapse show" id="machine">
+                <a href="#" class="list-group-item list-group-item-action" routerLink="machine-add" routerLinkActive="" [routerLinkActiveOptions]="{exact: true}">Create</a>
+                <a href="#" class="list-group-item list-group-item-action" routerLink="machine-view" routerLinkActive="" [routerLinkActiveOptions]="{exact: true}">View</a>
+            </div>
+        </div>
     </div>
-    <div class="container-fluid p-0">
+    <div class="container-fluid p-0 col-10">
         <router-outlet></router-outlet>
     </div>
+</div>
 </div>

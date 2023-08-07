@@ -1,0 +1,62 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Feeder Create
+    </div>
+    <form class="card-body" #f="ngForm">
+        <div class="row gx-5 gy-3 justify-content-around">
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Feeder No</label>
+                <input type="text" class="form-control" [(ngModel)]="feeder.feederNumber" name="feederNo" #feederNo="ngModel" required
+                [ngClass]="{'is-invalid': feederNo.errors && (feederNo.dirty || feederNo.touched)}">
+                <div class="invalid-feedback" *ngIf="feederNo.errors && (feederNo.dirty || feederNo.touched)">
+                    <div *ngIf="feederNo.errors['required']">required field</div>
+                </div>
+            </div>
+
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Feeder Name</label>
+                <input type="text" class="form-control" [(ngModel)]="feeder.feederName" name="feederName" #feederName="ngModel" required
+                [ngClass]="{'is-invalid': feederName.errors && (feederName.dirty || feederName.touched)}">
+                <div class="invalid-feedback" *ngIf="feederName.errors && (feederName.dirty || feederName.touched)">
+                    <div *ngIf="feederName.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Injecting SS Name</label>
+                <input type="text" class="form-control" [(ngModel)]="feeder.injectingSsName" name="ssName" #ssName="ngModel" required
+                [ngClass]="{'is-invalid': ssName.errors && (ssName.dirty || ssName.touched)}">
+                <div class="invalid-feedback" *ngIf="ssName.errors && (ssName.dirty || ssName.touched)">
+                    <div *ngIf="ssName.errors['required']">required field</div>
+                </div>
+            </div>
+
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Injecting SS Code</label>
+                <input type="text" class="form-control" [(ngModel)]="feeder.injectingSsCode" name="ssCode" #ssCode="ngModel" required
+                [ngClass]="{'is-invalid': ssCode.errors && (ssCode.dirty || ssCode.touched)}">
+                <div class="invalid-feedback" *ngIf="ssCode.errors && (ssCode.dirty || ssCode.touched)">
+                    <div *ngIf="ssCode.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Circuit Voltage</label>
+                <select class="form-select" name="make" [(ngModel)]="feeder.circuitVoltage" required>
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option *ngFor="let voltage of voltages" [ngValue]="voltage">{{voltage}}</option>
+                </select>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Division</label>
+                <select class="form-select" name="make" [(ngModel)]="feeder.location" required>
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option *ngFor="let location of locations" [ngValue]="location">{{location.divisionName}}</option>
+                </select>
+                <span *ngIf="feeder && feeder.location">Circle Name : {{feeder?.location?.circleName}}</span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-4 pt-4 border-top">
+            <button class="btn btn-primary me-2" (click)="onSubmit(f)" [disabled]="f.form.invalid || f.form.disabled || loading">Submit</button>
+            <button type="reset" class="btn btn-warning ms-2">Reset</button>
+        </div>
+    </form>
+</div>

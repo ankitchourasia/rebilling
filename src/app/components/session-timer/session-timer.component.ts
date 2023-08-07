@@ -50,7 +50,6 @@ export class SessionTimerComponent implements OnInit,OnDestroy {
       this.seconds = sessionTime.seconds;
     }else{
       if(!this.dialogShownOnce){
-        console.log(this.CLASS_NAME + "Showing Login Dialog");
         let token = sessionStorage.getItem('token');
         if(token){
           alert("Session expired, please login again.");
@@ -58,7 +57,6 @@ export class SessionTimerComponent implements OnInit,OnDestroy {
           sessionStorage.removeItem('token');
           this.router.navigate(['login']);
         }
-        console.log(this.CLASS_NAME + "Login Dialog shown");
       }
     }
   }

@@ -1,0 +1,282 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Investor View
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr class="bg-dark text-white text-center">
+                <td>S.No</td>
+                <td>Code</td>
+                <td>Name</td>
+                <!-- <td>Business Registration Details</td> -->
+                <!-- <td>CIN</td>
+                <td>TIN</td>
+                <td>GST No</td> -->
+                <!-- <td>Office Details</td> -->
+                <!-- <td>Office Address</td>
+                <td>office Contact Person</td>
+                <td>Office Email</td>
+                <td>Office No</td> -->
+                <!-- <td>Site Details</td> -->
+                <!-- <td>Site Address</td>
+                <td>Site Contact Person</td>
+                <td>Site Email</td>
+                <td>Site No</td> -->
+                <td>VAT</td>
+                <td>Buyer</td>
+                <td>Fixed Adjust</td>
+                <!-- <td>Bank Details</td> -->
+                <!-- <td>Bank Name</td>
+                <td>Acc Holder Name</td>
+                <td>Account No</td>
+                <td>IFSC</td>
+                <td>MICR</td> -->
+                <td>NLDC</td>
+                <td>Division</td>
+                <td>Circle</td>
+                <td></td>
+            </tr>
+            
+            <tr *ngFor="let investor of getData(); let i = index">
+                <td>{{(this.page - 1) * this.pageSize + i + 1}}</td>
+                <td>{{investor.investorCode}}</td>
+                <td>{{investor.investorName}}</td>
+                <!-- <td>
+                    <span class="fw-bold">CIN : </span> {{investor.cin}}<br>
+                    <span class="fw-bold">TIN : </span>{{investor.tin}}<br>
+                    <span class="fw-bold">GST No : </span>{{investor.gstNo}}<br>
+                </td> -->
+                <!-- <td>{{investor.cin}}</td>
+                <td>{{investor.tin}}</td>
+                <td>{{investor.gstNo}}</td> -->
+                <!-- <td>
+                    <span class="fw-bold">Contact Person :</span> {{investor.officeContactPerson}}<br>
+                    <span class="fw-bold">Contact No : </span>{{investor.officeContactNo}}<br>
+                    <span class="fw-bold">Email : </span>{{investor.officeEmail}}<br>
+                    <span class="fw-bold">Address : </span>{{investor.officeAddress}}
+                </td> -->
+                <!-- <td>{{investor.officeAddress}}</td>
+                <td>{{investor.officeContactPerson}}</td>
+                <td>{{investor.officeEmail}}</td>
+                <td>{{investor.officeContactNo}}</td> -->
+                <!-- <td>
+                    <span class="fw-bold">Contact Person : </span>{{investor.siteContactPerson}}<br>
+                    <span class="fw-bold">Contact No : </span>{{investor.siteContactNo}}<br>
+                    <span class="fw-bold">Email : </span>{{investor.siteEmail}}<br>
+                    <span class="fw-bold">Address : </span>{{investor.siteAddress}}
+                </td> -->
+                <!-- <td>{{investor.siteAddress}}</td>
+                <td>{{investor.siteContactPerson}}</td>
+                <td>{{investor.siteEmail}}</td>
+                <td>{{investor.siteContactNo}}</td> -->
+                <td>{{investor.vat}}</td>
+                <td>{{investor.buyer}}</td>
+                <td>{{investor.fixedAdjust}}</td>
+                <!-- <td>
+                    <span class="fw-bold">Acc Holder : </span>{{investor.accountHolderName}}<br>
+                    <span class="fw-bold">Acc No : </span>{{investor.accountNo}}<br>
+                    <span class="fw-bold">Bank : </span>{{investor.bankName}}<br>
+                    <span class="fw-bold">IFSC : </span>{{investor.ifscCode}} <br>
+                    <span class="fw-bold">MICR : </span>{{investor.micr}}
+                </td> -->
+                <!-- <td>{{investor.bankName}}</td>
+                <td>{{investor.accountHolderName}}</td>
+                <td>{{investor.accountNo}}</td>
+                <td>{{investor.ifscCode}}</td>
+                <td>{{investor.micr}}</td> -->
+                <td>{{investor.nldc}}</td>
+                <td>{{investor.locationMaster.divisionName}}</td>
+                <td>{{investor.locationMaster.circleName}}</td>
+                <td>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#viewModal" (click)="viewDetailsClicked(investor)">
+                        View Details
+                    </a>
+                </td>
+            </tr>
+            <tr *ngIf="!investors || investors.length <= 0" class="text-center">
+                <td colspan="11" *ngIf="!loading">No Investor Found</td>
+                <td colspan="11" *ngIf="loading">
+                    <span class="spinner-border spinner-border-sm text-secondary"></span> Loading...
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <ngb-pagination class="d-flex justify-content-around" *ngIf="pageSize < investors.length + 1"
+                [collectionSize]="investors.length"
+                [(page)]="page"
+                [maxSize]="7"
+                [rotate]="true"
+                [ellipses]="false"
+                [boundaryLinks]="true" (pageChange)="getData()"
+                [pageSize]="pageSize"
+            ></ngb-pagination>
+    </div>
+</div>
+  
+  <!-- Modal -->
+  <div class="modal modal-xl fade" id="viewModal" tabindex="-1" aria-labelledby="viewLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="viewLabel">Investor Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>
+                        <b>Name</b>
+                    </td>
+                    <td>
+                        {{investor.investorName}}
+                    </td>
+                    <td>
+                        <b>Code</b>
+                    </td>
+                    <td>
+                        {{investor.investorCode}}
+                    </td>
+                    <td>
+                        <b>CIN</b>
+                    </td>
+                    <td>
+                        {{investor.cin}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>TIN</b>
+                    </td>
+                    <td>
+                        {{investor.tin}}
+                    </td>
+                    <td>
+                        <b>GST No</b>
+                    </td>
+                    <td colspan="3">
+                        {{investor.gstNo}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Office Contact Person</b>
+                    </td>
+                    <td>
+                        {{investor.officeContactPerson}}
+                    </td>
+                    <td>
+                        <b>Office Contact No</b>
+                    </td>
+                    <td>
+                        {{investor.officeContactNo}}
+                    </td>
+                    <td>
+                        <b>Office Email</b>
+                    </td>
+                    <td>
+                        {{investor.officeEmail}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Office Address</b>
+                    </td>
+                    <td colspan="5">
+                        {{investor.officeAddress}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Site Contact Person</b>
+                    </td>
+                    <td>
+                        {{investor.siteContactPerson}}
+                    </td>
+                    <td>
+                        <b>Site Contact No</b>
+                    </td>
+                    <td>
+                        {{investor.siteContactNo}}
+                    </td>
+                    <td>
+                        <b>Site Email</b>
+                    </td>
+                    <td>
+                        {{investor.siteEmail}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Site Address</b>
+                    </td>
+                    <td colspan="5">
+                        {{investor.siteAddress}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>VAT</b>
+                    </td>
+                    <td>
+                        {{investor.vat}}
+                    </td>
+                    <td>
+                        <b>Buyer</b>
+                    </td>
+                    <td>
+                        {{investor.buyer}}
+                    </td>
+                    <td>
+                        <b>Fixed Adjust</b>
+                    </td>
+                    <td>
+                        {{investor.fixedAdjust}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>Account Holder</b>
+                    </td>
+                    <td colspan="3">
+                        {{investor.accountHolderName}}
+                    </td>
+                    <td>
+                        <b>Account No</b>
+                    </td>
+                    <td>
+                        {{investor.accountNo}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Bank Name</b>
+                    </td>
+                    <td>
+                        {{investor.bankName}}
+                    </td>
+                    <td>
+                        <b>IFSC</b>
+                    </td>
+                    <td>
+                        {{investor.ifsc}}
+                    </td>
+                    <td>
+                        <b>MICR</b>
+                    </td>
+                    <td>
+                        {{investor.micr}}
+                    </td>
+                </tr>
+            </table>
+                
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

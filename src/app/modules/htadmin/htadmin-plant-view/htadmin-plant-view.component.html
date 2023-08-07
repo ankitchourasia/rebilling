@@ -1,0 +1,50 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Plant View
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+        <table class="table table-bordered text-center">
+            <tr class="bg-dark text-white">
+                <td>S.No</td>
+                <td>Code</td>
+                <td>Name</td>
+                <td>Address</td>
+                <td>Contact No</td>
+                <td>Contact Person</td>
+                <td>Email</td>
+                <td>Commissioned Date</td>
+                <td>Type</td>
+            </tr>
+            
+            <tr *ngFor="let plant of getData(); let i = index">
+                <td>{{(this.page - 1) * this.pageSize + i + 1}}</td>
+                <td>{{plant.plantCode}}</td>
+                <td>{{plant.plantName}}</td>
+                <td>{{plant.address}}</td>
+                <td>{{plant.contactNo}}</td>
+                <td>{{plant.contactPerson}}</td>
+                <td>{{plant.email}}</td>
+                <td>{{plant.commissionedDate}}</td>
+                <td>{{plant.type}}</td>
+            </tr>
+            <tr *ngIf="!plants || plants.length <= 0">
+                <td colspan="9" *ngIf="!loading">No Plant Found</td>
+                <td colspan="9" *ngIf="loading">
+                    <span class="spinner-border spinner-border-sm text-secondary"></span> Loading...
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <ngb-pagination class="d-flex justify-content-around" *ngIf="pageSize < plants.length + 1"
+                [collectionSize]="plants.length"
+                [(page)]="page"
+                [maxSize]="5"
+                [rotate]="true"
+                [ellipses]="false"
+                [boundaryLinks]="true" (pageChange)="getData()"
+                [pageSize]="pageSize"
+            ></ngb-pagination>
+    </div>
+</div>

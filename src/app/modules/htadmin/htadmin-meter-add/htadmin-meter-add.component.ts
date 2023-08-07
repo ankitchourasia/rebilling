@@ -34,22 +34,28 @@ export class HTAdminMeterAddComponent implements OnInit{
     this.getMeterDMF();
   }
 
+
   onSubmit(form : NgForm) : void{
     this.loading = true;
-    form.controls['dialBmf'].patchValue(form.form.value.dialBmf.capacity);
-    form.controls['meCtr'].patchValue(form.form.value.meCtr.capacity);
-    form.controls['mePtr'].patchValue(form.form.value.mePtr.capacity);
-    form.controls['meterCtr'].patchValue(form.form.value.meterCtr.capacity);
-    form.controls['meterPtr'].patchValue(form.form.value.meterPtr.capacity);
-    this.meterService.createMeter(form.form.value).subscribe(success =>{
-      this.loading = false;
-      alert("Meter added successfully.");
-      form.reset();
-    }, error =>{
-      this.loading = false;
-      console.log(error);
-      alert("Unable to add meter.");
-    });
+    let meterToCreate : any = Object.assign({}, form.form.value);
+    meterToCreate['dialBmf'] = meterToCreate.dialBmf.capacity;
+    meterToCreate['meCtr'] = meterToCreate.meCtr.capacity;
+    meterToCreate['mePtr'] = meterToCreate.mePtr.capacity;
+    meterToCreate['meterCtr'] = meterToCreate.meterCtr.capacity;
+    meterToCreate['meterPtr'] = meterToCreate.meterPtr.capacity;
+    this.meterService.createMeter(meterToCreate).subscribe({
+      next: () =>{
+        this.loading = false;
+        alert("Meter added successfully.");
+        form.reset();
+      },
+      error: (error) =>{
+        this.loading = false;
+        console.log(error);
+        alert("Unable to add meter.");
+      }
+
+    })
   }
 
   getMeterMakes(){

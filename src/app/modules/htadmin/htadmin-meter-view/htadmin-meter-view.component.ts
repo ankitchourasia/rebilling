@@ -13,6 +13,9 @@ export class HTAdminMeterViewComponent {
   meterNumber!: string;
   meters : any = [];
   loading : boolean = false;
+  page = 1;
+  pageSize = 20;
+  
   constructor(private meterService : MeterService){
   }
 
@@ -48,6 +51,10 @@ export class HTAdminMeterViewComponent {
       this.loading = false;
       console.log(error);
     })
+  }
+
+  getData(){
+    return this.meters.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
 }

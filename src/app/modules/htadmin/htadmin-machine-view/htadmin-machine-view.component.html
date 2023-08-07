@@ -1,0 +1,52 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Machine View
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+        <table class="table table-bordered text-center">
+            <tr class="bg-dark text-white">
+                <td>S.No</td>
+                <td>Code</td>
+                <td>Name</td>
+                <td>Capacity</td>
+                <td>Commissioned Date</td>
+                <td>Active Rate</td>
+                <td>Reactive Rate</td>
+                <td>PPA Letter No</td>
+                <td>PPA Date</td>
+                <td>Particulars</td>
+            </tr>
+            
+            <tr *ngFor="let machine of getData(); let i = index">
+                <td>{{(this.page - 1) * this.pageSize + i + 1}}</td>
+                <td>{{machine.machineCode}}</td>
+                <td>{{machine.machineName}}</td>
+                <td>{{machine.capacity}}</td>
+                <td>{{machine.commissionedDate}}</td>
+                <td>{{machine.activeRate}}</td>
+                <td>{{machine.reactiveRate}}</td>
+                <td>{{machine.ppaLetterNo}}</td>
+                <td>{{machine.ppaDate}}</td>
+                <td>{{machine.particulars}}</td>
+            </tr>
+            <tr *ngIf="!machines || machines.length <= 0">
+                <td colspan="10" *ngIf="!loading">No Machines Found</td>
+                <td colspan="10" *ngIf="loading">
+                    <span class="spinner-border spinner-border-sm text-secondary"></span> Loading...
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <ngb-pagination class="d-flex justify-content-around" *ngIf="pageSize < machines.length + 1"
+                [collectionSize]="machines.length"
+                [(page)]="page"
+                [maxSize]="5"
+                [rotate]="true"
+                [ellipses]="false"
+                [boundaryLinks]="true" (pageChange)="getData()"
+                [pageSize]="pageSize"
+            ></ngb-pagination>
+    </div>
+</div>

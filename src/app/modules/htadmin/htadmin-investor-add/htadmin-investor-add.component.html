@@ -1,0 +1,210 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Investor Create
+    </div>
+    <form class="card-body" #f="ngForm">
+        <div class="row gx-5 gy-3 justify-content-around">
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Investor Name</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.investorName" name="investorName" #investorName="ngModel" required
+                [ngClass]="{'is-invalid': investorName.errors && (investorName.dirty || investorName.touched)}">
+                <div class="invalid-feedback" *ngIf="investorName.errors && (investorName.dirty || investorName.touched)">
+                    <div *ngIf="investorName.errors['required']">required field</div>
+                </div>
+            </div>
+
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Investor Code</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.investorCode" name="code" #code="ngModel" required
+                [ngClass]="{'is-invalid': code.errors && (code.dirty || code.touched)}">
+                <div class="invalid-feedback" *ngIf="code.errors && (code.dirty || code.touched)">
+                    <div *ngIf="code.errors['required']">required field</div>
+                </div>
+            </div>
+
+            <div class="col-3 mx-3">
+                <label class="fw-bold">CIN</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.cin" name="cin" #cin="ngModel" required
+                [ngClass]="{'is-invalid': cin.errors && (cin.dirty || cin.touched)}">
+                <div class="invalid-feedback" *ngIf="cin.errors && (cin.dirty || cin.touched)">
+                    <div *ngIf="cin.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">TIN</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.tin" name="tin" #tin="ngModel" required
+                [ngClass]="{'is-invalid': tin.errors && (tin.dirty || tin.touched)}">
+                <div class="invalid-feedback" *ngIf="tin.errors && (tin.dirty || tin.touched)">
+                    <div *ngIf="tin.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">GST No</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.gstNo" name="gst" #gst="ngModel" required
+                [ngClass]="{'is-invalid': gst.errors && (gst.dirty || gst.touched)}">
+                <div class="invalid-feedback" *ngIf="gst.errors && (gst.dirty || gst.touched)">
+                    <div *ngIf="gst.errors['required']">required field</div>
+                </div>
+            </div>
+
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Office Address</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.officeAddress" name="officeAddress" #officeAddress="ngModel" required
+                [ngClass]="{'is-invalid': officeAddress.errors && (officeAddress.dirty || officeAddress.touched)}">
+                <div class="invalid-feedback" *ngIf="officeAddress.errors && (officeAddress.dirty || officeAddress.touched)">
+                    <div *ngIf="officeAddress.errors['required']">required field</div>
+                </div>
+            </div>
+
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Office Contact Person</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.officeContactPerson" name="officeContactPerson" #officeContactPerson="ngModel" required
+                [ngClass]="{'is-invalid': officeContactPerson.errors && (officeContactPerson.dirty || officeContactPerson.touched)}">
+                <div class="invalid-feedback" *ngIf="officeContactPerson.errors && (officeContactPerson.dirty || officeContactPerson.touched)">
+                    <div *ngIf="officeContactPerson.errors['required']">required field</div>
+                </div>
+            </div>
+
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Office Email</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.officeEmail" name="officeEmail" #officeEmail="ngModel" required
+                [ngClass]="{'is-invalid': officeEmail.errors && (officeEmail.dirty || officeEmail.touched)}">
+                <div class="invalid-feedback" *ngIf="officeEmail.errors && (officeEmail.dirty || officeEmail.touched)">
+                    <div *ngIf="officeEmail.errors['required']">required field</div>
+                </div>
+            </div>
+
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Office Contact No</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.officeContactNo" name="officeContactNo" #officeContactNo="ngModel" required
+                [ngClass]="{'is-invalid': officeContactNo.errors && (officeContactNo.dirty || officeContactNo.touched)}">
+                <div class="invalid-feedback" *ngIf="officeContactNo.errors && (officeContactNo.dirty || officeContactNo.touched)">
+                    <div *ngIf="officeContactNo.errors['required']">required field</div>
+                </div>
+            </div>
+
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Site Address</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.siteAddress" name="siteAddress" #siteAddress="ngModel" required
+                [ngClass]="{'is-invalid': siteAddress.errors && (siteAddress.dirty || siteAddress.touched)}">
+                <div class="invalid-feedback" *ngIf="siteAddress.errors && (siteAddress.dirty || siteAddress.touched)">
+                    <div *ngIf="siteAddress.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Site Contact Person</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.siteContactPerson" name="siteContactPerson" #siteContactPerson="ngModel" required
+                [ngClass]="{'is-invalid': siteContactPerson.errors && (siteContactPerson.dirty || siteContactPerson.touched)}">
+                <div class="invalid-feedback" *ngIf="siteContactPerson.errors && (siteContactPerson.dirty || siteContactPerson.touched)">
+                    <div *ngIf="siteContactPerson.errors['required']">required field</div>
+                </div>
+            </div>
+
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Site Email</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.siteEmail" name="siteEmail" #siteEmail="ngModel" required
+                [ngClass]="{'is-invalid': siteEmail.errors && (siteEmail.dirty || siteEmail.touched)}">
+                <div class="invalid-feedback" *ngIf="siteEmail.errors && (siteEmail.dirty || siteEmail.touched)">
+                    <div *ngIf="siteEmail.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Site Contact No</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.siteContactNo" name="siteContactNo" #siteContactNo="ngModel" required
+                [ngClass]="{'is-invalid': siteContactNo.errors && (siteContactNo.dirty || siteContactNo.touched)}">
+                <div class="invalid-feedback" *ngIf="siteContactNo.errors && (siteContactNo.dirty || siteContactNo.touched)">
+                    <div *ngIf="siteContactNo.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">VAT</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.vat" name="vat" #vat="ngModel" required
+                [ngClass]="{'is-invalid': vat.errors && (vat.dirty || vat.touched)}">
+                <div class="invalid-feedback" *ngIf="vat.errors && (vat.dirty || vat.touched)">
+                    <div *ngIf="vat.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Buyer</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.buyer" name="buyer" #buyer="ngModel" required
+                [ngClass]="{'is-invalid': buyer.errors && (buyer.dirty || buyer.touched)}">
+                <div class="invalid-feedback" *ngIf="buyer.errors && (buyer.dirty || buyer.touched)">
+                    <div *ngIf="buyer.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Fixed Adjust</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.fixedAdjust" name="fixedAdjust" #fixedAdjust="ngModel" required
+                [ngClass]="{'is-invalid': fixedAdjust.errors && (fixedAdjust.dirty || fixedAdjust.touched)}">
+                <div class="invalid-feedback" *ngIf="fixedAdjust.errors && (fixedAdjust.dirty || fixedAdjust.touched)">
+                    <div *ngIf="fixedAdjust.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Bank Name</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.bankName" name="bankName" #bankName="ngModel" required
+                [ngClass]="{'is-invalid': bankName.errors && (bankName.dirty || bankName.touched)}">
+                <div class="invalid-feedback" *ngIf="bankName.errors && (bankName.dirty || bankName.touched)">
+                    <div *ngIf="bankName.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Acc Holder Name</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.accountHolderName" name="accountHolderName" #accountHolderName="ngModel" required
+                [ngClass]="{'is-invalid': accountHolderName.errors && (accountHolderName.dirty || accountHolderName.touched)}">
+                <div class="invalid-feedback" *ngIf="accountHolderName.errors && (accountHolderName.dirty || accountHolderName.touched)">
+                    <div *ngIf="accountHolderName.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Acc No</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.accountNo" name="accountNo" #accountNo="ngModel" required
+                [ngClass]="{'is-invalid': accountNo.errors && (accountNo.dirty || accountNo.touched)}">
+                <div class="invalid-feedback" *ngIf="accountNo.errors && (accountNo.dirty || accountNo.touched)">
+                    <div *ngIf="accountNo.errors['required']">required field</div>
+                </div>
+            </div>
+
+            <div class="col-3 mx-3">
+                <label class="fw-bold">IFSC</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.ifscCode" name="ifscCode" #ifscCode="ngModel" required
+                [ngClass]="{'is-invalid': ifscCode.errors && (ifscCode.dirty || ifscCode.touched)}">
+                <div class="invalid-feedback" *ngIf="ifscCode.errors && (ifscCode.dirty || ifscCode.touched)">
+                    <div *ngIf="ifscCode.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">MICR</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.micr" name="micr" #micr="ngModel" required
+                [ngClass]="{'is-invalid': micr.errors && (micr.dirty || micr.touched)}">
+                <div class="invalid-feedback" *ngIf="micr.errors && (micr.dirty || micr.touched)">
+                    <div *ngIf="micr.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">NLDC</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.nldc" name="nldc" #nldc="ngModel" required
+                [ngClass]="{'is-invalid': nldc.errors && (nldc.dirty || nldc.touched)}">
+                <div class="invalid-feedback" *ngIf="nldc.errors && (nldc.dirty || nldc.touched)">
+                    <div *ngIf="nldc.errors['required']">required field</div>
+                </div>
+            </div>
+
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Division</label>
+                <select class="form-select" name="make" [(ngModel)]="investor.location" required>
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option *ngFor="let location of locations" [ngValue]="location">{{location.divisionName}}</option>
+                </select>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Circle</label>
+                <input class="form-control" type="text" name="circle" [ngModel]="investor?.location?.circleName" readonly>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-4 pt-4 border-top">
+            <button class="btn btn-primary me-2" (click)="onSubmit(f)" [disabled]="f.form.invalid || f.form.disabled || loading">Submit</button>
+            <button type="reset" class="btn btn-warning ms-2">Reset</button>
+        </div>
+    </form>
+</div>

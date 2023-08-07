@@ -1,0 +1,67 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Developer View
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr class="bg-dark text-white text-center">
+                <td>S.No</td>
+                <td>Name</td>
+                <td>CIN</td>
+                <td>Office Details</td>
+                <!-- <td>Office Add</td>
+                <td>Office Person</td>
+                <td>Office Email</td>
+                <td>Contact No</td> -->
+                <td>Site Details</td>
+                <!-- <td>Site Add</td>
+                <td>Site Contact</td>
+                <td>Site Email</td>
+                <td>Site Contact</td> -->
+            </tr>
+            
+            <tr *ngFor="let dev of getData(); let i = index">
+                <td>{{(this.page - 1) * this.pageSize + i + 1}}</td>
+                <td>{{dev.developerName}}</td>
+                <td>{{dev.cin}}</td>
+                <td>
+                    <span class="fw-bold">Contact Person :</span> {{dev.officeContactPerson}}<br>
+                    <span class="fw-bold">Contact No : </span>{{dev.officeContactNo}}<br>
+                    <span class="fw-bold">Email : </span>{{dev.officeEmail}}<br>
+                    <span class="fw-bold">Address : </span>{{dev.officeAddress}}
+                </td>
+                <!-- <td>{{dev.officeAddress}}</td>
+                <td>{{dev.officeContactPerson}}</td>
+                <td>{{dev.officeEmail}}</td>
+                <td>{{dev.officeContactNo}}</td> -->
+                <td>
+                    <span class="fw-bold">Contact Person : </span>{{dev.siteContactPerson}}<br>
+                    <span class="fw-bold">Contact No : </span>{{dev.siteContactNo}}<br>
+                    <span class="fw-bold">Email : </span>{{dev.siteEmail}}<br>
+                    <span class="fw-bold">Address : </span>{{dev.siteAddress}}
+                </td>
+                <!-- <td>{{dev.siteAddress}}</td>
+                <td>{{dev.siteContactPerson}}</td>
+                <td>{{dev.siteEmail}}</td>
+                <td>{{dev.siteContactNo}}</td> -->
+            </tr>
+            <tr *ngIf="!developers || developers.length <= 0" class="text-center">
+                <td colspan="11" *ngIf="!loading">No Developer Found</td>
+                <td colspan="11" *ngIf="loading">
+                    <span class="spinner-border spinner-border-sm text-secondary"></span> Loading...
+                </td>
+            </tr>
+        </table>
+    </div>
+    <ngb-pagination class="d-flex justify-content-around" *ngIf="pageSize < developers.length + 1"
+        [collectionSize]="developers.length"
+        [(page)]="page"
+        [maxSize]="7"
+        [rotate]="true"
+        [ellipses]="false"
+        [boundaryLinks]="true" (pageChange)="getData()"
+        [pageSize]="pageSize"
+    ></ngb-pagination>
+    </div>
+</div>

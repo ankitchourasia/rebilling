@@ -9,6 +9,18 @@ import { HTAdminMeterAddComponent } from './htadmin-meter-add/htadmin-meter-add.
 import { FormsModule } from '@angular/forms';
 import { HTAdminMeterViewComponent } from './htadmin-meter-view/htadmin-meter-view.component';
 import { DirectiveModule } from 'src/app/directives/directive.module';
+import { HTAdminFeederViewComponent } from './htadmin-feeder-view/htadmin-feeder-view.component';
+import { HTAdminFeederAddComponent } from './htadmin-feeder-add/htadmin-feeder-add.component';
+import { HTAdminDeveloperViewComponent } from './htadmin-developer-view/htadmin-developer-view.component';
+import { HTAdminDeveloperAddComponent } from './htadmin-developer-add/htadmin-developer-add.component';
+import { HTAdminInvestorAddComponent } from './htadmin-investor-add/htadmin-investor-add.component';
+import { HTAdminInvestorViewComponent } from './htadmin-investor-view/htadmin-investor-view.component';
+import { HTAdminPlantViewComponent } from './htadmin-plant-view/htadmin-plant-view.component';
+import { HTAdminPlantAddComponent } from './htadmin-plant-add/htadmin-plant-add.component';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { HTAdminMachineViewComponent } from './htadmin-machine-view/htadmin-machine-view.component';
+import { HTAdminMachineAddComponent } from './htadmin-machine-add/htadmin-machine-add.component';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -17,14 +29,25 @@ import { DirectiveModule } from 'src/app/directives/directive.module';
     HTAdminComponent,
     HTAdminHomeComponent,
     HTAdminMeterAddComponent,
-    HTAdminMeterViewComponent
+    HTAdminMeterViewComponent,
+    HTAdminFeederAddComponent,
+    HTAdminFeederViewComponent,
+    HTAdminDeveloperViewComponent,
+    HTAdminDeveloperAddComponent,
+    HTAdminInvestorAddComponent,
+    HTAdminInvestorViewComponent,
+    HTAdminPlantViewComponent,
+    HTAdminPlantAddComponent,
+    HTAdminMachineViewComponent,
+    HTAdminMachineAddComponent
   ],
   imports: [
     CommonModule,
     HTAdminRoutingModule,
     DirectiveModule,
     NavbarModule,
-    FormsModule
+    FormsModule,
+    NgbPaginationModule
   ],
   providers: [CanActivateAuthGuard]
 })

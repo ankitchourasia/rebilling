@@ -1,0 +1,69 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Feeder View
+    </div>
+    <div class="card-body">
+        <div class="d-flex justify-content-center align-items-baseline mb-3">
+            <div class="me-3">
+                <label>View by:</label>
+                <select class="form-select" [(ngModel)]="viewBy" required>
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option>All</option>
+                    <option>Feeder-No</option>
+                </select>
+            </div>
+            <div *ngIf="viewBy === 'Feeder-No'" class="me-3">
+                <label>Meter No</label>
+                <input type="text" class="form-control" name="feeder" [(ngModel)]="feederNo" #feeder="ngModel" required
+                [ngClass]="{'is-invalid': feeder.errors && (feeder.dirty || feeder.touched)}">
+                <div class="invalid-feedback" *ngIf="feeder.errors && (feeder.dirty || feeder.touched)">
+                    <div *ngIf="feeder.errors['required']">required field</div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label class="text-white">*</label>
+                </div>
+                <button class="btn btn-primary" (click)="searchClicked()" [disabled]="(viewBy==='Feeder-No' && !feederNo) || loading">Search</button>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered text-center">
+                <tr class="bg-dark text-white">
+                    <td>S.No</td>
+                    <td>Feeder No</td>
+                    <td>Name</td>
+                    <td>SS Code</td>
+                    <td>SS Name</td>
+                    <td>Circuit Voltage</td>
+                    <td>Status</td>
+                </tr>
+                
+                <tr *ngFor="let feeder of feeders; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{feeder.feederNumber}}</td>
+                    <td>{{feeder.feederName}}</td>
+                    <td>{{feeder.injectingSsCode}}</td>
+                    <td>{{feeder.injectingSsName}}</td>
+                    <td>{{feeder.circuitVoltage}}</td>
+                    <td>{{feeder.status}}</td>
+                </tr>
+                <tr *ngIf="!feeders || feeders.length <= 0">
+                    <td colspan="7" *ngIf="!loading">No Feeder Found</td>
+                    <td colspan="7" *ngIf="loading">
+                        <span class="spinner-border spinner-border-sm text-secondary"></span> Loading...
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <ngb-pagination class="d-flex justify-content-around" *ngIf="pageSize < feeders.length + 1"
+                [collectionSize]="feeders.length"
+                [(page)]="page"
+                [maxSize]="7"
+                [rotate]="true"
+                [ellipses]="false"
+                [boundaryLinks]="true" (pageChange)="getData()"
+                [pageSize]="pageSize"
+            ></ngb-pagination>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Machine Create
+    </div>
+    <form class="card-body" #f="ngForm">
+        <div class="row gx-5 gy-3 justify-content-around">
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Machine Name</label>
+                <input type="text" class="form-control" [(ngModel)]="machine.machineName" name="machineName" #machineName="ngModel" required
+                [ngClass]="{'is-invalid': machineName.errors && (machineName.dirty || machineName.touched)}">
+                <div class="invalid-feedback" *ngIf="machineName.errors && (machineName.dirty || machineName.touched)">
+                    <div *ngIf="machineName.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Capacity</label>
+                <input type="text" class="form-control" [(ngModel)]="machine.capacity" name="capacity" #capacity="ngModel" required
+                [ngClass]="{'is-invalid': capacity.errors && (capacity.dirty || capacity.touched)}">
+                <div class="invalid-feedback" *ngIf="capacity.errors && (capacity.dirty || capacity.touched)">
+                    <div *ngIf="capacity.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Commissioned Date</label>
+                <input type="date" class="form-control" [(ngModel)]="machine.commissionedDate" #commissionedDate="ngModel" name="commissionedDate" max="{{d | date : 'yyyy-MM-dd'}}" required
+                [ngClass]="{'is-invalid': commissionedDate.errors && (commissionedDate.dirty || commissionedDate.touched)}">
+                <div class="invalid-feedback" *ngIf="commissionedDate.errors && (commissionedDate.dirty || commissionedDate.touched)">
+                    <div *ngIf="commissionedDate.errors['required']">required field</div>
+                    <div *ngIf="commissionedDate.errors['max']"> can not be more than {{commissionedDate.errors['max'].max | date : 'dd-MM-yyyy'}} </div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Active Rate</label>
+                <input type="text" class="form-control" [(ngModel)]="machine.activeRate" name="activeRate" #activeRate="ngModel" required
+                [ngClass]="{'is-invalid': activeRate.errors && (activeRate.dirty || activeRate.touched)}">
+                <div class="invalid-feedback" *ngIf="activeRate.errors && (activeRate.dirty || activeRate.touched)">
+                    <div *ngIf="activeRate.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Reactive Rate</label>
+                <input type="text" class="form-control" [(ngModel)]="machine.reactiveRate" name="reactiveRate" #reactiveRate="ngModel" required
+                [ngClass]="{'is-invalid': reactiveRate.errors && (reactiveRate.dirty || reactiveRate.touched)}">
+                <div class="invalid-feedback" *ngIf="reactiveRate.errors && (reactiveRate.dirty || reactiveRate.touched)">
+                    <div *ngIf="reactiveRate.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">PPA Letter No</label>
+                <input type="text" class="form-control" [(ngModel)]="machine.ppaLetterNo" name="ppaLetterNo" #ppaLetterNo="ngModel" required
+                [ngClass]="{'is-invalid': ppaLetterNo.errors && (ppaLetterNo.dirty || ppaLetterNo.touched)}">
+                <div class="invalid-feedback" *ngIf="ppaLetterNo.errors && (ppaLetterNo.dirty || ppaLetterNo.touched)">
+                    <div *ngIf="ppaLetterNo.errors['required']">required field</div>
+                </div>
+            </div>
+
+            <div class="col-3 mx-3">
+                <label class="fw-bold">PPA Date</label>
+                <input type="date" class="form-control" [(ngModel)]="machine.ppaDate" #ppaDate="ngModel" name="ppaDate" max="{{d | date : 'yyyy-MM-dd'}}" required
+                [ngClass]="{'is-invalid': ppaDate.errors && (ppaDate.dirty || ppaDate.touched)}">
+                <div class="invalid-feedback" *ngIf="ppaDate.errors && (ppaDate.dirty || ppaDate.touched)">
+                    <div *ngIf="ppaDate.errors['required']">required field</div>
+                    <div *ngIf="ppaDate.errors['max']"> can not be more than {{ppaDate.errors['max'].max | date : 'dd-MM-yyyy'}} </div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Particulars</label>
+                <input type="text" class="form-control" [(ngModel)]="machine.particulars" name="particulars" #particulars="ngModel" required
+                [ngClass]="{'is-invalid': particulars.errors && (particulars.dirty || particulars.touched)}">
+                <div class="invalid-feedback" *ngIf="particulars.errors && (particulars.dirty || particulars.touched)">
+                    <div *ngIf="particulars.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Division</label>
+                <select class="form-select" name="make" [(ngModel)]="machine.location" required>
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option *ngFor="let location of locations" [ngValue]="location">{{location.divisionName}}</option>
+                </select>
+                <span class="fw-bold" *ngIf="machine?.location">Circle Name : {{machine?.location?.circleName}}</span>
+            </div>
+            <!-- <div class="col-3 mx-3">
+                <label class="fw-bold">Circle</label>
+                <input class="form-control" type="text" name="circle" [ngModel]="machine?.location?.circleName" readonly>
+            </div> -->
+        </div>
+        <div class="d-flex justify-content-center mt-4 pt-4 border-top">
+            <button class="btn btn-primary me-2" (click)="onSubmit(f)" [disabled]="f.form.invalid || f.form.disabled || loading">Submit</button>
+            <button type="reset" class="btn btn-warning ms-2">Reset</button>
+        </div>
+    </form>
+</div>
