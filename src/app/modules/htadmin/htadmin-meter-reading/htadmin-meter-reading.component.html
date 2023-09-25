@@ -1,0 +1,341 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Reading
+    </div>
+    <fieldset class="d-flex justify-content-around align-items-end mb-3" ngForm #searchForm="ngForm" [disabled]="loading">
+        <div>
+            <label class="fw-bold">Category</label>
+            <select class="form-select" name="make" [(ngModel)]="category" (change)="getMetersByCategory()" required>
+                <option disabled selected Value="">Select</option>
+                <option *ngFor="let category of categories" [ngValue]="category">{{category}}</option>
+            </select>
+        </div>
+        <div>
+            <label class="fw-bold">Meter No</label>
+            <select class="form-select" name="meterNo" [(ngModel)]="meter" required>
+                <option disabled selected [ngValue]="undefined">Select</option>
+                <option *ngFor="let meter of meters" [ngValue]="meter">{{meter.meterNumber}}</option>
+            </select>
+        </div>
+        <div>
+            <label class="fw-bold">Bill Month</label>
+            <input type="month" class="form-control" name="billMonth" [(ngModel)]="billMonth" required>
+        </div>
+        <div>
+            <button type="button" class="btn btn-success" (click)="searchClicked(meter)" [disabled]="searchForm.invalid">Search</button>
+        </div>
+    </fieldset>
+    <form class="card-body" #f="ngForm" *ngIf="!loading && previousReading">
+        <table class="table table-sm table-responsive">
+            <tr class="text-center">
+                <td rowspan="2">Particular</td>
+                <td colspan="2" class="bg-secondary text-white">Export</td>
+                <td colspan="2" class="bg-secondary text-white">Import</td>
+            </tr>
+            <tr class="text-center">
+                <td>
+                    Previous Reading<br>
+                    {{previousReading.readingDate | date : "dd-MMM-yyyy"}}
+                </td>
+                <td>
+                    Current Reading<br>
+                    {{reading.readingDate | date : "dd-MMM-yyyy"}}
+                </td>
+                <td>
+                    Previous Reading <br>
+                    {{previousReading.readingDate | date : "dd-MMM-yyyy"}}
+                </td>
+                <td>
+                    Current Reading<br>
+                    {{reading.readingDate | date : "dd-MMM-yyyy"}}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="text-center">Active Energy</td>
+                <td class="text-center">{{previousReading.eactiveEnergy}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.eactiveEnergy" name="eactiveEnergy" #eactiveEnergy="ngModel" [min]="previousReading.eactiveEnergy" required
+                        [ngClass]="{'is-invalid': eactiveEnergy.errors && (eactiveEnergy.dirty || eactiveEnergy.touched)}">
+                    <div class="invalid-feedback" *ngIf="eactiveEnergy.errors && (eactiveEnergy.dirty || eactiveEnergy.touched)">
+                        <div *ngIf="eactiveEnergy.errors['required']">required field</div>
+                        <div *ngIf="eactiveEnergy.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+                <td class="text-center">{{previousReading.iactiveEnergy}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.iactiveEnergy" name="iactiveEnergy" #iactiveEnergy="ngModel" [min]="previousReading.iactiveEnergy" required
+                        [ngClass]="{'is-invalid': iactiveEnergy.errors && (iactiveEnergy.dirty || iactiveEnergy.touched)}">
+                    <div class="invalid-feedback" *ngIf="iactiveEnergy.errors && (iactiveEnergy.dirty || iactiveEnergy.touched)">
+                        <div *ngIf="iactiveEnergy.errors['required']">required field</div>
+                        <div *ngIf="iactiveEnergy.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="text-center">KVAH (APPARENT ENERGY)</td>
+                <td class="text-center">{{previousReading.ekvah}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.ekvah" name="ekvah" #ekvah="ngModel" [min]="previousReading.ekvah" required
+                        [ngClass]="{'is-invalid': ekvah.errors && (ekvah.dirty || ekvah.touched)}">
+                    <div class="invalid-feedback" *ngIf="ekvah.errors && (ekvah.dirty || ekvah.touched)">
+                        <div *ngIf="ekvah.errors['required']">required field</div>
+                        <div *ngIf="ekvah.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+                <td class="text-center">{{previousReading.ikvah}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.ikvah" name="ikvah" #ikvah="ngModel" [min]="previousReading.ikvah" required
+                    [ngClass]="{'is-invalid': ikvah.errors && (ikvah.dirty || ikvah.touched)}">
+                    <div class="invalid-feedback" *ngIf="ikvah.errors && (ikvah.dirty || ikvah.touched)">
+                        <div *ngIf="ikvah.errors['required']">required field</div>
+                        <div *ngIf="ikvah.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">Adjustment</td>
+                <td class="text-center">{{previousReading.eadjustment}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.eadjustment" name="eadjustment" #eadjustment="ngModel" [min]=0 required
+                        [ngClass]="{'is-invalid': eadjustment.errors && (eadjustment.dirty || eadjustment.touched)}">
+                    <div class="invalid-feedback" *ngIf="eadjustment.errors && (eadjustment.dirty || eadjustment.touched)">
+                        <div *ngIf="eadjustment.errors['required']">required field</div>
+                        <div *ngIf="eadjustment.errors['min']">can not be negetive</div>
+                    </div>
+                </td>
+                <td class="text-center">{{previousReading.iadjustment}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.iadjustment" name="iadjustment" #iadjustment="ngModel" [min]=0 required
+                        [ngClass]="{'is-invalid': iadjustment.errors && (iadjustment.dirty || iadjustment.touched)}">
+                    <div class="invalid-feedback" *ngIf="iadjustment.errors && (iadjustment.dirty || iadjustment.touched)">
+                        <div *ngIf="iadjustment.errors['required']">required field</div>
+                        <div *ngIf="iadjustment.errors['min']">can not be negetive</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="text-center">Assessment</td>
+                <td class="text-center">{{previousReading.eassesment}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.eassesment" name="eassesment" #eassesment="ngModel" [min]=0 required
+                        [ngClass]="{'is-invalid': eassesment.errors && (eassesment.dirty || eassesment.touched)}">
+                    <div class="invalid-feedback" *ngIf="eassesment.errors && (eassesment.dirty || eassesment.touched)">
+                        <div *ngIf="eassesment.errors['required']">required field</div>
+                        <div *ngIf="eassesment.errors['min']">can not be negetive</div>
+                    </div>
+                </td>
+                <td class="text-center">{{previousReading.iassesment}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.iassesment" name="iassesment" #iassesment="ngModel" [min]=0 required
+                        [ngClass]="{'is-invalid': iassesment.errors && (iassesment.dirty || iassesment.touched)}">
+                    <div class="invalid-feedback" *ngIf="iassesment.errors && (iassesment.dirty || iassesment.touched)">
+                        <div *ngIf="iassesment.errors['required']">required field</div>
+                        <div *ngIf="iassesment.errors['min']">can not be negetive</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="text-center">TOD1</td>
+                <td class="text-center">{{previousReading.etod1}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.etod1" name="etod1" #etod1="ngModel" [min]="previousReading.etod1" required
+                        [ngClass]="{'is-invalid': etod1.errors && (etod1.dirty || etod1.touched)}">
+                    <div class="invalid-feedback" *ngIf="etod1.errors && (etod1.dirty || etod1.touched)">
+                        <div *ngIf="etod1.errors['required']">required field</div>
+                        <div *ngIf="etod1.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+                <td class="text-center">{{previousReading.itod1}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.itod1" name="itod1" #itod1="ngModel" [min]="previousReading.itod1" required
+                        [ngClass]="{'is-invalid': itod1.errors && (itod1.dirty || itod1.touched)}">
+                    <div class="invalid-feedback" *ngIf="itod1.errors && (itod1.dirty || itod1.touched)">
+                        <div *ngIf="itod1.errors['required']">required field</div>
+                        <div *ngIf="itod1.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">TOD2</td>
+                <td class="text-center">{{previousReading.etod2}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.etod2" name="etod2" #etod2="ngModel" [min]="previousReading.etod2" required
+                        [ngClass]="{'is-invalid': etod2.errors && (etod2.dirty || etod2.touched)}">
+                    <div class="invalid-feedback" *ngIf="etod2.errors && (etod2.dirty || etod2.touched)">
+                        <div *ngIf="etod2.errors['required']">required field</div>
+                        <div *ngIf="etod2.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+                <td class="text-center">{{previousReading.itod2}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.itod2" name="itod2" #itod2="ngModel" [min]="previousReading.itod2" required
+                        [ngClass]="{'is-invalid': itod2.errors && (itod2.dirty || itod2.touched)}">
+                    <div class="invalid-feedback" *ngIf="itod2.errors && (itod2.dirty || itod2.touched)">
+                        <div *ngIf="itod2.errors['required']">required field</div>
+                        <div *ngIf="itod2.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">TOD3</td>
+                <td class="text-center">{{previousReading.etod3}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.etod3" name="etod3" #etod3="ngModel" [min]="previousReading.etod3" required
+                        [ngClass]="{'is-invalid': etod3.errors && (etod3.dirty || etod3.touched)}">
+                    <div class="invalid-feedback" *ngIf="etod3.errors && (etod3.dirty || etod3.touched)">
+                        <div *ngIf="etod3.errors['required']">required field</div>
+                        <div *ngIf="etod3.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+                <td class="text-center">{{previousReading.itod3}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.itod3" name="itod3" #itod3="ngModel" [min]="previousReading.itod3" required
+                        [ngClass]="{'is-invalid': itod3.errors && (itod3.dirty || itod3.touched)}">
+                    <div class="invalid-feedback" *ngIf="itod3.errors && (itod3.dirty || itod3.touched)">
+                        <div *ngIf="itod3.errors['required']">required field</div>
+                        <div *ngIf="itod3.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">TOD4</td>
+                <td class="text-center">{{previousReading.etod4}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.etod4" name="etod4" #etod4="ngModel" [min]="previousReading.etod4" required
+                        [ngClass]="{'is-invalid': etod4.errors && (etod4.dirty || etod4.touched)}">
+                    <div class="invalid-feedback" *ngIf="etod4.errors && (etod4.dirty || etod4.touched)">
+                        <div *ngIf="etod4.errors['required']">required field</div>
+                        <div *ngIf="etod4.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+                <td class="text-center">{{previousReading.itod4}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.itod4" name="itod4" #itod4="ngModel" [min]="previousReading.itod4" required
+                        [ngClass]="{'is-invalid': itod4.errors && (itod4.dirty || itod4.touched)}">
+                    <div class="invalid-feedback" *ngIf="itod4.errors && (itod4.dirty || itod4.touched)">
+                        <div *ngIf="itod4.errors['required']">required field</div>
+                        <div *ngIf="itod4.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="text-center">Max Demand</td>
+                <td class="text-center">{{previousReading.emaxDemand}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.emaxDemand" name="emaxDemand" #emaxDemand="ngModel" [min]=0 required
+                        [ngClass]="{'is-invalid': emaxDemand.errors && (emaxDemand.dirty || emaxDemand.touched)}">
+                    <div class="invalid-feedback" *ngIf="emaxDemand.errors && (emaxDemand.dirty || emaxDemand.touched)">
+                        <div *ngIf="emaxDemand.errors['required']">required field</div>
+                        <div *ngIf="emaxDemand.errors['min']">can not be negetive</div>
+                        
+                    </div>
+                </td>
+                <td class="text-center">{{previousReading.imaxDemand}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.imaxDemand" name="imaxDemand" #imaxDemand="ngModel" [min]=0 required
+                        [ngClass]="{'is-invalid': imaxDemand.errors && (imaxDemand.dirty || imaxDemand.touched)}">
+                    <div class="invalid-feedback" *ngIf="imaxDemand.errors && (imaxDemand.dirty || imaxDemand.touched)">
+                        <div *ngIf="imaxDemand.errors['required']">required field</div>
+                        <div *ngIf="imaxDemand.errors['min']">can not be negetive</div>
+                        
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">REACTIVE(IMP) - ACTIVE (IMP)</td>
+                <td class="text-center">{{previousReading.ereactiveQuad1}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.ereactiveQuad1" name="ereactiveQuad1" #ereactiveQuad1="ngModel" [min]="previousReading.ereactiveQuad1" required readonly
+                        [ngClass]="{'is-invalid': ereactiveQuad1.errors && (ereactiveQuad1.dirty || ereactiveQuad1.touched)}">
+                    <div class="invalid-feedback" *ngIf="ereactiveQuad1.errors && (ereactiveQuad1.dirty || ereactiveQuad1.touched)">
+                        <div *ngIf="ereactiveQuad1.errors['required']">required field</div>
+                        <div *ngIf="ereactiveQuad1.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+                <td class="text-center">{{previousReading.ireactiveQuad1}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.ireactiveQuad1" name="ireactiveQuad1" #ireactiveQuad1="ngModel" [min]="previousReading.ireactiveQuad1" required
+                        [ngClass]="{'is-invalid': ireactiveQuad1.errors && (ireactiveQuad1.dirty || ireactiveQuad1.touched)}">
+                    <div class="invalid-feedback" *ngIf="ireactiveQuad1.errors && (ireactiveQuad1.dirty || ireactiveQuad1.touched)">
+                        <div *ngIf="ireactiveQuad1.errors['required']">required field</div>
+                        <div *ngIf="ireactiveQuad1.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="text-center">REACTIVE(EXP) - ACTIVE (IMP)</td>
+                <td class="text-center">{{previousReading.ereactiveQuad2}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.ereactiveQuad2" name="ereactiveQuad2" #ereactiveQuad2="ngModel" [min]="previousReading.ereactiveQuad2" required readonly
+                        [ngClass]="{'is-invalid': ereactiveQuad2.errors && (ereactiveQuad2.dirty || ereactiveQuad2.touched)}">
+                    <div class="invalid-feedback" *ngIf="ereactiveQuad2.errors && (ereactiveQuad2.dirty || ereactiveQuad2.touched)">
+                        <div *ngIf="ereactiveQuad2.errors['required']">required field</div>
+                        <div *ngIf="ereactiveQuad2.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+                <td class="text-center">{{previousReading.ireactiveQuad2}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.ireactiveQuad2" name="ireactiveQuad2" #ireactiveQuad2="ngModel" [min]="previousReading.ireactiveQuad2" required
+                        [ngClass]="{'is-invalid': ireactiveQuad2.errors && (ireactiveQuad2.dirty || ireactiveQuad2.touched)}">
+                    <div class="invalid-feedback" *ngIf="ireactiveQuad2.errors && (ireactiveQuad2.dirty || ireactiveQuad2.touched)">
+                        <div *ngIf="ireactiveQuad2.errors['required']">required field</div>
+                        <div *ngIf="ireactiveQuad2.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">REACTIVE(IMP) - ACTIVE (EXP)</td>
+                <td class="text-center">{{previousReading.ereactiveQuad3}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.ereactiveQuad3" name="ereactiveQuad3" #ereactiveQuad3="ngModel" [min]="previousReading.ereactiveQuad3" required readonly
+                        [ngClass]="{'is-invalid': ereactiveQuad3.errors && (ereactiveQuad3.dirty || ereactiveQuad3.touched)}">
+                    <div class="invalid-feedback" *ngIf="ereactiveQuad3.errors && (ereactiveQuad3.dirty || ereactiveQuad3.touched)">
+                        <div *ngIf="ereactiveQuad3.errors['required']">required field</div>
+                        <div *ngIf="ereactiveQuad3.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+                <td class="text-center">{{previousReading.ireactiveQuad3}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.ireactiveQuad3" name="ireactiveQuad3" #ireactiveQuad3="ngModel" [min]="previousReading.ireactiveQuad3" required
+                        [ngClass]="{'is-invalid': ireactiveQuad3.errors && (ireactiveQuad3.dirty || ireactiveQuad3.touched)}">
+                    <div class="invalid-feedback" *ngIf="ireactiveQuad3.errors && (ireactiveQuad3.dirty || ireactiveQuad3.touched)">
+                        <div *ngIf="ireactiveQuad3.errors['required']">required field</div>
+                        <div *ngIf="ireactiveQuad3.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">REACTIVE(EXP) - ACTIVE (EXP)</td>
+                <td class="text-center">{{previousReading.ereactiveQuad4}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.ereactiveQuad4" name="ereactiveQuad4" #ereactiveQuad4="ngModel" [min]="previousReading.ereactiveQuad4" required readonly
+                        [ngClass]="{'is-invalid': ereactiveQuad4.errors && (ereactiveQuad4.dirty || ereactiveQuad4.touched)}">
+                    <div class="invalid-feedback" *ngIf="ereactiveQuad4.errors && (ereactiveQuad4.dirty || ereactiveQuad4.touched)">
+                        <div *ngIf="ereactiveQuad4.errors['required']">required field</div>
+                        <div *ngIf="ereactiveQuad4.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+                <td class="text-center">{{previousReading.ireactiveQuad4}}</td>
+                <td class="p-2">
+                    <input type="number" class="form-control" [(ngModel)]="reading.ireactiveQuad4" name="ireactiveQuad4" #ireactiveQuad4="ngModel" [min]="previousReading.ireactiveQuad4" required
+                        [ngClass]="{'is-invalid': ireactiveQuad4.errors && (ireactiveQuad4.dirty || ireactiveQuad4.touched)}">
+                    <div class="invalid-feedback" *ngIf="ireactiveQuad4.errors && (ireactiveQuad4.dirty || ireactiveQuad4.touched)">
+                        <div *ngIf="ireactiveQuad4.errors['required']">required field</div>
+                        <div *ngIf="ireactiveQuad4.errors['min']">can not be less than previous read</div>
+                    </div>
+                </td>
+            </tr>
+            
+        </table>
+        <div class="d-flex justify-content-center mt-4 pt-4 border-top">
+            <button class="btn btn-primary me-2" (click)="onSubmit(f)" [disabled]="f.form.invalid || f.form.disabled || loading">Submit</button>
+            <!-- <button class="btn btn-warning ms-2" (click)="resetForm(f)">Reset</button> -->
+        </div>
+    </form>
+</div>

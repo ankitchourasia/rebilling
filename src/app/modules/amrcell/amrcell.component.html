@@ -1,0 +1,20 @@
+<app-header-navbar></app-header-navbar>
+<div class="row">
+    <div class="bg-white border col-2">
+        <div class="list-group">
+            <button class="btn rounded-0 text-center bg-dark text-white py-2" role="button" routerLink="report-5percent">
+                Dashboard
+            </button>
+            <button class="btn dropdown-toggle rounded-0 text-center bg-dark text-white py-2" data-bs-toggle="collapse" href="#upload" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Reading
+            </button>
+            <div class="collapse show" id="upload">
+                <a href="#" class="list-group-item list-group-item-action" routerLink="read-file-upload">File Upload</a>
+                <a href="#" class="list-group-item list-group-item-action" routerLink="read-force-accept">Force Accept</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid p-0 col-10">
+        <router-outlet></router-outlet>
+    </div>
+</div>

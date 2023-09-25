@@ -9,7 +9,7 @@ export class MeterService {
   constructor(private http : HttpClient) { }
 
   createMeter(meterDetails : any, response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
@@ -17,7 +17,7 @@ export class MeterService {
   }
 
   getByMeterNoAndStatus(meterNo : string, status : string, response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
@@ -25,7 +25,7 @@ export class MeterService {
   }
 
   getMeterMakes(response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
@@ -33,7 +33,7 @@ export class MeterService {
   }
 
   getMeterCTR(response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
@@ -41,7 +41,7 @@ export class MeterService {
   }
 
   getMeterMECTR(response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
@@ -49,7 +49,7 @@ export class MeterService {
   }
 
   getMeterPTR(response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
@@ -57,7 +57,7 @@ export class MeterService {
   }
 
   getMeterMEPTR(response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
@@ -65,7 +65,7 @@ export class MeterService {
   }
 
   getMeterDMF(response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
@@ -73,7 +73,7 @@ export class MeterService {
   }
 
   getMeterByMeterNoAndStatus(meterNo : string, status : string, response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
@@ -81,10 +81,18 @@ export class MeterService {
   }
 
   getMeterByStatus(status : string, response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
     return this.http.get("/rebilling/meter/status/" + status, options);
+  }
+
+  getMetersByCategoryStatusAndIsMapped(category : string, status : string, isMapped : string, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/meter/replace/category/" + category + "/status/" + status + "/mapped/" + isMapped, options);
   }
 }

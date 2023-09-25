@@ -14,6 +14,8 @@ import { HTAdminPlantAddComponent } from './htadmin-plant-add/htadmin-plant-add.
 import { HTAdminPlantViewComponent } from './htadmin-plant-view/htadmin-plant-view.component';
 import { HTAdminMachineAddComponent } from './htadmin-machine-add/htadmin-machine-add.component';
 import { HTAdminMachineViewComponent } from './htadmin-machine-view/htadmin-machine-view.component';
+import { HtadminMeterReadingComponent } from './htadmin-meter-reading/htadmin-meter-reading.component';
+import { HTAdminValidateReadingComponent } from './htadmin-validate-reading/htadmin-validate-reading.component';
 
 const htAdminRoutes: Routes = [
   {
@@ -70,6 +72,14 @@ const htAdminRoutes: Routes = [
       {
         path: 'machine-view', 
         component: HTAdminMachineViewComponent
+      },
+      {
+        path: 'reading-add', 
+        component: HtadminMeterReadingComponent
+      },
+      {
+        path: 'reading-validate', 
+        component: HTAdminValidateReadingComponent
       },
       {
         path: '', redirectTo: 'home', pathMatch: 'full'

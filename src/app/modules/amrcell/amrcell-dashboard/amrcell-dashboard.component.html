@@ -1,0 +1,83 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Dashboard
+    </div>
+    <fieldset class="d-flex justify-content-around align-items-end mb-3" ngForm #searchForm="ngForm" [disabled]="loading">
+        
+        <div>
+            <label class="fw-bold">Start Date</label>
+            <input type="date" class="form-control" name="billMonth" [(ngModel)]="startDate" required>
+        </div>
+        <div>
+            <label class="fw-bold">End Date</label>
+            <input type="date" class="form-control" name="billMonth" [(ngModel)]="endDate" required>
+        </div>
+        <div>
+            <button type="button" class="btn btn-success" (click)="searchClicked()" [disabled]="searchForm.invalid" [disabled]="loading">
+                Search
+            </button>
+        </div>
+    </fieldset>
+    <div>
+        <table class="table table-sm table-responsive text-center">
+            <tr class="text-center text-white bg-dark">
+                <th>SNo</th>
+                <th>Generator</th>
+                <th>Investor</th>
+                <th>Location</th>
+                <th>Feeder</th>
+                <th>Meter Type</th>
+                <th>Meter No</th>
+                <th>Previous <br> Reading</th>
+                <th>Current <br> Reading</th>
+                <th>Difference</th>
+                <th>MF</th>
+                <th>Assessment</th>
+                <th>Total <br>Consumption</th>
+                <th>Percentage <br> ((A-B)/A)*100</th>
+                <th>Result <br> (0.5 % above)</th>
+            </tr>
+            <ng-container *ngFor="let report of reports; let i = index">
+                <tr>
+                    <td rowspan="2">{{i + 1}}</td>
+                    <td rowspan="2">{{report.developerName}}</td>
+                    <td rowspan="2">{{report.investorName ? report.investorName : 'NA'}}</td>
+                    <td rowspan="2">{{report.developerSiteAddress}}</td>
+                    <td rowspan="2">{{report.feederName}}</td>
+                    <td><b>Main</b></td>
+                    <td>{{report.mainMeterNumber}}</td>
+                    <td>{{report.mainPreviousReading}}</td>
+                    <td>{{report.mainCurrentReading}}</td>
+                    <td>{{report.mainReadingDifference}}</td>
+                    <td>{{report.mainMf}}</td>
+                    <td>{{report.mainAssessment}}</td>
+                    <td>{{report.mainTotalConsumption}}</td>
+                    <td rowspan="2">{{report.percentage}}</td>
+                    <td rowspan="2">{{report.result}}</td>
+                </tr>
+                <tr>
+                    <td><b>Check</b></td>
+                    <td>{{report.checkMeterNumber}}</td>
+                    <td>{{report.checkPreviousReading}}</td>
+                    <td>{{report.checkCurrentReading}}</td>
+                    <td>{{report.checkReadingDifference}}</td>
+                    <td>{{report.checkMf}}</td>
+                    <td>{{report.checkAssessment}}</td>
+                    <td>{{report.checkTotalConsumption}}</td>
+                </tr>
+            </ng-container>
+
+            <tr class="text-center">
+                <td colspan="15" *ngIf="!loading && (!reports || reports.length < 1)">No records found.</td>
+            </tr>
+            <tr class="text-center">
+                <td colspan="15" *ngIf="loading">
+                    <span class="spinner-border spinner-border-sm text-secondary"></span> loading...
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="d-flex justify-content-around mb-2" *ngIf="reports && reports.length > 0">
+        <button class="btn btn-primary" (click)="approveButtonClicked()">Approve</button>
+    </div>
+</div>

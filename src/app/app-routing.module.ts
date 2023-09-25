@@ -16,6 +16,14 @@ const routes: Routes = [
     path: 'htadmin',
     loadChildren: () => import('src/app/modules/htadmin/htadmin.module').then(m => m.HTAdminModule)
   },
+  {
+    path: 'amrcell',
+    loadChildren: () => import('src/app/modules/amrcell/amrcell.module').then(m => m.AMRCellModule)
+  },
+  {
+    path: 'developer',
+    loadChildren: () => import('src/app/modules/developer/developer.module').then(m => m.DeveloperModule)
+  },
   { 
     path: '**', 
     redirectTo: '/login',

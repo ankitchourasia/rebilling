@@ -9,7 +9,7 @@ export class DeveloperService {
   constructor(private http : HttpClient) { }
 
   getAllDeveloper(response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
@@ -17,7 +17,7 @@ export class DeveloperService {
   }
 
   createDeveloper(feeder : any, response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
@@ -25,7 +25,7 @@ export class DeveloperService {
   }
 
   getByDeveloperId(developerId : string, response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }

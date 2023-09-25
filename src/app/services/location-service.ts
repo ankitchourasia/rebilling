@@ -9,7 +9,7 @@ export class LocationService {
   constructor(private http : HttpClient) { }
 
   getAllLocation(response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
@@ -17,7 +17,7 @@ export class LocationService {
   }
 
   getByDivisionCode(divisionCode : string, response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }

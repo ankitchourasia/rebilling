@@ -20,6 +20,9 @@ import { HTAdminPlantAddComponent } from './htadmin-plant-add/htadmin-plant-add.
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { HTAdminMachineViewComponent } from './htadmin-machine-view/htadmin-machine-view.component';
 import { HTAdminMachineAddComponent } from './htadmin-machine-add/htadmin-machine-add.component';
+import { HtadminMeterReadingComponent } from './htadmin-meter-reading/htadmin-meter-reading.component';
+import { HTAdminValidateReadingComponent } from './htadmin-validate-reading/htadmin-validate-reading.component';
+import { HTAdminReadViewComponent } from './htadmin-read-view/htadmin-read-view.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -39,7 +42,10 @@ import { HTAdminMachineAddComponent } from './htadmin-machine-add/htadmin-machin
     HTAdminPlantViewComponent,
     HTAdminPlantAddComponent,
     HTAdminMachineViewComponent,
-    HTAdminMachineAddComponent
+    HTAdminMachineAddComponent,
+    HtadminMeterReadingComponent,
+    HTAdminValidateReadingComponent,
+    HTAdminReadViewComponent
   ],
   imports: [
     CommonModule,

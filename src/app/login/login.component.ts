@@ -30,6 +30,10 @@ export class LoginComponent implements OnInit {
       let userDetails = this.processToken(token);
       if(userDetails.role === "HTCELL"){
         this.router.navigate(['/htadmin']);
+      } else if(userDetails.role === "AMRCELL"){
+        this.router.navigate(['/amrcell']);
+      } else if(userDetails.role === "DEVELOPER"){
+        this.router.navigate(['/developer']);
       }
     }, error =>{
       this.loading = false;
@@ -46,4 +50,5 @@ export class LoginComponent implements OnInit {
     sessionStorage.setItem("session_end", sessionEndTimestamp.toString());
     return user;
   }
+  
 }

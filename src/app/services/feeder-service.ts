@@ -9,7 +9,7 @@ export class FeederService {
   constructor(private http : HttpClient) { }
 
   getAllFeeder(response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
@@ -17,7 +17,7 @@ export class FeederService {
   }
 
   createFeeder(feeder : any, response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
@@ -25,7 +25,7 @@ export class FeederService {
   }
 
   getByFeederNo(feederNo : string, response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }

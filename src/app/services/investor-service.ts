@@ -9,7 +9,7 @@ export class InvestorService {
   constructor(private http : HttpClient) { }
 
   getAllInvestor(response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
@@ -17,7 +17,7 @@ export class InvestorService {
   }
 
   createInvestor(feeder : any, response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }
@@ -25,7 +25,7 @@ export class InvestorService {
   }
 
   getByInvestorId(investorId : string, response : boolean = false){
-    let options : any;
+    let options : any = {};
     if(response){
       options["observe"] = "response";
     }

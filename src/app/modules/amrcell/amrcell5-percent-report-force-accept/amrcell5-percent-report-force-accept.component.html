@@ -1,0 +1,82 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Feeder Create
+    </div>
+    <div class="d-flex justify-content-center align-items-end mb-3">
+        <div>
+            <label class="fw-bold">Bill Month</label>
+            <input type="month" class="form-control" id="billMonth" name="billMonth" [(ngModel)]="billMonth" required>
+        </div>
+        <div>
+            <button class="btn btn-primary ms-3" type="button" [disabled]="loading" (click)="searchButtonClicked()">
+                <!-- <span class="spinner-border spinner-border-sm text-secondary" *ngIf="loading"></span> -->
+                Search
+            </button>
+        </div>
+        
+    </div>
+    <div>
+        <table class="table table-sm table-responsive text-center">
+            <tr class="text-center text-white bg-dark">
+                <th>SNo</th>
+                <th>Generator</th>
+                <th>Investor</th>
+                <th>Location</th>
+                <th>Feeder</th>
+                <th>Meter Type</th>
+                <th>Meter No</th>
+                <th>Previous <br> Reading</th>
+                <th>Current <br> Reading</th>
+                <th>Difference</th>
+                <th>MF</th>
+                <th>Assessment</th>
+                <th>Total <br>Consumption</th>
+                <th>Percentage <br> ((A-B)/A)*100</th>
+                <th>Result <br> (0.5 % above)</th>
+            </tr>
+            <ng-container *ngFor="let report of readings; let i = index">
+            <tr>
+                <td rowspan="2">{{i + 1}}</td>
+                <td rowspan="2">{{report.developerName}}</td>
+                <td rowspan="2">{{report.investorName ? report.investorName : 'NA'}}</td>
+                <td rowspan="2">{{report.developerSiteAddress}}</td>
+                <td rowspan="2">{{report.feederName}}</td>
+                <td><b>Main</b>
+                    <!-- <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"> -->
+                    <input class="form-check-input" type="radio" name="meterButton_{{i}}" (click)="radioButtonClicked(report, 'Main')" id="mainMeterButton{{i}}"></td>
+                <td>{{report.mainMeterNumber}}</td>
+                <td>{{report.mainPreviousReading}}</td>
+                <td>{{report.mainCurrentReading}}</td>
+                <td>{{report.mainReadingDifference}}</td>
+                <td>{{report.mainMf}}</td>
+                <td>{{report.mainAssessment}}</td>
+                <td>{{report.mainTotalConsumption}}</td>
+                <td rowspan="2">{{report.percentage}}</td>
+                <td rowspan="2">{{report.result}}</td>
+            </tr>
+            <tr>
+                <td><b>Check</b><input class="form-check-input" type="radio" name="meterButton_{{i}}" (click)="radioButtonClicked(report, 'Check')" id="checkMeterButton{{i}}">
+                    <!-- <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"></td> -->
+                <td>{{report.checkMeterNumber}}</td>
+                <td>{{report.checkPreviousReading}}</td>
+                <td>{{report.checkCurrentReading}}</td>
+                <td>{{report.checkReadingDifference}}</td>
+                <td>{{report.checkMf}}</td>
+                <td>{{report.checkConsumption}}</td>
+            </tr>
+        </ng-container>
+
+            <tr class="text-center">
+                <td colspan="14" *ngIf="!loading && (!readings || readings.length < 1)">No records found.</td>
+            </tr>
+            <tr class="text-center">
+                <td colspan="14" *ngIf="loading">
+                    <span class="spinner-border spinner-border-sm text-secondary"></span> loading...
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="d-flex justify-content-around">
+        <button class="btn btn-sm btn-success mb-2" *ngIf="readings && readings.length > 0" [disabled]="loading || readingsToApprove < 1" (click)="forceAcceptClicked()">Force Accept</button>
+    </div>
+</div>
