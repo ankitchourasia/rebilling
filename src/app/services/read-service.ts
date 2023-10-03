@@ -88,4 +88,28 @@ export class ReadService {
     }
     return this.http.get("/rebilling/meter_reading/ht_accepted/monthYear/" + billMonth, options);
   }
+
+  validateAMRValidatedReadByHT(readings : any, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.post("/rebilling/meter_reading/amr_accepted/htAccept", readings, options);
+  }
+
+  approveHTAcceptedRead(readings : any, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.post("/rebilling/meter_reading/ht_accepted/developer-accept", readings, options);
+  }
+
+  rejectHTAcceptedRead(readings : any, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.post("/rebilling/meter_reading/ht_accepted/developer-reject", readings, options);
+  }
 }

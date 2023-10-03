@@ -12,6 +12,7 @@ export class HTAdminValidateReadingComponent implements OnInit{
   loading : boolean = false;
   billMonth : any;
   readings : any;
+  checked : boolean =  false;
   constructor(private readService : ReadService){
 
   }
@@ -34,4 +35,45 @@ export class HTAdminValidateReadingComponent implements OnInit{
       console.log(error);
     }});
   }
+
+  checkAll! : boolean;
+  checkAllClicked(){
+    this.readings.forEach((read : any) => {
+      read.checked = this.checkAll;
+    });
+  }
+
+  checkClicked(read : any){
+    if(this.checkAll && !read.checked){
+      this.checkAll = false;
+    }
+  }
+
+  validateButtonClicked(){
+    let readingsToApprove = [];
+    if(this.checkAll){
+      readingsToApprove = this.readings;
+    } else{
+      this.readings.forEach((read : any) => {
+        if(read.checked){
+          readingsToApprove.push(read);
+        }
+      });
+    }
+    this.validateReading(readingsToApprove);
+  }
+
+  validateReading(readings : any){
+    if(readings.length < 1){
+      alert("please select readings to approve");
+      return;
+    }
+    this.readService.validateAMRValidatedReadByHT(readings).subscribe({next : success =>{
+      alert("Readings validated successfully");
+      this.searchButtonClicked();
+    }, error : error =>{
+      alert("Unable to validate readings.");
+    }});
+  }
+
 }

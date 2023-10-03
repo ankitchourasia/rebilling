@@ -35,10 +35,55 @@ export class DeveloperValidateReadingComponent implements OnInit{
     }});
   }
 
-  checkClicked(read : any){
-
+  checkAll! : boolean;
+  checkAllClicked(){
+    this.readings.forEach((read : any) => {
+      read.checked = this.checkAll;
+    });
   }
 
-  checkAllClicked(){}
+  checkClicked(read : any){
+    if(this.checkAll && !read.checked){
+      this.checkAll = false;
+    }
+  }
+
+  filterReadings() : any{
+    let readingsToApprove = [];
+    if(this.checkAll){
+      readingsToApprove = this.readings;
+    } else{
+      this.readings.forEach((read : any) => {
+        if(read.checked){
+          readingsToApprove.push(read);
+        }
+      });
+    }
+    return readingsToApprove;
+  }
+
+  acceptRead(){
+    let readings = this.filterReadings();
+    this.readService.approveHTAcceptedRead(readings).subscribe({next : success =>{
+      alert("Read accepted successfully");
+    }, error : error =>{
+      console.log(error);
+      alert("Unable to approve read.");
+    }});
+  }
+
+  rejectRead(){
+    let readings = this.filterReadings();
+    if(readings.length < 1){
+      alert("please select readings");
+      return;
+    }
+    this.readService.rejectHTAcceptedRead(readings).subscribe({next : success =>{
+      alert("Read rejected successfully");
+    }, error : error =>{
+      console.log(error);
+      alert("Unable to reject read.");
+    }});
+  }
 
 }
