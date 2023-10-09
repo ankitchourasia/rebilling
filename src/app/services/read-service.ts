@@ -128,4 +128,12 @@ export class ReadService {
     }
     return this.http.get("/rebilling/meter_reading/meterNo/" + meterNo + "/history", options);
   }
+
+  getConsumptionByMeterNoAndMonth(meterNo : string, month: string, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/meter_reading/meterConsumption/meterNo/" + meterNo + "/monthYear/" + month , options);
+  }
 }

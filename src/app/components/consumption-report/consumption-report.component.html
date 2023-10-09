@@ -1,0 +1,31 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Consumption Report
+    </div>
+    <form class="card-body" #f="ngForm">
+        <div class="row gx-5 gy-3 justify-content-around">
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Meter</label>
+                <select [ngClass]="{'is-invalid': meter.errors && (meter.dirty || meter.touched)}"
+                    class="form-select" name="meter" [ngModel]=null #meter="ngModel" required>
+                    <option disabled selected [ngValue]=null>Select</option>
+                    <option *ngFor="let meter of meterList" [ngValue]="meter.meterNo">{{meter.meterNo}} | {{meter.meterCategory}}</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="meter.errors && (meter.dirty || meter.touched)">
+                    <div *ngIf="meter.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Month</label>
+                <input [ngClass]="{'is-invalid': month.errors && (month.dirty || month.touched)}"
+                    type="month" class="form-control" name="month" ngModel #month="ngModel" required >
+                <div class="invalid-feedback" *ngIf="month.errors && (month.dirty || month.touched)">
+                    <div *ngIf="month.errors['required']">required field</div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-4 pt-4 border-top">
+            <button class="btn btn-primary" (click)="onSubmit(f)" [disabled]="f.form.invalid || f.form.disabled">Search</button>
+        </div>
+    </form>
+</div>

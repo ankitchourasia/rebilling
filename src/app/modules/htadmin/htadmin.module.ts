@@ -25,8 +25,9 @@ import { HTAdminValidateReadingComponent } from './htadmin-validate-reading/htad
 import { HTAdminReadViewComponent } from './htadmin-read-view/htadmin-read-view.component';
 import { HTAdminReadHistoryComponent } from './htadmin-read-history/htadmin-read-history.component';
 import { ReadHistoryComponent } from "../../components/read-history/read-history.component";
+import { ConsumptionReportComponent } from 'src/app/components/consumption-report/consumption-report.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+const GlobalComponents = [ ConsumptionReportComponent ]
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { ReadHistoryComponent } from "../../components/read-history/read-history
         NavbarModule,
         FormsModule,
         NgbPaginationModule,
-        ReadHistoryComponent
+        ReadHistoryComponent,
+        GlobalComponents
     ]
 })
 export class HTAdminModule { }
