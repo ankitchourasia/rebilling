@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { LocationService } from 'src/app/services/location-service';
 import { MeterService } from 'src/app/services/meter-service';
 import { ReadService } from 'src/app/services/read-service';
+import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
   selector: 'app-htadmin-meter-reading',
@@ -35,16 +36,19 @@ export class HtadminMeterReadingComponent implements OnInit{
     this.meterService.getMetersByCategoryStatusAndIsMapped(this.category, "active", "yes").subscribe({next: success =>{
       this.meters = success;
     }, error : error => {
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 
   searchClicked(meter : any){ 
     this.loading = true;
+    this.previousReading = undefined;
     let month = formatDate(this.billMonth, "MMM-yyyy", "en-IN");
     this.getLatestReadingByMeterNo(meter.meterNumber, month);
     this.initialiseReading();
-    this.reading.readingDate = formatDate(this.billMonth, "yyyy-MM-dd", "en-IN");
+    let nextMonth = new Date(this.billMonth).getMonth() + 1;
+    this.reading.readingDate = new Date(this.billMonth).setMonth(nextMonth);
+    
   }
 
   getLatestReadingByMeterNo(meterNo : string, month : string){
@@ -53,7 +57,7 @@ export class HtadminMeterReadingComponent implements OnInit{
       this.previousReading = success;
     }, error : (error) => {
       this.loading = false;
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 
@@ -80,7 +84,7 @@ export class HtadminMeterReadingComponent implements OnInit{
       f.form.enable();
     }, error : error =>{
       f.form.enable();
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
       alert(error.error);
     }})
   }

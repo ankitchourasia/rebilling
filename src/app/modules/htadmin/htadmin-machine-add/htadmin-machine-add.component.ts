@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LocationService } from 'src/app/services/location-service';
 import { MachineService } from 'src/app/services/machine-service';
+import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
   selector: 'app-htadmin-machine-add',
@@ -26,7 +27,7 @@ export class HTAdminMachineAddComponent implements OnInit{
     this.locationService.getAllLocation().subscribe( {next: (success)=>{
       this.locations = success;
     }, error: (error) =>{
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 
@@ -40,8 +41,7 @@ export class HTAdminMachineAddComponent implements OnInit{
       this.machine = {};
     }, error: (error)=>{
       this.loading = false;
-      alert("Unable to add Machine");
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 

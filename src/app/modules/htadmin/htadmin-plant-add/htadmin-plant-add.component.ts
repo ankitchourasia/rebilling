@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LocationService } from 'src/app/services/location-service';
 import { PlantService } from 'src/app/services/plant-service';
+import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
   selector: 'app-htadmin-plant-add',
@@ -25,7 +26,7 @@ export class HTAdminPlantAddComponent implements OnInit {
     this.locationService.getAllLocation().subscribe( {next: (success)=>{
       this.locations = success;
     }, error: (error) =>{
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 
@@ -39,8 +40,7 @@ export class HTAdminPlantAddComponent implements OnInit {
       this.plant = {};
     }, error: (error)=>{
       this.loading = false;
-      alert("Unable to add Plant");
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 }

@@ -23,38 +23,42 @@ import { HTAdminMachineAddComponent } from './htadmin-machine-add/htadmin-machin
 import { HtadminMeterReadingComponent } from './htadmin-meter-reading/htadmin-meter-reading.component';
 import { HTAdminValidateReadingComponent } from './htadmin-validate-reading/htadmin-validate-reading.component';
 import { HTAdminReadViewComponent } from './htadmin-read-view/htadmin-read-view.component';
+import { HTAdminReadHistoryComponent } from './htadmin-read-history/htadmin-read-history.component';
+import { ReadHistoryComponent } from "../../components/read-history/read-history.component";
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
 @NgModule({
-  declarations: [
-    HTAdminComponent,
-    HTAdminHomeComponent,
-    HTAdminMeterAddComponent,
-    HTAdminMeterViewComponent,
-    HTAdminFeederAddComponent,
-    HTAdminFeederViewComponent,
-    HTAdminDeveloperViewComponent,
-    HTAdminDeveloperAddComponent,
-    HTAdminInvestorAddComponent,
-    HTAdminInvestorViewComponent,
-    HTAdminPlantViewComponent,
-    HTAdminPlantAddComponent,
-    HTAdminMachineViewComponent,
-    HTAdminMachineAddComponent,
-    HtadminMeterReadingComponent,
-    HTAdminValidateReadingComponent,
-    HTAdminReadViewComponent
-  ],
-  imports: [
-    CommonModule,
-    HTAdminRoutingModule,
-    DirectiveModule,
-    NavbarModule,
-    FormsModule,
-    NgbPaginationModule
-  ],
-  providers: [CanActivateAuthGuard]
+    declarations: [
+        HTAdminComponent,
+        HTAdminHomeComponent,
+        HTAdminMeterAddComponent,
+        HTAdminMeterViewComponent,
+        HTAdminFeederAddComponent,
+        HTAdminFeederViewComponent,
+        HTAdminDeveloperViewComponent,
+        HTAdminDeveloperAddComponent,
+        HTAdminInvestorAddComponent,
+        HTAdminInvestorViewComponent,
+        HTAdminPlantViewComponent,
+        HTAdminPlantAddComponent,
+        HTAdminMachineViewComponent,
+        HTAdminMachineAddComponent,
+        HtadminMeterReadingComponent,
+        HTAdminValidateReadingComponent,
+        HTAdminReadViewComponent,
+        HTAdminReadHistoryComponent
+    ],
+    providers: [CanActivateAuthGuard],
+    imports: [
+        CommonModule,
+        HTAdminRoutingModule,
+        DirectiveModule,
+        NavbarModule,
+        FormsModule,
+        NgbPaginationModule,
+        ReadHistoryComponent
+    ]
 })
 export class HTAdminModule { }

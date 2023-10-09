@@ -1,0 +1,64 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Reading History
+    </div>
+    <div class="d-flex justify-content-center align-items-end mb-2">
+        <div>
+            <label class="fw-bold">Meter No</label>
+            <input type="text" class="form-control" [(ngModel)]="meterNumber" name="meterNumber" #meterNo="ngModel" required
+                [ngClass]="{'is-invalid': meterNo.errors && (meterNo.dirty || meterNo.touched)}">
+            <div class="invalid-feedback" *ngIf="meterNo.errors && (meterNo.dirty || meterNo.touched)">
+                <div *ngIf="meterNo.errors['required']">required field</div>
+            </div>
+        </div>
+        <button class="btn btn-primary ms-3" (click)="searchClicked()" [disabled]="loading">Search</button>
+    </div>
+    <div>
+        <table class="table table-sm table-responsive text-center" id="readTable">
+            <tr class="text-center bg-secondary bg-opacity-25">
+                <th>SNo</th>
+                <th>Read Date</th>
+                <th>Read Type</th>
+                <th>Source</th>
+                <th>EActive Energy</th>
+                <th>IActive Energy</th>
+                <th>ETOD1</th>
+                <th>ITOD1</th>
+                <th>ETOD2</th>
+                <th>ITOD2</th>
+                <th>ETOD3</th>
+                <th>ITOD3</th>
+                <th>ETOD4</th>
+                <th>ITOD4</th>
+                <th>EAss</th>
+                <th>IAss</th>
+                <th>EMax Demand</th>
+                <th>IMax Demand</th>
+                
+            </tr>
+            <tr *ngFor="let read of readings; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{read.readingDate}}</td>
+                <td>{{read.readingType}}</td>
+                <td>{{read.readSource}}</td>
+                <td>{{read.eactiveEnergy}}</td>
+                <td>{{read.iactiveEnergy}}</td>
+                <td>{{read.etod1}}</td>
+                <td>{{read.itod1}}</td>
+                <td>{{read.etod2}}</td>
+                <td>{{read.itod2}}</td>
+                <td>{{read.etod3}}</td>
+                <td>{{read.itod3}}</td>
+                <td>{{read.etod4}}</td>
+                <td>{{read.itod4}}</td>
+                <td>{{read.eassesment}}</td>
+                <td>{{read.iassesment}}</td>
+                <td>{{read.emaxDemand}}</td>
+                <td>{{read.imaxDemand}}</td>
+            </tr>
+            <tr *ngIf="!readings || readings.length < 1">
+                <td colspan="18">No records found.</td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MeterService } from 'src/app/services/meter-service';
+import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
   selector: 'app-htadmin-meter-view',
@@ -36,7 +37,7 @@ export class HTAdminMeterViewComponent {
       }
     }, error =>{
       this.loading = false;
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     })
   }
 
@@ -49,7 +50,7 @@ export class HTAdminMeterViewComponent {
       }
     }, error =>{
       this.loading = false;
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     })
   }
 

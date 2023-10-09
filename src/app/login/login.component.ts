@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { LoginService } from '../services/login.service';
+import { GlobalResourcesService } from '../utility/global-resources.service';
 
 @Component({
   selector: 'login',
@@ -37,7 +38,7 @@ export class LoginComponent implements OnInit {
       }
     }, error =>{
       this.loading = false;
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     });
   }
 

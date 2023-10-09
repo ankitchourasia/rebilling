@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ReadService } from 'src/app/services/read-service';
+import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
   selector: 'app-htadmin-validate-reading',
@@ -32,7 +33,7 @@ export class HTAdminValidateReadingComponent implements OnInit{
       console.log(this.readings);
     }, error : error =>{
       this.loading = false;
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }});
   }
 
@@ -76,4 +77,25 @@ export class HTAdminValidateReadingComponent implements OnInit{
     }});
   }
 
+  exportTableToExcel(tableID : any){
+    let dataType = 'data:application/vnd.ms-excel';
+    let fileName =  'reading';
+    let htmltable = document.getElementById(tableID);
+    if(htmltable){
+      let tableHTML = htmltable.outerHTML;
+      this.downloadByBlob(tableHTML, dataType, fileName, 'xls');
+    }
+  }
+
+  downloadByBlob(content : any, dataType : any, fileName : string, extention : string){
+    let file = new Blob(['\ufeff', content], {type: dataType});
+    const fileURL = window.URL.createObjectURL(file);
+    //window.open(fileURL, '_blank');
+    //------------------OR----------------------
+    let anchorElement = document.createElement("a");
+    anchorElement.href = fileURL;
+    anchorElement.download = fileName + "." + extention;
+    anchorElement.click();
+    anchorElement.remove();
+  }
 }

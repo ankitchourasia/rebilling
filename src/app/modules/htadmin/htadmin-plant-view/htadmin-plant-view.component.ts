@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlantService } from 'src/app/services/plant-service';
+import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
   selector: 'app-htadmin-plant-view',
@@ -26,7 +27,7 @@ export class HTAdminPlantViewComponent implements OnInit{
       this.plants = success;
     }, error:(error)=>{
       this.loading = false;
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 

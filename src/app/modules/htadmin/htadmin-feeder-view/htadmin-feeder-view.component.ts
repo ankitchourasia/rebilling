@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FeederService } from 'src/app/services/feeder-service';
+import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
   selector: 'app-htadmin-feeder-view',
@@ -36,7 +37,7 @@ export class HTAdminFeederViewComponent implements OnInit{
         this.feeders = success;
       }, error: (error)=>{
         this.loading = false;
-        console.log(error);
+        GlobalResourcesService.errorMessageHandeler(error);
       }
     });
   }
@@ -49,7 +50,7 @@ export class HTAdminFeederViewComponent implements OnInit{
       this.feeders.push(success);
     }, error : (error) =>{
       this.loading = false;
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 

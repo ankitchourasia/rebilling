@@ -5,6 +5,7 @@ import { AMRCellHomeComponent } from './amrcell-home/amrcell-home.component';
 import { AmrcellReadFileUploadComponent } from './amrcell-read-file-upload/amrcell-read-file-upload.component';
 import { AMRCellDashboardComponent } from './amrcell-dashboard/amrcell-dashboard.component';
 import { AMRCell5PercentReportForceAcceptComponent } from './amrcell5-percent-report-force-accept/amrcell5-percent-report-force-accept.component';
+import { AMRCellReadHistoryComponent } from './amrcell-read-history/amrcell-read-history.component';
 
 const amrCellRoutes: Routes = [
   {
@@ -25,6 +26,10 @@ const amrCellRoutes: Routes = [
       {
         path: 'read-force-accept', 
         component: AMRCell5PercentReportForceAcceptComponent
+      },
+      {
+        path: 'read-history', 
+        component: AMRCellReadHistoryComponent
       },
       {
         path: '', redirectTo: 'home', pathMatch: 'full'

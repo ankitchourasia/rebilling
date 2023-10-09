@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReadService } from 'src/app/services/read-service';
+import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
   selector: 'app-amrcell-dashboard',
@@ -27,7 +28,7 @@ export class AMRCellDashboardComponent implements OnInit {
       this.reports = success;
     }, error : error =>{
       this.loading = false;
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 
@@ -38,7 +39,7 @@ export class AMRCellDashboardComponent implements OnInit {
       alert("Aprroved");
     }, error : error =>{
       this.loading = false;
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 }

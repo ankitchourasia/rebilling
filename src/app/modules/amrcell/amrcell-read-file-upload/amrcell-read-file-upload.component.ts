@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReadService } from 'src/app/services/read-service';
+import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
   selector: 'app-amrcell-read-file-upload',
@@ -31,7 +32,7 @@ export class AmrcellReadFileUploadComponent implements OnInit{
       console.log(success);
     }, error: (error) =>{
       this.loading = false;
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 }

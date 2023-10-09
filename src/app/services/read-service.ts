@@ -112,4 +112,20 @@ export class ReadService {
     }
     return this.http.post("/rebilling/meter_reading/ht_accepted/developer-reject", readings, options);
   }
+
+  getReadByBillMonthAndStatus(billMonth : string, status : string, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/report/5percent/approve/monthYear/" + billMonth + "/result/" + status, options);
+  }
+
+  getReadHistoryByMeterNo(meterNo : string, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/meter_reading/meterNo/" + meterNo + "/history", options);
+  }
 }

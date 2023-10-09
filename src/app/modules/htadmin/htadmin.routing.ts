@@ -16,6 +16,7 @@ import { HTAdminMachineAddComponent } from './htadmin-machine-add/htadmin-machin
 import { HTAdminMachineViewComponent } from './htadmin-machine-view/htadmin-machine-view.component';
 import { HtadminMeterReadingComponent } from './htadmin-meter-reading/htadmin-meter-reading.component';
 import { HTAdminValidateReadingComponent } from './htadmin-validate-reading/htadmin-validate-reading.component';
+import { HTAdminReadViewComponent } from './htadmin-read-view/htadmin-read-view.component';
 
 const htAdminRoutes: Routes = [
   {
@@ -80,6 +81,10 @@ const htAdminRoutes: Routes = [
       {
         path: 'reading-validate', 
         component: HTAdminValidateReadingComponent
+      },
+      {
+        path: 'reading-view', 
+        component: HTAdminReadViewComponent
       },
       {
         path: '', redirectTo: 'home', pathMatch: 'full'

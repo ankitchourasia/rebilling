@@ -11,25 +11,29 @@ import { AMRCellHomeComponent } from './amrcell-home/amrcell-home.component';
 import { AmrcellReadFileUploadComponent } from './amrcell-read-file-upload/amrcell-read-file-upload.component';
 import { AMRCellDashboardComponent } from './amrcell-dashboard/amrcell-dashboard.component';
 import { AMRCell5PercentReportForceAcceptComponent } from './amrcell5-percent-report-force-accept/amrcell5-percent-report-force-accept.component';
+import { AMRCellReadHistoryComponent } from './amrcell-read-history/amrcell-read-history.component';
+import { ReadHistoryComponent } from "../../components/read-history/read-history.component";
 
 
 
 @NgModule({
-  declarations: [
-    AMRCellComponent,
-    AMRCellHomeComponent,
-    AmrcellReadFileUploadComponent,
-    AMRCellDashboardComponent,
-    AMRCell5PercentReportForceAcceptComponent
-  ],
-  imports: [
-    CommonModule,
-    AMRCellRoutingModule,
-    DirectiveModule,
-    NavbarModule,
-    FormsModule,
-    NgbPaginationModule
-  ],
-  providers: [CanActivateAuthGuard]
+    declarations: [
+        AMRCellComponent,
+        AMRCellHomeComponent,
+        AmrcellReadFileUploadComponent,
+        AMRCellDashboardComponent,
+        AMRCell5PercentReportForceAcceptComponent,
+        AMRCellReadHistoryComponent
+    ],
+    providers: [CanActivateAuthGuard],
+    imports: [
+        CommonModule,
+        AMRCellRoutingModule,
+        DirectiveModule,
+        NavbarModule,
+        FormsModule,
+        NgbPaginationModule,
+        ReadHistoryComponent
+    ]
 })
 export class AMRCellModule { }

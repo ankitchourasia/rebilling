@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InvestorService } from 'src/app/services/investor-service';
+import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
   selector: 'app-htadmin-investor-view',
@@ -26,7 +27,7 @@ export class HTAdminInvestorViewComponent implements OnInit{
       this.investors = success;
     }, error:(error)=>{
       this.loading = false;
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FeederService } from 'src/app/services/feeder-service';
 import { LocationService } from 'src/app/services/location-service';
+import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
   selector: 'app-feeder-add',
@@ -26,7 +27,7 @@ export class HTAdminFeederAddComponent implements OnInit{
     this.locationService.getAllLocation().subscribe( {next: (success)=>{
       this.locations = success;
     }, error: (error) =>{
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 
@@ -40,8 +41,7 @@ export class HTAdminFeederAddComponent implements OnInit{
       this.feeder = {};
     }, error: (error) =>{
       this.loading = false;
-      alert("Unable to Add Feeder.");
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
   

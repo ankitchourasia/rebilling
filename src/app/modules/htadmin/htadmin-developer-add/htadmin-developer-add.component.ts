@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DeveloperService } from 'src/app/services/developer-service';
 import { LocationService } from 'src/app/services/location-service';
+import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
   selector: 'app-htadmin-developer-add',
@@ -25,7 +26,7 @@ export class HTAdminDeveloperAddComponent implements OnInit{
     this.locationService.getAllLocation().subscribe( {next: (success)=>{
       this.locations = success;
     }, error: (error) =>{
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 
@@ -39,8 +40,7 @@ export class HTAdminDeveloperAddComponent implements OnInit{
       this.developer = {};
     }, error: (error)=>{
       this.loading = false;
-      alert("Unable to add Developer");
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 

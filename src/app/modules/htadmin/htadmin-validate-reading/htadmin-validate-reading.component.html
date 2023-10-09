@@ -16,7 +16,10 @@
         
     </div>
     <div>
-        <table class="table table-sm table-responsive text-center">
+        <div class="d-flex justify-content-end mb-2">
+            <button class="btn btn-sm btn-primary" (click)="exportTableToExcel('readTable')">Export</button>
+        </div>
+        <table class="table table-sm table-responsive text-center" id="readTable">
             <tr class="text-center bg-secondary bg-opacity-25">
                 <th>SNo <input class="form-check-input" type="checkbox" id="allCheckBox" [(ngModel)]="checkAll" (change)="checkAllClicked()" [disabled]="!readings || readings.length < 1"></th>
                 <th>Meter No</th>

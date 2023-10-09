@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { InvestorService } from 'src/app/services/investor-service';
 import { LocationService } from 'src/app/services/location-service';
+import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
   selector: 'app-htadmin-investor-add',
@@ -25,7 +26,7 @@ export class HTAdminInvestorAddComponent implements OnInit{
     this.locationService.getAllLocation().subscribe( {next: (success)=>{
       this.locations = success;
     }, error: (error) =>{
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 
@@ -39,8 +40,7 @@ export class HTAdminInvestorAddComponent implements OnInit{
       form.reset();
     }, error: (error)=>{
       this.loading = false;
-      alert("Unable to add Investor");
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 }

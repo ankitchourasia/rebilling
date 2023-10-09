@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MeterService } from 'src/app/services/meter-service';
+import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
   selector: 'app-htadmin-meter-add',
@@ -51,8 +52,7 @@ export class HTAdminMeterAddComponent implements OnInit{
       },
       error: (error) =>{
         this.loading = false;
-        console.log(error);
-        alert("Unable to add meter.");
+        GlobalResourcesService.errorMessageHandeler(error);
       }
 
     })
@@ -62,7 +62,7 @@ export class HTAdminMeterAddComponent implements OnInit{
     this.meterService.getMeterMakes().subscribe(success =>{
       this.meterMakes = <any>success;
     }, error =>{
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     });
   }
 
@@ -70,7 +70,7 @@ export class HTAdminMeterAddComponent implements OnInit{
     this.meterService.getMeterCTR().subscribe(success =>{
       this.meterCTRs = <any>success;
     }, error =>{
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     });
   }
 
@@ -78,7 +78,7 @@ export class HTAdminMeterAddComponent implements OnInit{
     this.meterService.getMeterPTR().subscribe(success =>{
       this.meterPTRs = <any>success;
     }, error =>{
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     });
   }
 
@@ -86,7 +86,7 @@ export class HTAdminMeterAddComponent implements OnInit{
     this.meterService.getMeterMECTR().subscribe(success =>{
       this.meterMECTRs = <any>success;
     }, error =>{
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     });
   }
 
@@ -94,7 +94,7 @@ export class HTAdminMeterAddComponent implements OnInit{
     this.meterService.getMeterMEPTR().subscribe(success =>{
       this.meterMEPTRs = <any>success;
     }, error =>{
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     });
   }
 
@@ -102,7 +102,7 @@ export class HTAdminMeterAddComponent implements OnInit{
     this.meterService.getMeterDMF().subscribe(success =>{
       this.meterDMFs = <any>success;
     }, error =>{
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     });
   }
 

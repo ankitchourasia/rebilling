@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ReadService } from 'src/app/services/read-service';
+import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
   selector: 'app-amrcell5-percent-report-force-accept',
@@ -32,7 +33,7 @@ export class AMRCell5PercentReportForceAcceptComponent implements OnInit {
       this.readings = success;
       console.log(this.readings);
     }, error : error =>{
-      console.log(error);
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 
@@ -55,7 +56,7 @@ export class AMRCell5PercentReportForceAcceptComponent implements OnInit {
       this.searchButtonClicked();
     }, error : error =>{
       this.loading = false;
-      alert("Unable to approve.");
+      GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 
