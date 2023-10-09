@@ -17,6 +17,7 @@ import { HTAdminMachineViewComponent } from './htadmin-machine-view/htadmin-mach
 import { HtadminMeterReadingComponent } from './htadmin-meter-reading/htadmin-meter-reading.component';
 import { HTAdminValidateReadingComponent } from './htadmin-validate-reading/htadmin-validate-reading.component';
 import { HTAdminReadViewComponent } from './htadmin-read-view/htadmin-read-view.component';
+import { ConsumptionReportComponent } from 'src/app/components/consumption-report/consumption-report.component';
 
 const htAdminRoutes: Routes = [
   {
@@ -85,6 +86,10 @@ const htAdminRoutes: Routes = [
       {
         path: 'reading-view', 
         component: HTAdminReadViewComponent
+      },
+      {
+        path: 'consumption-report', 
+        component: ConsumptionReportComponent
       },
       {
         path: '', redirectTo: 'home', pathMatch: 'full'

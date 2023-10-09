@@ -95,4 +95,12 @@ export class MeterService {
     }
     return this.http.get("/rebilling/meter/replace/category/" + category + "/status/" + status + "/mapped/" + isMapped, options);
   }
+
+  getMetersForConsumptionReport(response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/meter_reading/meterConsumption/meterList", options);
+  }
 }
