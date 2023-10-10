@@ -35,6 +35,8 @@
                 <td>NLDC</td>
                 <td>Division</td>
                 <td>Circle</td>
+                <td>PPA Letter No</td>
+                <td>PPA Date</td>
                 <td></td>
             </tr>
             
@@ -88,6 +90,8 @@
                 <td>{{investor.nldc}}</td>
                 <td>{{investor.locationMaster.divisionName}}</td>
                 <td>{{investor.locationMaster.circleName}}</td>
+                <td>{{investor.ppaLetterNo}}</td>
+                <td>{{investor.ppaDate}}</td>
                 <td>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#viewModal" (click)="viewDetailsClicked(investor)">
                         View Details
@@ -262,13 +266,23 @@
                         <b>IFSC</b>
                     </td>
                     <td>
-                        {{investor.ifsc}}
+                        {{investor.ifscCode}}
                     </td>
                     <td>
                         <b>MICR</b>
                     </td>
                     <td>
                         {{investor.micr}}
+                    </td>
+                    
+                </tr>
+
+                <tr>
+                    <td colspan="">
+                        <b>Particulars</b>
+                    </td>
+                    <td colspan="6">
+                        {{investor.particulars}}
                     </td>
                 </tr>
             </table>

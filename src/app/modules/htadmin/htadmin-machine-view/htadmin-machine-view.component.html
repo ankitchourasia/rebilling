@@ -13,9 +13,9 @@
                 <td>Commissioned Date</td>
                 <td>Active Rate</td>
                 <td>Reactive Rate</td>
-                <td>PPA Letter No</td>
+                <!-- <td>PPA Letter No</td>
                 <td>PPA Date</td>
-                <td>Particulars</td>
+                <td>Particulars</td> -->
             </tr>
             
             <tr *ngFor="let machine of getData(); let i = index">
@@ -26,9 +26,9 @@
                 <td>{{machine.commissionedDate}}</td>
                 <td>{{machine.activeRate}}</td>
                 <td>{{machine.reactiveRate}}</td>
-                <td>{{machine.ppaLetterNo}}</td>
+                <!-- <td>{{machine.ppaLetterNo}}</td>
                 <td>{{machine.ppaDate}}</td>
-                <td>{{machine.particulars}}</td>
+                <td>{{machine.particulars}}</td> -->
             </tr>
             <tr *ngIf="!machines || machines.length <= 0">
                 <td colspan="10" *ngIf="!loading">No Machines Found</td>

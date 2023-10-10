@@ -110,7 +110,7 @@
             </div>
             <div class="col-3 mx-3">
                 <label class="fw-bold">Site Contact No</label>
-                <input type="text" class="form-control" [(ngModel)]="investor.siteContactNo" name="siteContactNo" #siteContactNo="ngModel" required
+                <input type="text" class="form-control" [(ngModel)]="investor.siteContactNo" name="siteContactNo" placeholder="1234567890" pattern="[0-9]{10}" #siteContactNo="ngModel" required
                 [ngClass]="{'is-invalid': siteContactNo.errors && (siteContactNo.dirty || siteContactNo.touched)}">
                 <div class="invalid-feedback" *ngIf="siteContactNo.errors && (siteContactNo.dirty || siteContactNo.touched)">
                     <div *ngIf="siteContactNo.errors['required']">required field</div>

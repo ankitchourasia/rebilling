@@ -1,13 +1,84 @@
 #login-container{
     height: 100vh;
     align-content: center;
-    /* background-image: url('../../assets/images/bg-login.jpg'); */
-    background-image: url('../../assets/images/wind_mill.jpg');
+   
+   
     background-size: cover;
     background-repeat: no-repeat;
-}
-
-.card{
+    
+    background-color: white;
+  }
+  
+  .card{
     margin: auto;
-    background-color: rgba(0,0,0,0.5) !important;
-}
+    margin-top: 10%;
+    
+    background-color: white !important;
+    color: black;
+    
+  }
+  
+  
+  /* color letters */
+  /* Base styles for the text */
+  .styled-text {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Style the first letter */
+  .first-letter {
+    color: #FF4081;
+  }
+  /*   
+  /* color letters ends */
+  
+  
+  
+  #login-footer{
+    /*padding-top: 3%;*/
+    /* color:rgba(0,0,0,0.5); */
+    /* color: #FF4081; */
+    /* color: red; */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+  }
+  #login-header{
+    /* color:black; */
+    /* background-color: rgb(20, 165, 153); */
+    /* background-color: whitesmoke; */
+    background-color: azure;
+    /* background-color:lightcyan; */
+    /* color: #FF4081; */
+    color: black;
+    /* background-color: gainsboro; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    /*rgb(59,113,202);*/
+  }
+  
+  .button {
+    background-color: #FF4081;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    width: 100%;
+  }
+  
+  
+  .login-primary-btn {border-radius: 10px;}
+  
+  
