@@ -1,31 +1,161 @@
 <div class="card rounded-0">
     <div class="card-header bg-secondary text-white text-center">
-        Consumption Report
+        <b>Consumption Report</b>
     </div>
     <form class="card-body" #f="ngForm">
-        <div class="row gx-5 gy-3 justify-content-around">
-            <div class="col-3 mx-3">
+        <div class="d-flex justify-content-around align-items-end">
+            <div>
                 <label class="fw-bold">Meter</label>
                 <select [ngClass]="{'is-invalid': meter.errors && (meter.dirty || meter.touched)}"
                     class="form-select" name="meter" [ngModel]=null #meter="ngModel" required>
                     <option disabled selected [ngValue]=null>Select</option>
                     <option *ngFor="let meter of meterList" [ngValue]="meter.meterNo">{{meter.meterNo}} | {{meter.meterCategory}}</option>
                 </select>
-                <div class="invalid-feedback" *ngIf="meter.errors && (meter.dirty || meter.touched)">
+                <!-- <div class="invalid-feedback" *ngIf="meter.errors && (meter.dirty || meter.touched)">
                     <div *ngIf="meter.errors['required']">required field</div>
-                </div>
+                </div> -->
             </div>
-            <div class="col-3 mx-3">
+            <div>
                 <label class="fw-bold">Month</label>
                 <input [ngClass]="{'is-invalid': month.errors && (month.dirty || month.touched)}"
                     type="month" class="form-control" name="month" ngModel #month="ngModel" required >
-                <div class="invalid-feedback" *ngIf="month.errors && (month.dirty || month.touched)">
+                <!-- <div class="invalid-feedback" *ngIf="month.errors && (month.dirty || month.touched)">
                     <div *ngIf="month.errors['required']">required field</div>
-                </div>
+                </div> -->
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="onSubmit(f)" [disabled]="f.form.invalid || f.form.disabled || loading">Search</button>
             </div>
         </div>
-        <div class="d-flex justify-content-center mt-4 pt-4 border-top">
+        <!-- <div class="d-flex justify-content-center mt-4 pt-4 border-top">
             <button class="btn btn-primary" (click)="onSubmit(f)" [disabled]="f.form.invalid || f.form.disabled">Search</button>
-        </div>
+        </div> -->
     </form>
+    <table class="table table-responsive text-center" *ngIf="reading && !viewBifurcation">
+        <tr>
+            <td colspan="6">Meter Reading Details</td>
+        </tr>
+        <tr>
+            <td>Meter No</td>
+            <td>{{reading.meterNo}}</td>
+            <td>MF</td>
+            <td>{{reading.mf}}</td>
+            <td>Category</td>
+            <td>{{reading.category}}</td>
+        </tr>
+        <tr>
+            <td rowspan="2">SNo</td>
+            <td rowspan="2">Particular</td>
+            <td colspan="2">export</td>
+            <td>Adjustment</td>
+            <td>{{reading.eadjustment}}</td>
+        </tr>
+        <tr>
+            <td>
+                Current Read
+            </td>
+            <td>
+                Previous Read
+            </td>
+            <td>
+                Diffrence
+            </td>
+            <td>
+                Consumption
+            </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>KWH (Active Energy)</td>
+            <td>{{reading.ecurrentActiveEnergy}}</td>
+            <td>{{reading.epreviousActiveEnergy}}</td>
+            <td>{{reading.ediffActiveEnergy}}</td>
+            <td>{{reading.econsumptionActiveEnergy}}</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>KVAH (APPARENT ENERGY)</td>
+            <td>{{reading.ecurrentKvah}}</td>
+            <td>{{reading.epreviousKvah}}</td>
+            <td>{{reading.ediffKvah}}</td>
+            <td>{{reading.econsumptionKvah}}</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>MAX DEMAND</td>
+            <td>{{reading.ecurrentMaxDemand}}</td>
+            <td>{{reading.epreviousMaxDemand}}</td>
+            <td>{{reading.ediffMaxDemand}}</td>
+            <td>{{reading.econsumptionMaxDemand}}</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>TOD 1</td>
+            <td>{{reading.ecurrentTod1}}</td>
+            <td>{{reading.epreviousTod1}}</td>
+            <td>{{reading.ediffTod1}}</td>
+            <td>{{reading.econsumptionTod1}}</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>TOD 2</td>
+            <td>{{reading.ecurrentTod2}}</td>
+            <td>{{reading.epreviousTod2}}</td>
+            <td>{{reading.ediffTod2}}</td>
+            <td>{{reading.econsumptionTod2}}</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>TOD 3</td>
+            <td>{{reading.ecurrentTod3}}</td>
+            <td>{{reading.epreviousTod3}}</td>
+            <td>{{reading.ediffTod3}}</td>
+            <td>{{reading.econsumptionTod3}}</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>TOD 4</td>
+            <td>{{reading.ecurrentTod4}}</td>
+            <td>{{reading.epreviousTod4}}</td>
+            <td>{{reading.ediffTod4}}</td>
+            <td>{{reading.econsumptionTod4}}</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>REACTIVE QUAD 1</td>
+            <td>{{reading.ecurrentReactiveQuad1}}</td>
+            <td>{{reading.epreviousReactiveQuad1}}</td>
+            <td>{{reading.ediffReactiveQuad1}}</td>
+            <td>{{reading.econsumptionReactiveQuad1}}</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>REACTIVE QUAD 2</td>
+            <td>{{reading.ecurrentReactiveQuad2}}</td>
+            <td>{{reading.epreviousReactiveQuad2}}</td>
+            <td>{{reading.ediffReactiveQuad2}}</td>
+            <td>{{reading.econsumptionReactiveQuad2}}</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>REACTIVE QUAD 3</td>
+            <td>{{reading.ecurrentReactiveQuad3}}</td>
+            <td>{{reading.epreviousReactiveQuad3}}</td>
+            <td>{{reading.ediffReactiveQuad3}}</td>
+            <td>{{reading.econsumptionReactiveQuad3}}</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>REACTIVE QUAD 4</td>
+            <td>{{reading.ecurrentReactiveQuad4}}</td>
+            <td>{{reading.epreviousReactiveQuad4}}</td>
+            <td>{{reading.ediffReactiveQuad4}}</td>
+            <td>{{reading.econsumptionReactiveQuad4}}</td>
+        </tr>
+    </table>
+    <div class="d-flex  justify-content-around mb-2" *ngIf="!viewBifurcation && reading && role === 'DEVELOPER'">
+        <button class="btn btn-primary" (click)="bifurcateButtonClicked()">Bifurcate</button>
+    </div>
 </div>
+
+<app-read-bifurcation [reading]="reading" *ngIf="viewBifurcation"></app-read-bifurcation>

@@ -29,13 +29,13 @@
             </tr>
             <tr *ngFor="let read of readings; let i = index">
                 <td>{{i+1}} <input class="form-check-input" type="checkbox" id="CheckBox{{i}}" [(ngModel)]="read.checked" (change)="checkClicked(read)"></td>
-                <td>Meter No</td>
-                <td>Reading Date</td>
-                <td>Active Energy</td>
-                <td>TOD1</td>
-                <td>TOD2</td>
-                <td>TOD3</td>
-                <td>TOD4</td>
+                <td>{{read.meterNo}}</td>
+                <td>{{read.readingDate}}</td>
+                <td>{{read.eactiveEnergy}}</td>
+                <td>{{read.etod1}}</td>
+                <td>{{read.etod2}}</td>
+                <td>{{read.etod3}}</td>
+                <td>{{read.etod4}}</td>
             </tr>
             <tr *ngIf="!readings || readings.length < 1">
                 <td colspan="8">No records found.</td>
