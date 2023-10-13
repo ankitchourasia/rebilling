@@ -1,14 +1,22 @@
 <nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid d-flex fles-direction-between text-white">
-        <a class="navbar-brand">RE Billing</a>
-        <div>
-            <span class="me-2">Welcome : {{user}}</span>
-            <button class="badge bg-secondary me-2" disabled>
+    <div class="container-fluid d-flex fles-direction-between text-white " >
+        <div class="text-center "><span><i class="bi bi-house-fill" style="padding: 40px; font-weight:bolder; font-size: x-large; color: red;" ><a href="#"  style="color: white;">HOME</a></i></span></div>
+        <a class="navbar-brand "style="text-align: center;" >Madhya Pradesh Pashchim Kshetra Vidyut Vitaran Co. Ltd
+            <br>
+            <small>Renewable Energry Billing</small>
+        </a>
+        <div class="text-center" >
+            <!-- <span>Welcome : {{user}}</span> -->
+            <!-- <button class="badge bg-white" style="color: red;"> -->
+                <button class="badge  rounded-pill  bg-white" style="color:red;">   
                 Session : <app-session-timer></app-session-timer>
             </button>
-            <button class="badge bg-danger" type="button" (click)="logoutClicked()">
+           
+            <button class="badge rounded-pill bg-danger " type="button" (click)="logoutClicked()">
                 logout
             </button>
+
+          
         </div>
     </div>
 </nav>

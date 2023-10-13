@@ -32,7 +32,7 @@
 
             <div class="col-3 mx-3">
                 <label class="fw-bold">Office Contact Person</label>
-                <input type="text" class="form-control" [(ngModel)]="developer.officeContactPerson" name="officeContactPerson" #officeContactPerson="ngModel" required
+                <input type="text" class="form-control" [(ngModel)]="developer.officeContactPerson" name="officeContactPerson"  #officeContactPerson="ngModel" required
                 [ngClass]="{'is-invalid': officeContactPerson.errors && (officeContactPerson.dirty || officeContactPerson.touched)}">
                 <div class="invalid-feedback" *ngIf="officeContactPerson.errors && (officeContactPerson.dirty || officeContactPerson.touched)">
                     <div *ngIf="officeContactPerson.errors['required']">required field</div>
@@ -67,7 +67,7 @@
             </div>
             <div class="col-3 mx-3">
                 <label class="fw-bold">Site Contact Person</label>
-                <input type="text" class="form-control" [(ngModel)]="developer.siteContactPerson" name="siteContactPerson" #siteContactPerson="ngModel" required
+                <input type="text" class="form-control" [(ngModel)]="developer.siteContactPerson" name="siteContactPerson"  #siteContactPerson="ngModel" size="10" maxlength="10" pattern="[6-9][0-9]{9}" required
                 [ngClass]="{'is-invalid': siteContactPerson.errors && (siteContactPerson.dirty || siteContactPerson.touched)}">
                 <div class="invalid-feedback" *ngIf="siteContactPerson.errors && (siteContactPerson.dirty || siteContactPerson.touched)">
                     <div *ngIf="siteContactPerson.errors['required']">required field</div>
