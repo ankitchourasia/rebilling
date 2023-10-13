@@ -50,7 +50,7 @@
 
             <div class="col-3 mx-3">
                 <label class="fw-bold">Office Contact No</label>
-                <input type="text" class="form-control" [(ngModel)]="developer.officeContactNo" name="officeContactNo" #officeContactNo="ngModel" required
+                <input type="text" class="form-control" [(ngModel)]="developer.officeContactNo" name="officeContactNo" #officeContactNo="ngModel" size="10" maxlength="10" pattern="[6-9][0-9]{9}" required
                 [ngClass]="{'is-invalid': officeContactNo.errors && (officeContactNo.dirty || officeContactNo.touched)}">
                 <div class="invalid-feedback" *ngIf="officeContactNo.errors && (officeContactNo.dirty || officeContactNo.touched)">
                     <div *ngIf="officeContactNo.errors['required']">required field</div>
@@ -84,7 +84,7 @@
             </div>
             <div class="col-3 mx-3">
                 <label class="fw-bold">Site Contact No</label>
-                <input type="text" class="form-control" [(ngModel)]="developer.siteContactNo" name="siteContactNo" placeholder="1234567890" pattern="[0-9]{10}" #siteContactNo="ngModel" required
+                <input type="text" class="form-control" [(ngModel)]="developer.siteContactNo" name="siteContactNo" #siteContactNo="ngModel" size="10" maxlength="10" pattern="[6-9][0-9]{9}" required
                 [ngClass]="{'is-invalid': siteContactNo.errors && (siteContactNo.dirty || siteContactNo.touched)}">
                 <div class="invalid-feedback" *ngIf="siteContactNo.errors && (siteContactNo.dirty || siteContactNo.touched)">
                     <div *ngIf="siteContactNo.errors['required']">required field</div>

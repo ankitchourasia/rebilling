@@ -136,4 +136,20 @@ export class ReadService {
     }
     return this.http.get("/rebilling/meter_reading/meterConsumption/meterNo/" + meterNo + "/monthYear/" + month , options);
   }
+
+  getConsumptionForBifurcation(reading : any, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.post("/rebilling/bifurcate/empty", reading, options);
+  }
+
+  bifurcationConsumption(consumption : any, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.post("/rebilling/bifurcate", consumption, options);
+  }
 }

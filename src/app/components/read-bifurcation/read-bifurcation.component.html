@@ -1,0 +1,112 @@
+<form class="card" *ngIf="consumption" #f="ngForm">
+    <div class="card-header bg-dark text-white text-center">Bifurcate Consumption</div>
+    <table class="table text-left m-0" id="bifurcationTable" *ngIf="consumption">
+        <tr>
+          <td>Developer No.</td>
+          <td>{{consumption.hdevId}}</td>
+          <td>Developer Name</td>
+          <td>{{consumption.hdevName}}</td>
+          <td>Meter No.</td>
+          <td>{{consumption.hmeterNumber}}</td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td>{{consumption.hcategory}}</td>
+            <td>MF</td>
+            <td>{{consumption.hmf}}</td>
+            <td>Max Demand</td>
+            <td>{{consumption.hmaxDemand}}</td>
+        </tr>
+        <tr>
+            <td>Reading Date</td>
+            <td>{{consumption.hReadingDate}}</td>
+            <td>KWH Export</td>
+            <td>{{consumption.hconsumptionKwh}}</td>
+            <td>RKVAH Consumed</td>
+            <td>
+                {{consumption.hrkvah}}
+            </td>
+        </tr>
+        <tr>
+            <td>Total Adjustment</td>
+            <td>{{consumption.hadjustment}}</td>
+            <td>Total Assessment</td>
+            <td>{{consumption.hassessment}}</td>
+            <td>Grand KWH Export <br>(KWH Export - Total Adjustment)</td>
+            <td>{{consumption.hgrandConsumptionKwh}}</td>
+        </tr>
+    </table>
+    <table class="table text-center">
+        <tr>
+            <th colspan="12">Generation Details</th>
+        </tr>
+        <tr>
+            <th>S.No.</th>
+            <th>Investor No. & Name</th>
+            <th>Capacity (MW)</th>
+            <th>Active Rate</th>
+            <th>Developer KWH Export</th>
+            <th>Fixed Adjustment</th>
+            <th>KWH Export</th>
+            <th>RKVAH Consumed</th>
+            <th>Assessment</th>
+            <th>Adjustment Units</th>
+            <th>Adjustment</th>
+            <th>Total Consumption</th>
+        </tr>
+        <tr *ngFor="let read of consumption?.bifurcateInvestorDtoList; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{read.linvestorCode}} - {{read.linvestorName}}</td>
+            <td>{{read.lmachineCapacity}}</td>
+            <td>{{read.lmachineActiveRate}}</td>
+            <td>{{read.ldevConsumptionKwh}}</td>
+            <td>{{read.lfixedAdjustmentPer}}</td>
+            <td>
+                <input type="Number" class="form-control" name="consumption{{read.lconsumptionKwh}}" [(ngModel)]="read.lconsumptionKwh" (change)="calculateTotalConsumption(read)"
+                [ngClass]="{'is-invalid': consumption.errors && (consumption.dirty || consumption.touched)}" #consumption="ngModel" [min]="0" required="true">
+                <div class="invalid-feedback p-0" *ngIf="consumption.errors && (consumption.dirty || consumption.touched)">
+                    <div [hidden]="!consumption.errors['required']">required field</div>
+                    <div [hidden]="!consumption.errors['min'] || consumption.errors['required']">can't be negetive</div>
+                </div>
+            </td>
+            <td>{{read.lrkvah}}</td>
+            <td>
+                <input type="Number" class="form-control" name="assessment{{read.lassessment}}" [(ngModel)]="read.lassessment" (change)="calculateTotalConsumption(read)"
+                [ngClass]="{'is-invalid': assessment.errors && (assessment.dirty || assessment.touched)}" #assessment="ngModel" [min]="0" required="true">
+                <div class="invalid-feedback p-0" *ngIf="assessment.errors && (assessment.dirty || assessment.touched)">
+                    <div [hidden]="!assessment.errors['required']">required field</div>
+                    <div [hidden]="!assessment.errors['min'] || assessment.errors['required']">can't be negetive</div>
+                </div>
+            </td>
+            <td><input type="Number" class="form-control" name="adjustmentUnits{{read.ladjustmentUnit}}" [(ngModel)]="read.ladjustmentUnit" (change)="adjustmentChanged(read)"
+                [ngClass]="{'is-invalid': adjustment.errors && (adjustment.dirty || adjustment.touched)}" #adjustment="ngModel" [min]="0" required="true">
+                <div class="invalid-feedback p-0" *ngIf="adjustment.errors && (adjustment.dirty || adjustment.touched)">
+                    <div [hidden]="!adjustment.errors['required']">required</div>
+                    <div [hidden]="!adjustment.errors['min'] || adjustment.errors['required']">can't be negetive</div>
+                </div>
+            </td>
+            <td>{{read.ladjustment}}</td>
+            <td>{{read.lconsumptionTotal}}</td>
+        </tr>
+        <tr>
+            <td>Total KWH Export</td>
+            <td colspan="2">{{consumption?.fsumConsumptionKwh}}</td>
+            <td>Total Fixed Adjustment</td>
+            <td colspan="2">{{consumption?.fsumFixedAdjustmentValue}}</td>
+            <td>Total Assessment</td>
+            <td colspan="2">{{consumption?.fsumAssessment}}</td>
+            <td>Total Adjustment</td>
+            <td colspan="2">{{consumption?.fsumAdjustment}}</td>
+        </tr>
+        <tr>
+            <td colspan="3"> Grand Total (KWH Export + Ass - Adj)</td>
+            <td colspan="3">{{consumption?.fgrandConsumptionKwh}}</td>
+            <td colspan="3">Unallocated (KWH Export)</td>
+            <td colspan="3">{{consumption?.funallocatedConsumptionKwh}}</td>
+        </tr>
+    </table>
+    <div class="d-flex justify-content-center mb-2">
+        <button class="btn btn-success me-3" (click)="submitClicked()" [disabled]="!(consumption?.fgrandConsumptionKwh === consumption?.hgrandConsumptionKwh) || loading">Submit</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
+    </div>
+</form>
