@@ -85,7 +85,6 @@ export class HtadminMeterReadingComponent implements OnInit{
     }, error : error =>{
       f.form.enable();
       GlobalResourcesService.errorMessageHandeler(error);
-      alert(error.error);
     }})
   }
 

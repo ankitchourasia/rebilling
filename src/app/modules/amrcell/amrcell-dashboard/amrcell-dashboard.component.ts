@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ReadService } from 'src/app/services/read-service';
 import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
@@ -9,8 +10,7 @@ import { GlobalResourcesService } from 'src/app/utility/global-resources.service
 })
 export class AMRCellDashboardComponent implements OnInit {
   
-  startDate : Date | undefined;
-  endDate : Date | undefined;
+  billMonth! : string;
   loading : boolean = false;
   reports : any;
   constructor(private readingService : ReadService){
@@ -23,7 +23,8 @@ export class AMRCellDashboardComponent implements OnInit {
   searchClicked(){
     this.loading = true;
     this.reports = undefined;
-    this.readingService.get5PercentReportByStartAndEndDate(this.startDate, this.endDate).subscribe({next : success =>{
+    let month = formatDate(this.billMonth, "MMM-yyyy", "en-IN");
+    this.readingService.get5PercentReportBybillMonth(month).subscribe({next : success =>{
       this.loading = false;
       this.reports = success;
     }, error : error =>{

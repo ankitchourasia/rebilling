@@ -18,6 +18,8 @@ import { HtadminMeterReadingComponent } from './htadmin-meter-reading/htadmin-me
 import { HTAdminValidateReadingComponent } from './htadmin-validate-reading/htadmin-validate-reading.component';
 import { HTAdminReadViewComponent } from './htadmin-read-view/htadmin-read-view.component';
 import { ConsumptionReportComponent } from 'src/app/components/consumption-report/consumption-report.component';
+import { ViewReadBifurcationComponent } from 'src/app/components/view-read-bifurcation/view-read-bifurcation.component';
+import { ViewInvoiceComponent } from 'src/app/components/view-invoice/view-invoice.component';
 
 const htAdminRoutes: Routes = [
   {
@@ -90,6 +92,17 @@ const htAdminRoutes: Routes = [
       {
         path: 'consumption-report', 
         component: ConsumptionReportComponent
+      },
+      {
+        path: '', redirectTo: 'home', pathMatch: 'full'
+      },
+      {
+        path : 'view-bifurcation',
+        component: ViewReadBifurcationComponent
+      },
+      {
+        path : 'view-invoice',
+        component: ViewInvoiceComponent
       },
       {
         path: '', redirectTo: 'home', pathMatch: 'full'

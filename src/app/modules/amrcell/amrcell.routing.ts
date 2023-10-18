@@ -6,6 +6,9 @@ import { AmrcellReadFileUploadComponent } from './amrcell-read-file-upload/amrce
 import { AMRCellDashboardComponent } from './amrcell-dashboard/amrcell-dashboard.component';
 import { AMRCell5PercentReportForceAcceptComponent } from './amrcell5-percent-report-force-accept/amrcell5-percent-report-force-accept.component';
 import { AMRCellReadHistoryComponent } from './amrcell-read-history/amrcell-read-history.component';
+import { ViewReadBifurcationComponent } from 'src/app/components/view-read-bifurcation/view-read-bifurcation.component';
+import { ViewInvoiceComponent } from 'src/app/components/view-invoice/view-invoice.component';
+import { ConsumptionReportComponent } from 'src/app/components/consumption-report/consumption-report.component';
 
 const amrCellRoutes: Routes = [
   {
@@ -30,6 +33,21 @@ const amrCellRoutes: Routes = [
       {
         path: 'read-history', 
         component: AMRCellReadHistoryComponent
+      },
+      {
+        path: '', redirectTo: 'home', pathMatch: 'full'
+      },
+      {
+        path : 'view-bifurcation',
+        component: ViewReadBifurcationComponent
+      },
+      {
+        path : 'view-invoice',
+        component: ViewInvoiceComponent
+      },
+      {
+        path : 'consumption-report',
+        component: ConsumptionReportComponent
       },
       {
         path: '', redirectTo: 'home', pathMatch: 'full'

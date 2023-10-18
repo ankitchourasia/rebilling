@@ -2,18 +2,13 @@
     <div class="card-header bg-secondary text-white text-center">
         Dashboard
     </div>
-    <fieldset class="d-flex justify-content-around align-items-end mb-3" ngForm #searchForm="ngForm" [disabled]="loading">
-        
-        <div>
-            <label class="fw-bold">Start Date</label>
-            <input type="date" class="form-control" name="billMonth" [(ngModel)]="startDate" required>
+    <fieldset class="d-flex justify-content-center align-items-end mb-3" ngForm #searchForm="ngForm" [disabled]="loading">
+        <div class="me-2">
+            <label class="fw-bold">Bill Month</label>
+            <input type="month" class="form-control" id="billMonth" name="billMonth" [(ngModel)]="billMonth" required>
         </div>
         <div>
-            <label class="fw-bold">End Date</label>
-            <input type="date" class="form-control" name="billMonth" [(ngModel)]="endDate" required>
-        </div>
-        <div>
-            <button type="button" class="btn btn-success" (click)="searchClicked()" [disabled]="searchForm.invalid" [disabled]="loading">
+            <button type="button" class="btn btn-primary" (click)="searchClicked()" [disabled]="searchForm.invalid" [disabled]="loading">
                 Search
             </button>
         </div>

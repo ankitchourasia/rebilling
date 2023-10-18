@@ -73,7 +73,7 @@ export class HTAdminValidateReadingComponent implements OnInit{
       alert("Readings validated successfully");
       this.searchButtonClicked();
     }, error : error =>{
-      alert("Unable to validate readings.");
+      GlobalResourcesService.errorMessageHandeler(error);
     }});
   }
 

@@ -1,0 +1,172 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        <b>Invoice</b>
+    </div>
+    <form class="card-body" #f="ngForm">
+        <div class="d-flex justify-content-center align-items-end">
+            <div class="me-2">
+                <label class="fw-bold">Invoice No</label>
+                <input type="text" class="form-control" [(ngModel)]="invoiceNo" name="invoiceNo" #invoiceNumber="ngModel" required
+                    [ngClass]="{'is-invalid': invoiceNumber.errors && (invoiceNumber.dirty || invoiceNumber.touched)}">
+                <div class="invalid-feedback" *ngIf="invoiceNumber.errors && (invoiceNumber.dirty || invoiceNumber.touched)">
+                    <div *ngIf="invoiceNumber.errors['required']">required field</div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="onSubmit()" [disabled]="!invoiceNo || loading">Search</button>
+            </div>
+        </div>
+    </form>
+    <div id="invoiceTable" class="modal-body table-responsive" *ngIf="invoice">
+        <table class="table table-sm table-bordered text-left" border="1" style="border-collapse:collapse">
+            <tr class="text-center">
+                <th colspan="5">Invoice</th>
+            </tr>
+            <tr>
+                <th align="left" colspan="5">GSTN: {{invoice.gstNo}}</th>
+            </tr>
+            <tr class="text-center">
+                <th colspan="5">{{invoice.investerName}}</th>
+            </tr>
+            <tr class="text-center">
+                <th colspan="5">{{invoice.officeAddress}}</th>
+            </tr>
+            <tr>
+                <td rowspan="8">To,
+                    Supretending Engineer, {{invoice.circleName}}
+                    M.P.P.K.V.V. Co. Ltd.
+                    M.P.
+                </td>
+                <th align="left">INVOICE NO</th>
+                <td colspan="3">{{invoice.invoiceNumber}}</td>
+            </tr>
+            <tr>
+                <th align="left">REF</th>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <th align="left">LETTER NO</th>
+                <td colspan="3">{{invoice.ppaLetterNo}}</td>
+            </tr>
+            <tr>
+                <th align="left">GST</th>
+                <td colspan="3">{{invoice.gstNo}}</td>
+            </tr>
+            <tr>
+                <th align="left">VAT</th>
+                <td colspan="3">{{invoice.vat}}</td>
+            </tr>
+            <tr>
+                <th align="left">TIN</th>
+                <td colspan="3">{{invoice.tin}}</td>
+            </tr>
+            <tr>
+                <th align="left">CIN</th>
+                <td colspan="3">{{invoice.cin}}</td>
+            </tr>
+            <tr>
+                <th align="left">COMMISSION DATE</th>
+                <td colspan="3">{{invoice.commissionedDate}}</td>
+            </tr>
+            <ng-container *ngFor="let data of invoices">
+            <tr>
+                <th>METERNO</th>
+                <th>CATEGORY</th>
+                <th>MF</th>
+                <th>READ DATE &
+                    BILL MONTH</th>
+                <th>BILL NO</th>
+            </tr>
+            <tr>
+                <td>{{data.hMeterNo}}</td>
+                <td>{{data.hCategory}}</td>
+                <td>{{data.hMf}}</td>
+                <td>{{data.hReadingDate | date :"dd-MM-yyyy"}} &
+                    {{data.billingMonth}}</td>
+                <td>{{data.billNo}}</td>
+            </tr>
+            <tr>
+                <th>SNO</th>
+                <th>PARTICULAR</th>
+                <th>UNITS</th>
+                <th>RATE PER UNIT</th>
+                <th>AMOUNT</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>{{data.particulars}}</td>
+                <td>{{data.lKwhActiveEnergy}}</td>
+                <td>{{data.lActiveRate}}</td>
+                <td>{{data.lineKwhAmount}}</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>RKVH CHARGES</td>
+                <td>{{data.lRkvah}}</td>
+                <td>{{data.lReactiveRate}}</td>
+                <td>{{data.lineRkvahAmount}}</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>FIXED ADJUSTMENT(-)</td>
+                <td>{{data.lineFixAdjAmt}}</td>
+                <td>{{data.lActiveRate}}</td>
+                <td>{{data.lFixedAdjustmentVal}}</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>OTHERADJUSTMENT(-)</td>
+                <td>{{data.lAdjustment}}</td>
+                <td>{{data.lActiveRate}}</td>
+                <td>{{data.lineAdjustmentUnitAmt}}</td>
+            </tr>
+            <tr>
+                <td colspan="3">TOTAL AMOUNT</td>
+                <td colspan="2">{{data.totalAmount}}</td>
+            </tr>
+            </ng-container>
+            <tr>
+                <td colspan="3">GRAND TOTAL</td>
+                <td colspan="2">{{invoice.grandTotalAmount}}</td>
+            </tr>
+            <tr>
+                <td colspan="3">GRAND TOTAL(ROUND OFF)</td>
+                <td colspan="2">{{invoice.grandTotalAmountRounded}}</td>
+            </tr>
+            <tr>
+                <td colspan="3">AMOUNT IN WORDS</td>
+                <td colspan="2">{{invoice.amountWords}}</td>
+            </tr>
+            <tr>
+                <td colspan="2">NAME OF ACCOUNT HOLDER</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td colspan="2">BANK NAME AND ADDRESS</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td colspan="2">ACCOUNT NO.</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td colspan="2">IFSC CODE</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td colspan="2">MICR NO.</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr height="100px">
+                <td colspan="5"></td>
+            </tr>
+            <tr align="right">
+                <td colspan="5">Authorized Signatory</td>
+            </tr>
+        </table>
+        **It is a system generated report
+    </div>
+    <div class="d-flex justify-content-around" *ngIf="invoice">
+        <button type="button" class="btn btn-secondary" id="closeButton" (click)="print('invoiceTable')">Print</button>
+    </div>
+</div>

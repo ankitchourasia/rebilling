@@ -21,18 +21,22 @@ export class AmrcellReadFileUploadComponent implements OnInit{
     this.selectedFile = event.target.files;
     
   }
+  result : any = [];
   uploadClicked(){
     this.loading = true;
-    let formData : FormData = new FormData();
+    this.result = [];
     for (let i = 0; i < this.selectedFile.length; i++) {
+      let formData : FormData = new FormData();
       formData.append('xmlFile', this.selectedFile[i]);
+      this.readService.uploadFiles(formData).subscribe( {next: (success : any)=>{
+        this.loading = false;
+        this.result.push(success.message);
+        console.log(success);
+      }, error: (error : any) =>{
+        this.loading = false;
+        this.result.push(error.error.message);
+      }})
     }
-    this.readService.uploadFiles(formData).subscribe( {next: (success)=>{
-      this.loading = false;
-      console.log(success);
-    }, error: (error) =>{
-      this.loading = false;
-      GlobalResourcesService.errorMessageHandeler(error);
-    }})
+    console.log(this.result)
   }
 }

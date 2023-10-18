@@ -69,7 +69,6 @@ export class DeveloperValidateReadingComponent implements OnInit{
       alert("Read accepted successfully");
     }, error : error =>{
       GlobalResourcesService.errorMessageHandeler(error);
-      alert("Unable to approve read.");
     }});
   }
 
@@ -83,7 +82,6 @@ export class DeveloperValidateReadingComponent implements OnInit{
       alert("Read rejected successfully");
     }, error : error =>{
       GlobalResourcesService.errorMessageHandeler(error);
-      alert("Unable to reject read.");
     }});
   }
 

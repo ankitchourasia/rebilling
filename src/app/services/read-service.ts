@@ -152,4 +152,85 @@ export class ReadService {
     }
     return this.http.post("/rebilling/bifurcate", consumption, options);
   }
+
+  getDetailsForInvoiceGenerationByMeterNoAndMonth(meterNo : string, month: string, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/invoice/load/meterNo/" + meterNo + "/monthYear/" + month , options);
+  }
+
+  generateInvoiceByInvestorAndMonth(investor : string, month: string, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/invoice/generate/investor/" + investor + "/monthYear/" + month , options);
+  }
+
+  getInvoiceByInvoiceNo(invoiceNo : string, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/invoice/view/invoiceNumber/" + invoiceNo, options);
+  }
+
+  saveNonPPAInvoice(invoice : any, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.post("/rebilling/invoice/generate/save-non-ppwa", invoice, options);
+  }
+
+  savePPAInvoice(invoices : any, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.post("/rebilling/invoice/generate/save-ppwa", invoices, options);
+  }
+
+  submitInvoicesForApproval(readings : any, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.post("/rebilling/invoice/submit", readings, options);
+  }
+
+  approveClicked(readings : any, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.post("/rebilling/invoice/approve", readings, options);
+  }
+
+  rejectClicked(readings : any, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.post("/rebilling/invoice/reject", readings, options);
+  }
+
+  getBifurcationByMeterNoAndBillMonth(meterNo : string, billMonth : string, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/bifurcate/get/dto/meterNo/" + meterNo + "/monthYear/" + billMonth, options);
+  }
+
+  get5PercentReportBybillMonth(billMonth : string, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/report/5percent/month/" + billMonth, options);
+  }
+
 }

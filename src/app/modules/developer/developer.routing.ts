@@ -4,6 +4,7 @@ import { DeveloperHomeComponent } from './developer-home/developer-home.componen
 import { DeveloperComponent } from './developer.component';
 import { DeveloperValidateReadingComponent } from './developer-validate-reading/developer-validate-reading.component';
 import { ConsumptionReportComponent } from 'src/app/components/consumption-report/consumption-report.component';
+import { DeveloperInvoiceGenerationComponent } from './developer-invoice-generation/developer-invoice-generation.component';
 
 const developerRoutes: Routes = [
   {
@@ -19,6 +20,14 @@ const developerRoutes: Routes = [
       },
       {
         path: 'read-bifurcation', 
+        component: ConsumptionReportComponent
+      },
+      {
+        path: 'invoice-generation', 
+        component: DeveloperInvoiceGenerationComponent
+      },
+      {
+        path : 'consumption-report',
         component: ConsumptionReportComponent
       },
       {

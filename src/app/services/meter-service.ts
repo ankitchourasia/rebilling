@@ -103,4 +103,28 @@ export class MeterService {
     }
     return this.http.get("/rebilling/meter_reading/meterConsumption/meterList", options);
   }
+
+  getMetersForInvoiceGeneration(response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/bifurcate/developer/meters", options);
+  }
+
+  getMetersForCircleInvoiceApproval(response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/bifurcate/circle/meters", options);
+  }
+
+  getAllMetersForBifurcation(response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/bifurcate/all/meters", options);
+  }
 }

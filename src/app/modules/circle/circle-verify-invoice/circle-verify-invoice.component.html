@@ -1,0 +1,239 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        <b>Consumption Report</b>
+    </div>
+    <form class="card-body" #f="ngForm">
+        <div class="d-flex justify-content-around align-items-end">
+            <div>
+                <label class="fw-bold">Meter</label>
+                <select [ngClass]="{'is-invalid': meter.errors && (meter.dirty || meter.touched)}"
+                    class="form-select" name="meter" [(ngModel)]="data.meterNo" #meter="ngModel" required>
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option *ngFor="let meter of meterList" [ngValue]="meter.meterNumber">{{meter.meterNumber}} | {{meter.meterCategory}}</option>
+                </select>
+            </div>
+            <div>
+                <label class="fw-bold">Month</label>
+                <input [ngClass]="{'is-invalid': month.errors && (month.dirty || month.touched)}"
+                    type="month" class="form-control" name="month" [(ngModel)]="data.month" #month="ngModel" required >
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="onSubmit()" [disabled]="f.form.invalid || f.form.disabled || loading">Search</button>
+            </div>
+        </div>
+    </form>
+    <table class="table" *ngIf="readings">
+        <tr>
+            <th>SNo</th>
+            <th>Investor Name</th>
+            <th>Plant Name</th>
+            <th>Meter No</th>
+            <th>Total Consumption</th>
+            <th>Bifurcate Consumption</th>
+            <th>Invoice Amount</th>
+            <th>Invoice Date</th>
+            <th>Invoice No</th>
+            <th>Invoice Stage</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let read of readings; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{read.investorName}}-{{read.investorCode}}</td>
+            <td>{{read.plantName}}-{{read.plantCode}}</td>
+            <td>
+                {{read.meterNumber}}
+                <button type="button" class="badge bg-primary" (click)="viewBifurcationClicked(bifucationModal)">View Bifurcation</button>
+            </td>
+            <td>{{read.bifurcateTotalKwhConsumption}}</td>
+            <td>{{read.bifurcateInvestorKwhConsumption}}</td>
+            <td>{{read.invoiceAmount}}</td>
+            <td>{{read.invoiceDate}}</td>
+            <td>{{read.invoiceNumber}}</td>
+            <td>{{read.invoiceStage}}</td>
+            <td>
+                <div>
+                    <button class="btn btn-sm btn-success" (click)="viewButtonClicked(read, invoiceModal)">View</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class="d-flex justify-content-center mb-1">
+        <button class="btn btn-warning me-2" *ngIf="viewApprovalButtons()" (click)="rejectClicked()" [disabled]="loading">Reject</button>
+        <button class="btn btn-success" *ngIf="viewApprovalButtons()" (click)="approveClicked()" [disabled]="loading">Approve</button>
+    </div>
+</div>
+
+<ng-template #invoiceModal let-modal>
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="invoiceModalLabel">Generated Invoice Details</h1>
+        </div>
+        <div id="invoiceTable" class="modal-body table-responsive">
+            <table *ngIf="invoice" class="table table-bordered text-left p-0" border="1" style="border-collapse:collapse">
+                <tr class="text-center">
+                    <th colspan="5">Invoice</th>
+                </tr>
+                <tr>
+                    <th align="left" colspan="5">GSTN: {{invoice.gstNo}}</th>
+                </tr>
+                <tr class="text-center">
+                    <th colspan="5">{{invoice.investerName}}</th>
+                </tr>
+                <tr class="text-center">
+                    <th colspan="5">{{invoice.officeAddress}}</th>
+                </tr>
+                <tr>
+                    <td rowspan="8">To,
+                        Supretending Engineer, {{invoice.circleName}}
+                        M.P.P.K.V.V. Co. Ltd.
+                        M.P.
+                    </td>
+                    <th align="left">INVOICE NO</th>
+                    <td colspan="3">{{invoice.invoiceNumber}}</td>
+                </tr>
+                <tr>
+                    <th align="left">REF</th>
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <th align="left">LETTER NO</th>
+                    <td colspan="3">{{invoice.ppaLetterNo}}</td>
+                </tr>
+                <tr>
+                    <th align="left">GST</th>
+                    <td colspan="3">{{invoice.gstNo}}</td>
+                </tr>
+                <tr>
+                    <th align="left">VAT</th>
+                    <td colspan="3">{{invoice.vat}}</td>
+                </tr>
+                <tr>
+                    <th align="left">TIN</th>
+                    <td colspan="3">{{invoice.tin}}</td>
+                </tr>
+                <tr>
+                    <th align="left">CIN</th>
+                    <td colspan="3">{{invoice.cin}}</td>
+                </tr>
+                <tr>
+                    <th align="left">COMMISSION DATE</th>
+                    <td colspan="3">{{invoice.commissionedDate}}</td>
+                </tr>
+                <ng-container *ngFor="let data of invoices">
+                <tr>
+                    <th>METERNO</th>
+                    <th>CATEGORY</th>
+                    <th>MF</th>
+                    <th>READ DATE &
+                        BILL MONTH</th>
+                    <th>BILL NO</th>
+                </tr>
+                <tr>
+                    <td>{{data.hMeterNo}}</td>
+                    <td>{{data.hCategory}}</td>
+                    <td>{{data.hMf}}</td>
+                    <td>{{data.hReadingDate | date :"dd-MM-yyyy"}} &
+                        {{data.billingMonth}}</td>
+                    <td>{{data.billNo}}</td>
+                </tr>
+                <tr>
+                    <th>SNO</th>
+                    <th width="400px">PARTICULAR</th>
+                    <th>UNITS</th>
+                    <th width="100px">RATE PER UNIT</th>
+                    <th width="100px">AMOUNT</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>{{data.particulars}}</td>
+                    <td>{{data.lKwhActiveEnergy}}</td>
+                    <td>{{data.lActiveRate}}</td>
+                    <td>{{data.lineKwhAmount}}</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>RKVH CHARGES</td>
+                    <td>{{data.lRkvah}}</td>
+                    <td>{{data.lReactiveRate}}</td>
+                    <td>{{data.lineRkvahAmount}}</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>FIXED ADJUSTMENT(-)</td>
+                    <td>{{data.lineFixAdjAmt}}</td>
+                    <td>{{data.lActiveRate}}</td>
+                    <td>{{data.lFixedAdjustmentVal}}</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>OTHERADJUSTMENT(-)</td>
+                    <td>{{data.lAdjustment}}</td>
+                    <td>{{data.lActiveRate}}</td>
+                    <td>{{data.lineAdjustmentUnitAmt}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">TOTAL AMOUNT</td>
+                    <td colspan="2">{{data.totalAmount}}</td>
+                </tr>
+                </ng-container>
+                <tr>
+                    <td colspan="3">GRAND TOTAL</td>
+                    <td colspan="2">{{invoice.grandTotalAmount}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">GRAND TOTAL(ROUND OFF)</td>
+                    <td colspan="2">{{invoice.grandTotalAmountRounded}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">AMOUNT IN WORDS</td>
+                    <td colspan="2">{{invoice.amountWords}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">NAME OF ACCOUNT HOLDER</td>
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">BANK NAME AND ADDRESS</td>
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">ACCOUNT NO.</td>
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">IFSC CODE</td>
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">MICR NO.</td>
+                    <td colspan="3"></td>
+                </tr>
+                <tr height="100px">
+                    <td colspan="5"></td>
+                </tr>
+                <tr align="right">
+                    <td colspan="5">Authorized Signatory</td>
+                </tr>
+            </table>
+            **It is a system generated report
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="closeButton" (click)="print('invoiceTable')">Print</button>
+            <button type="button" class="btn btn-secondary" id="closeButton" (click)="modal.close()">Close</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #bifucationModal let-modal>
+    <div class="modal-content">
+        <!-- <div class="modal-header">
+            <h1 class="modal-title fs-5" id="bifucationModalLabel">Bifurcation Details</h1>
+        </div> -->
+        <div class="modal-body table-responsive">
+            <app-view-read-bifurcation [meter-no]="data.meterNo" [bill-month]="data.billMonth"></app-view-read-bifurcation>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="closeButton" (click)="modal.close()">Close</button>
+        </div>
+    </div>
+</ng-template>

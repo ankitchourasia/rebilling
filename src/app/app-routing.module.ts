@@ -24,6 +24,10 @@ const routes: Routes = [
     path: 'developer',
     loadChildren: () => import('src/app/modules/developer/developer.module').then(m => m.DeveloperModule)
   },
+  {
+    path: 'circle',
+    loadChildren: () => import('src/app/modules/circle/circle.module').then(m => m.CircleModule)
+  },
   { 
     path: '**', 
     redirectTo: '/login',

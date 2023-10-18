@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/amrcell']);
       } else if(userDetails.role === "DEVELOPER"){
         this.router.navigate(['/developer']);
+      } else if(userDetails.role === "CIRCLE"){
+        this.router.navigate(['/circle']);
       }
     }, error =>{
       this.loading = false;

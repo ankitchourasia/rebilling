@@ -39,7 +39,7 @@ export class ConsumptionReportComponent implements OnInit {
     if(f.form.invalid){ return; }
     let data = Object.assign(f.form.value);
     data.month = formatDate(data.month, 'MMM-yyyy', 'en-IN');
-   this.getConsumptionByMeterNoAndMonth(data.meter, data.month);
+    this.getConsumptionByMeterNoAndMonth(data.meter, data.month);
   }
 
   getConsumptionByMeterNoAndMonth(meterNo: string, month: string){
