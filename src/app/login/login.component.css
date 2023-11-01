@@ -1,6 +1,7 @@
 #login-container{
     height: 100vh;
-    align-content: center;
+    /* align-items: center;
+    justify-content: center; */
     /* background-image: url('../../assets/images/bg-login.jpg'); */
     background-image: url('../../assets/images/wind_mill.jpg');
     background-size: cover;
@@ -10,4 +11,8 @@
 .card{
     margin: auto;
     background-color: rgba(0,0,0,0.5) !important;
+}
+
+.first-letter {
+    color: #FF4081;
 }

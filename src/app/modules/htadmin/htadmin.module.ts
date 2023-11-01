@@ -26,8 +26,13 @@ import { HTAdminReadViewComponent } from './htadmin-read-view/htadmin-read-view.
 import { HTAdminReadHistoryComponent } from './htadmin-read-history/htadmin-read-history.component';
 import { ReadHistoryComponent } from "../../components/read-history/read-history.component";
 import { ConsumptionReportComponent } from 'src/app/components/consumption-report/consumption-report.component';
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-const GlobalComponents = [ ConsumptionReportComponent ]
+import { HtadminMeterStartReadPunchComponent } from './htadmin-meter-start-read-punch/htadmin-meter-start-read-punch.component';
+import { HTAdminThirdPartyAddComponent } from './htadmin-third-party-add/htadmin-third-party-add.component';
+import { HTAdminThirdPartyViewComponent } from './htadmin-third-party-view/htadmin-third-party-view.component';
+import { SearchFilterPipe } from 'src/app/directives/search-filter.pipe';
+import { DownloadSolarStatementComponent } from 'src/app/components/download-solar-statement/download-solar-statement.component';
+
+const GlobalComponents = [ ConsumptionReportComponent, SearchFilterPipe, DownloadSolarStatementComponent ]
 
 
 @NgModule({
@@ -49,7 +54,10 @@ const GlobalComponents = [ ConsumptionReportComponent ]
         HtadminMeterReadingComponent,
         HTAdminValidateReadingComponent,
         HTAdminReadViewComponent,
-        HTAdminReadHistoryComponent
+        HTAdminReadHistoryComponent,
+        HtadminMeterStartReadPunchComponent,
+        HTAdminThirdPartyAddComponent,
+        HTAdminThirdPartyViewComponent
     ],
     providers: [CanActivateAuthGuard],
     imports: [

@@ -1,78 +1,146 @@
 <app-header-navbar></app-header-navbar>
 <div class="container-fluid">
-<div class="row">
-    <div class="bg-white border col-2">
-        <div class="list-group">
-            <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between" data-bs-toggle="collapse" href="#meter" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Meter<span class="dropdown-toggle"></span>
-            </button>
-            <div class="collapse show" id="meter">
-                <a href="#" class="list-group-item list-group-item-action" routerLink="meter-add" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Create</a>
-                <a href="#" class="list-group-item list-group-item-action" routerLink="meter-view" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View</a>
+    <div class="row">
+        <div class="bg-white border col-2 p-0">
+            <div class="list-group">
+                <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between"
+                    data-bs-toggle="collapse" href="#meter" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    Meter<span class="dropdown-toggle"></span>
+                </button>
+                <div class="collapse show" id="meter">
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="meter-add"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Create</a>
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="meter-view"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View</a>
+                </div>
             </div>
-        </div>
-        <div class="list-group">
-            <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between" data-bs-toggle="collapse" href="#feeder" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Feeder<span class="dropdown-toggle"></span>
-            </button>
-            <div class="collapse" id="feeder">
-                <a href="#" class="list-group-item list-group-item-action" routerLink="feeder-add" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Create</a>
-                <a href="#" class="list-group-item list-group-item-action" routerLink="feeder-view" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View</a>
+            <div class="list-group">
+                <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between"
+                    data-bs-toggle="collapse" href="#feeder" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    Feeder<span class="dropdown-toggle"></span>
+                </button>
+                <div class="collapse" id="feeder">
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="feeder-add"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Create</a>
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="feeder-view"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View</a>
+                </div>
             </div>
-        </div>
-        <div class="list-group">
-            <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between" data-bs-toggle="collapse" href="#developer" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Developer<span class="dropdown-toggle"></span>
-            </button>
-            <div class="collapse" id="developer">
-                <a href="#" class="list-group-item list-group-item-action" routerLink="developer-add" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Create</a>
-                <a href="#" class="list-group-item list-group-item-action" routerLink="developer-view" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View</a>
+            <div class="list-group">
+                <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between"
+                    data-bs-toggle="collapse" href="#developer" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    Developer<span class="dropdown-toggle"></span>
+                </button>
+                <div class="collapse" id="developer">
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="developer-add"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Create</a>
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="developer-view"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View</a>
+                </div>
             </div>
-        </div>
-        <div class="list-group">
-            <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between" data-bs-toggle="collapse" href="#investor" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Investor<span class="dropdown-toggle"></span>
-            </button>
-            <div class="collapse" id="investor">
-                <a href="#" class="list-group-item list-group-item-action" routerLink="investor-add" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Create</a>
-                <a href="#" class="list-group-item list-group-item-action" routerLink="investor-view" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View</a>
+            <div class="list-group">
+                <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between"
+                    data-bs-toggle="collapse" href="#investor" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    Investor<span class="dropdown-toggle"></span>
+                </button>
+                <div class="collapse" id="investor">
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="investor-add"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Create</a>
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="investor-view"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View</a>
+                </div>
             </div>
-        </div>
-        <div class="list-group">
-            <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between" data-bs-toggle="collapse" href="#plant" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Plant<span class="dropdown-toggle"></span>
-            </button>
-            <div class="collapse" id="plant">
-                <a href="#" class="list-group-item list-group-item-action" routerLink="plant-add" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Create</a>
-                <a href="#" class="list-group-item list-group-item-action" routerLink="plant-view" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View</a>
+            <div class="list-group">
+                <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between"
+                    data-bs-toggle="collapse" href="#plant" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    Plant<span class="dropdown-toggle"></span>
+                </button>
+                <div class="collapse" id="plant">
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="plant-add"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Create</a>
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="plant-view"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View</a>
+                </div>
             </div>
-        </div>
-        <div class="list-group">
-            <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between" data-bs-toggle="collapse" href="#machine" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Machine<span class="dropdown-toggle"></span>
-            </button>
-            <div class="collapse" id="machine">
-                <a href="#" class="list-group-item list-group-item-action" routerLink="machine-add" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Create</a>
-                <a href="#" class="list-group-item list-group-item-action" routerLink="machine-view" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View</a>
+            <div class="list-group">
+                <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between"
+                    data-bs-toggle="collapse" href="#machine" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    Machine<span class="dropdown-toggle"></span>
+                </button>
+                <div class="collapse" id="machine">
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="machine-add"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Create</a>
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="machine-view"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View</a>
+                </div>
             </div>
-        </div>
 
-        <div class="list-group">
-            <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between" data-bs-toggle="collapse" href="#reading" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Reading<span class="dropdown-toggle"></span>
-            </button>
-            <div class="collapse" id="reading">
-                <a href="#" class="list-group-item list-group-item-action" routerLink="reading-add" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Punch Manual Read</a>
-                <a href="#" class="list-group-item list-group-item-action" routerLink="reading-validate" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Validate Read</a>
-                <a href="#" class="list-group-item list-group-item-action" routerLink="reading-view" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">5 Percent Pass/Fail Report</a>
-                <a href="#" class="list-group-item list-group-item-action" routerLink="consumption-report" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Consumption Report</a>
-                <a href="#" class="list-group-item list-group-item-action" routerLink="view-bifurcation" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View Bifurcation</a>
-                <a href="#" class="list-group-item list-group-item-action" routerLink="view-invoice" routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View Invoice</a>
+            <div class="list-group">
+                <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between"
+                    data-bs-toggle="collapse" href="#reading" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    Reading<span class="dropdown-toggle"></span>
+                </button>
+                <div class="collapse" id="reading">
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="reading-add"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Punch
+                        Manual Read</a>
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="start-read-add"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Punch Start
+                        Read</a>
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="reading-validate"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Validate
+                        Read</a>
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="reading-view"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">5 Percent
+                        Pass/Fail Report</a>
+                </div>
+            </div>
+            <div class="list-group">
+                <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between"
+                    data-bs-toggle="collapse" href="#thirdParty" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    Third Party<span class="dropdown-toggle"></span>
+                </button>
+                <div class="collapse" id="thirdParty">
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="add-third-party"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Create
+                        Third Party</a>
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="view-third-party"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View Third
+                        Party</a>
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="download-solar-statement"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Download Solar
+                        Statement</a>
+                </div>
+            </div>
+            <div class="list-group">
+                <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between"
+                    data-bs-toggle="collapse" href="#report" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    Report<span class="dropdown-toggle"></span>
+                </button>
+                <div class="collapse" id="report">
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="consumption-report"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Consumption
+                        Report</a>
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="view-bifurcation"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View
+                        Bifurcation</a>
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="view-invoice"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View
+                        Invoice</a>
+                </div>
             </div>
         </div>
+        <div class="container-fluid p-0 col-10">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-    <div class="container-fluid p-0 col-10">
-        <router-outlet></router-outlet>
-    </div>
-</div>
 </div>

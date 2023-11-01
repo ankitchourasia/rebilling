@@ -1,0 +1,25 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Download Solar Statement
+    </div>
+    <form class="card-body" #f="ngForm">
+        <div class="d-flex justify-content-around align-items-end">
+            <div>
+                <label class="fw-bold">Meter No</label>
+                <select [ngClass]="{'is-invalid': meter.errors && (meter.dirty || meter.touched)}"
+                    class="form-select" name="meter" [ngModel]=null #meter="ngModel" required>
+                    <option disabled selected [ngValue]=null>Select</option>
+                    <option *ngFor="let meter of meterList" [ngValue]="meter.meterNo">{{meter.meterNo}}</option>
+                </select>
+            </div>
+            <div>
+                <label class="fw-bold">Month</label>
+                <input [ngClass]="{'is-invalid': month.errors && (month.dirty || month.touched)}"
+                    type="month" class="form-control" name="month" ngModel #month="ngModel" required >
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="onSubmit(f)" [disabled]="f.form.invalid || f.form.disabled || loading">Search</button>
+            </div>
+        </div>
+    </form>
+</div>

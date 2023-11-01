@@ -31,4 +31,12 @@ export class InvestorService {
     }
     return this.http.get("/rebilling/investor/id/" + investorId, options);
   }
+
+  getInvestorsByDeveloperIdAndPlantCodeForThirdParty(developerId : string, plantCode : string, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/thirdparty/investors/developerId/" + developerId + "/plantCode/" + plantCode, options);
+  }
 }

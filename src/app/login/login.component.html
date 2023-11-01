@@ -1,35 +1,43 @@
-<div class="container-fluid" id="login-container">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card text-light">
-			<div class="card-header">
-				<div class="d-flex justify-content-between">
-					<h3><i class="bi bi-box-arrow-in-right"></i> Sign In</h3>
+<div id="login-container">
+	<nav class="card rounded-0 sticky-top">
+		<div class="card-header py-0 text-light d-flex justify-content-between align-items-center">
+			<img src="../../assets/images/favicon.ico" class="img-fluid bg-transparent " width="60px" alt="...">
+			<div class="fs-4">Madhya Pradesh Pashchim Kshetra Vidyut Vitaran Company Limited Indore</div>
+			<div></div>
+		</div>
+	</nav>
+	<div class="d-flex h-75">
+	<div class="card text-light">
+		<div class="card-header text-center">
+			<h4>
+				Renewable Energy Billing
+			</h4>
+		</div>
+		<div class="card-body">
+			<form>
+				<div class="input-group mb-4">
+						<span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
+					<input type="text" class="form-control form-control-lg" placeholder="username" [(ngModel)]="user.username" name="user">
+					
 				</div>
-			</div>
-			<div class="card-body">
-				<form>
-					<div class="input-group mb-4">
-							<span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
-						<input type="text" class="form-control form-control-lg" placeholder="username" [(ngModel)]="user.username" name="user">
-						
-					</div>
-					<div class="input-group mb-4">
-							<span class="input-group-text"><i class="bi bi-key"></i></span>
-						<input type="password" class="form-control form-control-lg" placeholder="password" [(ngModel)]="user.password" name="password">
-					</div>
-					<div *ngIf="loginError" class="text-center text-danger mb-2">{{errorText}}</div>
-					<div class="d-flex justify-content-around">
-                        <button type="submit" value="Login" class="btn btn-warning" (click)="submitClicked()" [disabled]="loading">
-							<div class="spinner-border spinner-border-sm" [hidden]="!loading">
-						  	</div>
-							Login
-						</button>
-					</div>
-				</form>
-			</div>
-			<div class="card-footer text-center">
-				<span>© MPPKVVCL Indore</span>
-			</div>
+				<div class="input-group mb-4">
+						<span class="input-group-text"><i class="bi bi-key"></i></span>
+					<input type="password" class="form-control form-control-lg" placeholder="password" [(ngModel)]="user.password" name="password">
+				</div>
+				<div *ngIf="loginError" class="text-center text-danger mb-2">{{errorText}}</div>
+				<div class="d-flex justify-content-around">
+					<button type="submit" value="Login" class="btn btn-warning" (click)="submitClicked()" [disabled]="loading">
+						<div class="spinner-border spinner-border-sm" [hidden]="!loading">
+						  </div>
+						Login
+					</button>
+				</div>
+			</form>
+		</div>
+		<div class="card-footer text-center">
+			<span>© MPPKVVCL Indore</span>
 		</div>
 	</div>
+	</div>
+	<!-- <div class="card-footer">ABC</div> -->
 </div>

@@ -16,6 +16,14 @@ export class MeterService {
     return this.http.post("/rebilling/meter", meterDetails, options);
   }
 
+  getMeters(response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/meter/list", options);
+  }
+
   getByMeterNoAndStatus(meterNo : string, status : string, response : boolean = false){
     let options : any = {};
     if(response){

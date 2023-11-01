@@ -67,6 +67,7 @@ export class DeveloperValidateReadingComponent implements OnInit{
     let readings = this.filterReadings();
     this.readService.approveHTAcceptedRead(readings).subscribe({next : success =>{
       alert("Read accepted successfully");
+      this.searchButtonClicked();
     }, error : error =>{
       GlobalResourcesService.errorMessageHandeler(error);
     }});
@@ -80,6 +81,7 @@ export class DeveloperValidateReadingComponent implements OnInit{
     }
     this.readService.rejectHTAcceptedRead(readings).subscribe({next : success =>{
       alert("Read rejected successfully");
+      this.searchButtonClicked();
     }, error : error =>{
       GlobalResourcesService.errorMessageHandeler(error);
     }});

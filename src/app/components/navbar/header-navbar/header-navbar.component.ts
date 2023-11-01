@@ -23,4 +23,17 @@ export class HeaderNavbarComponent implements OnInit{
     this.router.navigate(['login']);
   }
 
+  homeClicked(){
+    let role = sessionStorage.getItem('role');
+    if(role === "HTCELL"){
+      this.router.navigate(['/htadmin/home']);
+    } else if(role === "AMRCELL"){
+      this.router.navigate(['/amrcell/home']);
+    } else if(role === "DEVELOPER"){
+      this.router.navigate(['/developer/home']);
+    } else if(role === "CIRCLE"){
+      this.router.navigate(['/circle/home']);
+    }
+  }
+
 }

@@ -233,4 +233,12 @@ export class ReadService {
     return this.http.get("/rebilling/report/5percent/month/" + billMonth, options);
   }
 
+  createStartReading(reading : any, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.post("/rebilling/meter_reading/SR", reading, options);
+  }
+
 }

@@ -1,6 +1,6 @@
 <div class="card rounded-0">
     <div class="card-header bg-secondary text-white text-center">
-        Reading View
+        Meter Consumption Difference
     </div>
     <div class="d-flex justify-content-center align-items-end mb-3">
         <div>
@@ -72,10 +72,10 @@
         </ng-container>
 
             <tr class="text-center">
-                <td colspan="14" *ngIf="!loading && (!readings || readings.length < 1)">No records found.</td>
+                <td colspan="15" *ngIf="!loading && (!readings || readings.length < 1)">No records found.</td>
             </tr>
             <tr class="text-center">
-                <td colspan="14" *ngIf="loading">
+                <td colspan="15" *ngIf="loading">
                     <span class="spinner-border spinner-border-sm text-secondary"></span> loading...
                 </td>
             </tr>

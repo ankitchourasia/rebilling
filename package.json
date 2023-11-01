@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.config.json --host 0.0.0.0",
-    "build": "ng build",
+    "build": "ng build --configuration production --aot",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -21,8 +21,10 @@
     "@auth0/angular-jwt": "^5.0.2",
     "@ng-bootstrap/ng-bootstrap": "^14.2.0",
     "@popperjs/core": "^2.11.8",
+    "@types/file-saver": "^2.0.6",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.5",
+    "file-saver": "^2.0.5",
     "jquery": "^3.7.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

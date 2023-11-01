@@ -1,0 +1,183 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        View Third Party Consumer
+    </div>
+    <div class="card-body">
+        <input class="form-control mb-2" placeholder="Type here to search" type="text" ngModel #searchText="ngModel">
+        <table class="table table-sm">
+            <tr class="bg-secondary text-white text-center">
+                <td>SNo</td>
+                <td>Name</td>
+                <td>Code</td>
+                <td>Address</td>
+                <td>Circle</td>
+                <td>Division</td>
+                <td>Meter No</td>
+                <td>Developer Id & Name</td>
+                <td>Investor Name</td>
+                <td>Status</td>
+                <td>Action</td>
+            </tr>
+            <tr *ngFor="let data of consumers | searchFilter : searchText.value; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{data.consumerName}}</td>
+                <td>{{data.consumerCode}}</td>
+                <td>{{data.siteLocation}}</td>
+                <td>{{data.circle}}</td>
+                <td>{{data.division}}</td>
+                <td>{{data.mainMeterNo}}</td>
+                <td>{{data.developerId}} - {{data.developerName}}</td>
+                <td>{{data.investorCode}} - {{data.investorName}}</td>
+                <td>{{data.status}}</td>
+                <td>
+                    <div class="d-flex flex-column">
+                        <button class="btn btn-sm btn-warning" (click)="inactiveButtonClicked(data)"
+                            *ngIf="data.status === 'active'" [disabled]="loading">INACTIVE</button>
+                        <button class="btn btn-sm btn-primary" (click)="activeButtonClicked(data)"
+                            *ngIf="data.status === 'inactive'" [disabled]="loading">ACTIVE</button>
+                        <!-- <br> -->
+                        <button class="btn btn-sm btn-success text-nowrap mt-1" (click)="viewAndEditClicked(data, editModal)">
+                            VIEW & EDIT</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<ng-template #editModal let-modal>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="viewLabel">Third Party Details</h1>
+            <button type="button" class="btn-close" (click)="modal.close()" [disabled]="loading"></button>
+        </div>
+        <form #f="ngForm" *ngIf="consumer">
+            <fieldset [disabled]="!editClicked" class="modal-body">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <label class="fw-bold small">Consumer Code</label>
+                        <input type="text" name="cons_code" [(ngModel)]="consumer.consumerCode" class="form-control"
+                            required>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label class="fw-bold small">Consumer Name</label>
+                        <input type="text" name="cons_name" [(ngModel)]="consumer.consumerName" class="form-control"
+                            required>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label class="fw-bold small">Consumer Address</label>
+                        <textarea rows="2" name="cons_add" [(ngModel)]="consumer.consumerAddress" class="form-control"
+                            required></textarea>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label class="fw-bold small">Contract Demand (KVA)</label>
+                        <input type="number" name="contract_demant" [(ngModel)]="consumer.contractDemand"
+                            class="form-control" required>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label class="fw-bold small">Tariff Category</label>
+                        <select class="form-select" name="tariff_catg" [(ngModel)]="consumer.tariffCategory" required>
+                            <option value=undefined>Select</option>
+                            <option value="HV3.1.A 33 KV Industrial">HV3.1.A 33 KV Industrial</option>
+                            <option value="HV3.1.B 11 KV Industrial">HV3.1.B 11 KV Industrial</option>
+                            <option value="HV3.1.C 132 KV Industrial">HV3.1.C 132 KV Industrial</option>
+                            <option value="HV3.1.D 220/400 KV Industrial">HV3.1.D 220/400 KV Industrial</option>
+                            <option value="HV3.2.A 11 KV Non Industrial">HV3.2.A 11 KV Non Industrial</option>
+                            <option value="HV3.2.B 33 KV Non Industrial">HV3.2.B 33 KV Non Industrial</option>
+                            <option value="HV3.2.C 132 KV Non Industrial Urb. Feeder">HV3.2.C 132 KV Non Industrial Urb.
+                                Feeder</option>
+                            <option value="HV3.3.A 11KV Shopping Malls">HV3.3.A 11KV Shopping Malls</option>
+                            <option value="HV3.3.B 33KV Shopping Malls">HV3.3.B 33KV Shopping Malls</option>
+                            <option value="HV3.4.A 33 KV Power Intensive Industries">HV3.4.A 33 KV Power Intensive
+                                Industries</option>
+                            <option value="HV3.4.C 132 KV Power Intensive Industries">HV3.4.C 132 KV Power Intensive
+                                Industries</option>
+                            <option value="HV4.1.A 11 KV Seasonal">HV4.1.A 11 KV Seasonal</option>
+                            <option value="HV4.1.B 33 KV Seasonal">HV4.1.B 33 KV Seasonal</option>
+                            <option value="HV5.1.A  11 KV PWW,Grp Irrigation and lift Irrigation Scheme">HV5.1.A 11 KV
+                                PWW,Grp Irrigation and lift Irrigation Scheme</option>
+                            <option value="HV5.1.B  33 KV PWW,Grp Irrigation and lift Irrigation Scheme">HV5.1.B 33 KV
+                                PWW,Grp Irrigation and lift Irrigation Scheme</option>
+                            <option value="HV5.1.C 132 KV PWW,Grp Irrigation and lift Irrigation Scheme">HV5.1.C 132 KV
+                                PWW,Grp Irrigation and lift Irrigation Scheme</option>
+                            <option value="HV5.2.A  11 KV Other than Agricultural Use">HV5.2.A 11 KV Other than
+                                Agricultural Use</option>
+                            <option value="HV5.2.B  33 KV Other than Agricultural Use">HV5.2.B 33 KV Other than
+                                Agricultural Use</option>
+                            <option value="HV6.1.A 11 KV Bulk Resd">HV6.1.A 11 KV Bulk Resd</option>
+                            <option value="HV6.1.B 33  KV Bulk Residential Users">HV6.1.B 33 KV Bulk Residential Users
+                            </option>
+                            <option value="HV6.2.A 11 KV Bulk Resd">HV6.2.A 11 KV Bulk Resd</option>
+                            <option value="HV6.2.B 33 KV Bulk Resd">HV6.2.B 33 KV Bulk Resd</option>
+                            <option value="HV7.1.A Sync of Power for Generator Connected to Grid">HV7.1.A Sync of Power
+                                for Generator Connected to Grid</option>
+                            <option value="HV 8 E- RICKSHAWS &amp; E-VEHICLE CHARGING STATION">HV 8 E- RICKSHAWS &amp;
+                                E-VEHICLE CHARGING STATION</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label class="fw-bold small">Supply Voltage (KV)</label>
+                        <select class="form-select" name="supp_vol" [(ngModel)]="consumer.supplyVoltage" required>
+                            <option value=undefined>Select</option>
+                            <option>33KV</option>
+                            <option>11KV</option>
+                            <option>132KV</option>
+                            <option>220KV</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label class="fw-bold small">Plant Capacity</label>
+                        <input type="text" name="plantCapacity" [(ngModel)]="consumer.plantCapacity"
+                            class="form-control" required>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label class="fw-bold small">PPWA Date</label>
+                        <input type="date" name="ppwa_date" [(ngModel)]="consumer.ppwaDate" class="form-control"
+                            required>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label class="fw-bold small">Sanction Date</label>
+                        <input type="date" name="sanction_date" [(ngModel)]="consumer.sanctionDate" class="form-control"
+                            required>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <label class="fw-bold small">Type Of Category</label>
+                        <select class="form-select" name="category" [(ngModel)]="consumer.typeOfCategory" required>
+                            <option value=undefined disabled>Select</option>
+                            <option value="CAPTIVE">CAPTIVE</option>
+                            <option value="THIRD PARTY">THIRD PARTY</option>
+                            <option value="PMCL">PMCL</option>
+                            <option value="OTHER">OTHER</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <label class="fw-bold small">Third Party Discom</label>
+                        <select class="form-select" name="developer_discom" [(ngModel)]="consumer.developerDiscomName"
+                            required>
+                            <option value=undefined disabled>Select</option>
+                            <option>MPPKVVCL(WEST)</option>
+                            <option>MPPKVVCL(EAST)</option>
+                            <option>MPMKVVCL(CENTRAL)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <label class="fw-bold small">Period Of PPWA</label>
+                        <input type="number" name="period_of_ppwa" [(ngModel)]="consumer.periodOfPpwa"
+                            class="form-control" required>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <label class="fw-bold small">Re-Adjustment Unit (IN %)</label>
+                        <input type="number" name="re_adjustment" [(ngModel)]="consumer.adjustmentUnitPercent"
+                            class="form-control" required>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="d-flex justify-content-around mb-2">
+                <button type="button" class="btn btn-primary" *ngIf="editClicked" [disabled]="loading || f.form.invalid"
+                    (click)="formSubmitted()">Submit</button>
+                <button type="button" class="btn btn-primary" *ngIf="!editClicked"
+                    (click)="editButtonClicked()">Edit</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

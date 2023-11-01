@@ -106,7 +106,7 @@
         </tr>
     </table>
     <div class="d-flex justify-content-center mb-2">
-        <button class="btn btn-success me-3" (click)="submitClicked()" [disabled]="!(consumption?.fgrandConsumptionKwh === consumption?.hgrandConsumptionKwh) || loading">Submit</button>
+        <button class="btn btn-success me-3" (click)="submitClicked()" [disabled]="consumption?.fgrandConsumptionKwh !== consumption?.hgrandConsumptionKwh || (consumption?.fgrandConsumptionKwh === consumption?.hgrandConsumptionKwh && loading) || loading">Submit</button>
         <button type="reset" class="btn btn-danger">Reset</button>
     </div>
 </form>
