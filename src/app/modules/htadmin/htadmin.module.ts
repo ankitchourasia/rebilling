@@ -17,7 +17,7 @@ import { HTAdminInvestorAddComponent } from './htadmin-investor-add/htadmin-inve
 import { HTAdminInvestorViewComponent } from './htadmin-investor-view/htadmin-investor-view.component';
 import { HTAdminPlantViewComponent } from './htadmin-plant-view/htadmin-plant-view.component';
 import { HTAdminPlantAddComponent } from './htadmin-plant-add/htadmin-plant-add.component';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbNavModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { HTAdminMachineViewComponent } from './htadmin-machine-view/htadmin-machine-view.component';
 import { HTAdminMachineAddComponent } from './htadmin-machine-add/htadmin-machine-add.component';
 import { HtadminMeterReadingComponent } from './htadmin-meter-reading/htadmin-meter-reading.component';
@@ -31,6 +31,9 @@ import { HTAdminThirdPartyAddComponent } from './htadmin-third-party-add/htadmin
 import { HTAdminThirdPartyViewComponent } from './htadmin-third-party-view/htadmin-third-party-view.component';
 import { SearchFilterPipe } from 'src/app/directives/search-filter.pipe';
 import { DownloadSolarStatementComponent } from 'src/app/components/download-solar-statement/download-solar-statement.component';
+import { HTAdminAddInvestorMachineMappingComponent } from './htadmin-add-investor-machine-mapping/htadmin-add-investor-machine-mapping.component';
+import { HTAdminAddMeterFeederPlantMappingComponent } from './htadmin-add-meter-feeder-plant-mapping/htadmin-add-meter-feeder-plant-mapping.component';
+import { HTAdminCompleteMappingViewComponent } from './htadmin-complete-mapping-view/htadmin-complete-mapping-view.component';
 
 const GlobalComponents = [ ConsumptionReportComponent, SearchFilterPipe, DownloadSolarStatementComponent ]
 
@@ -57,7 +60,10 @@ const GlobalComponents = [ ConsumptionReportComponent, SearchFilterPipe, Downloa
         HTAdminReadHistoryComponent,
         HtadminMeterStartReadPunchComponent,
         HTAdminThirdPartyAddComponent,
-        HTAdminThirdPartyViewComponent
+        HTAdminThirdPartyViewComponent,
+        HTAdminAddInvestorMachineMappingComponent,
+        HTAdminAddMeterFeederPlantMappingComponent,
+        HTAdminCompleteMappingViewComponent
     ],
     providers: [CanActivateAuthGuard],
     imports: [
@@ -68,6 +74,7 @@ const GlobalComponents = [ ConsumptionReportComponent, SearchFilterPipe, Downloa
         FormsModule,
         NgbPaginationModule,
         ReadHistoryComponent,
+        NgbNavModule,
         GlobalComponents
     ]
 })

@@ -15,16 +15,36 @@ export class HTAdminFeederAddComponent implements OnInit{
   feeder : any = {};
   locations : any;
   loading : boolean = false;
+  regions : any;
+  regionName! : string;
+  circles : any;
+  circleName! : string;
 
   constructor(private locationService : LocationService, private feederService : FeederService){
   }
 
   ngOnInit(): void {
-    this.getAllLocations();
+    this.getAllRegions();
   }
 
-  getAllLocations(){
-    this.locationService.getAllLocation().subscribe( {next: (success)=>{
+  getAllRegions(){
+    this.locationService.getAllRegions().subscribe( {next: (success)=>{
+      this.regions = success;
+    }, error: (error) =>{
+      GlobalResourcesService.errorMessageHandeler(error);
+    }})
+  }
+
+  getCircleByRegionName(){
+    this.locationService.getCircleByRegionName(this.regionName).subscribe( {next: (success)=>{
+      this.circles = success;
+    }, error: (error) =>{
+      GlobalResourcesService.errorMessageHandeler(error);
+    }})
+  }
+
+  getDivisionByCircleName(){
+    this.locationService.getDivisionByCircleName(this.circleName).subscribe( {next: (success)=>{
       this.locations = success;
     }, error: (error) =>{
       GlobalResourcesService.errorMessageHandeler(error);

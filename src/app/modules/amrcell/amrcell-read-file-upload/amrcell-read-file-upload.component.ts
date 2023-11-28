@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ReadService } from 'src/app/services/read-service';
-import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
   selector: 'app-amrcell-read-file-upload',
@@ -22,21 +21,28 @@ export class AmrcellReadFileUploadComponent implements OnInit{
     
   }
   result : any = [];
-  uploadClicked(){
+  async uploadClicked(){
     this.loading = true;
     this.result = [];
     for (let i = 0; i < this.selectedFile.length; i++) {
       let formData : FormData = new FormData();
+      console.log(this.selectedFile[i]);
       formData.append('xmlFile', this.selectedFile[i]);
       this.readService.uploadFiles(formData).subscribe( {next: (success : any)=>{
         this.loading = false;
-        this.result.push(success.message);
-        console.log(success);
+        let a : any= {};
+        a.fileName = this.selectedFile[i].name;
+        a.result = success.message;
+        this.result.push(a);
+        console.log(this.result);
       }, error: (error : any) =>{
         this.loading = false;
-        this.result.push(error.error.message);
-      }})
+        let a : any= {};
+        a.fileName = this.selectedFile[i].name;
+        a.result = error.error.message;
+        this.result.push(a);
+        console.log(this.result);
+      }});
     }
-    console.log(this.result)
   }
 }

@@ -2,14 +2,27 @@
     <div class="card-header bg-secondary text-white text-center">
         File Upload
     </div>
-    <div class="card-body d-flex justify-content-center">
-        <div class="input-group">
-            <input type="file" class="form-control" id="fileupload" aria-describedby="fileupload" (change)="fileChange($event)" aria-label="Upload" multiple>
-            <button class="btn btn-primary" type="button" id="fileupload" (click)="uploadClicked()" [disabled]="loading">
-                <span class="spinner-border spinner-border-sm text-secondary" *ngIf="loading"></span>
-                Upload
-            </button>
+    <div class="card-body">
+        <div class="d-flex justify-content-center mb-3">
+            <div class="input-group">
+                <input type="file" class="form-control" id="fileupload" aria-describedby="fileupload" (change)="fileChange($event)" aria-label="Upload" multiple>
+                <button class="btn btn-primary" type="button" id="fileupload" (click)="uploadClicked()" [disabled]="loading">
+                    <span class="spinner-border spinner-border-sm text-secondary" *ngIf="loading"></span>
+                    Upload
+                </button>
+            </div>    
         </div>
-        <!-- <ng-container *ngFor="let a of result">{{a}}</ng-container> -->
+        <table class="table" *ngIf="result && result.length > 0">
+            <tr class="bg-secondary text-white text-center">
+                <td>SNo</td>
+                <td>File Name</td>
+                <td>Result</td>
+            </tr>
+            <tr *ngFor="let res of result; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{res.fileName}}</td>
+                <td>{{res.result}}</td>
+            </tr>
+        </table>
     </div>
 </div>

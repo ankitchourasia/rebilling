@@ -1,0 +1,45 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Create Investor Machine Mapping
+    </div>
+    <form class="card-body d-flex justify-content-around align-items-end" #f="ngForm">
+        <div>
+            <label class="fw-bold">Developer</label>
+            <select class="form-select" name="devName" [(ngModel)]="developer" (change)="develperChange(developer.id)" required>
+                <option disabled selected [ngValue]=undefined>Select</option>
+                <option *ngFor="let developer of developers" [ngValue]="developer">{{developer.developerName}}</option>
+            </select>
+        </div>
+
+        <div>
+            <label class="fw-bold">Plant</label>
+            <select class="form-select" name="plantName" [(ngModel)]="plant" required>
+                <option disabled selected [ngValue]=undefined>Select</option>
+                <option *ngFor="let plant of plants" [ngValue]="plant">{{plant.plantName}}</option>
+            </select>
+        </div>
+
+        <div>
+            <label class="fw-bold">Investor</label>
+            <select class="form-select" name="investorName" [(ngModel)]="investor" required>
+                <option disabled selected [ngValue]=undefined>Select</option>
+                <option *ngFor="let investor of investors" [ngValue]="investor">{{investor.investorName}}</option>
+            </select>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              Machine
+            </button>
+            <ul class="dropdown-menu">
+                <li class="dropdown-item dropdown-element" name="1" *ngFor="let machine of machines">
+                    <input type="checkbox" name="mach" [(ngModel)]="machine.checked">{{machine.machineName}}
+                </li>
+            </ul>
+          </div>
+
+        <div>
+            <button class="btn btn-primary" [disabled]="loading || f.form.invalid" (click)="onSubmit()">Submit</button>
+        </div>
+    </form>
+</div>

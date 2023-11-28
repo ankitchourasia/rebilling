@@ -14,7 +14,7 @@
                 </td>
                 <td>Category : {{reading?.meter?.meterNo}}</td>
                 <td>
-                    <div class="">
+                    <div>
                         Reading Date: 
                         <input type="date" class="form-control" [(ngModel)]="reading.readingDate" #readDate="ngModel" name="readDate" max="{{d | date : 'yyyy-MM-dd'}}" required
                             [ngClass]="{'is-invalid': readDate.errors && (readDate.dirty || readDate.touched)}">

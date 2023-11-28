@@ -1,0 +1,313 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Complete Mapping
+    </div>
+    <div class="card-body">
+        <form #f="ngForm">
+            <div class="d-flex justify-content-center align-items-end">
+                <div class="me-3">
+                    <label class="fw-bold">Meter No</label>
+                    <input type="text" class="form-control" [(ngModel)]="meterNo" name="meter" #meter="ngModel" required
+                    [ngClass]="{'is-invalid': meter.errors && (meter.dirty || meter.touched)}">
+                    <div class="invalid-feedback" *ngIf="meter.errors && (meter.dirty || meter.touched)">
+                        <div *ngIf="meter.errors['required']">required field</div>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-primary" (click)="onSubmit()" [disabled]="f.form.invalid || f.form.disabled || loading">Search</button>
+                </div>
+            </div>
+        </form>
+        <div *ngIf="mapping">
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs bg-light pt-2">
+                <li [ngbNavItem]="1" [destroyOnHide]="false">
+                    <a ngbNavLink>Meter</a>
+                    <ng-template ngbNavContent>
+                        <table class="table">
+                            <tr class="bg-secondary text-white">
+                                <td colspan="8">Main Meter : {{mapping.mainMeterNumberBean.meterNumber}}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold small">Make : </td>
+                                <td>{{mapping.mainMeterNumberBean.make}}</td>
+                                <td class="fw-bold small">Installation Date : </td>
+                                <td>{{mapping.mainMeterNumberBean.installDate}}</td>
+                                <td class="fw-bold small">Phase : </td>
+                                <td>{{mapping.mainMeterNumberBean.phase}}</td>
+                                <td class="fw-bold small">MF : </td>
+                                <td>{{mapping.mainMeterNumberBean.mf}}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold small">BMF : </td>
+                                <td>{{mapping.mainMeterNumberBean.dialBmf}}</td>
+                                <td class="fw-bold small">Equip Class : </td>
+                                <td>{{mapping.mainMeterNumberBean.equipClass}}</td>
+                                <td class="fw-bold small">Meter Class : </td>
+                                <td>{{mapping.mainMeterNumberBean.meterClass}}</td>
+                                <td class="fw-bold small">Meter CTR : </td>
+                                <td>{{mapping.mainMeterNumberBean.meterCtr}}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold small">Meter PTR : </td>
+                                <td>{{mapping.mainMeterNumberBean.meterPtr}}</td>
+                                <td class="fw-bold small">Group : </td>
+                                <td>{{mapping.mainMeterNumberBean.meterGroup}}</td>
+                                <td class="fw-bold small">ME CTR : </td>
+                                <td>{{mapping.mainMeterNumberBean.meCtr}}</td>
+                                <td class="fw-bold small">ME PTR : </td>
+                                <td>{{mapping.mainMeterNumberBean.mePtr}}</td>
+                            </tr>
+
+                            <tr class="bg-secondary text-white">
+                                <td colspan="8">Check Meter : {{mapping.checkMeterNumberBean.meterNumber}}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold small">Make : </td>
+                                <td>{{mapping.checkMeterNumberBean.make}}</td>
+                                <td class="fw-bold small">Installation Date : </td>
+                                <td>{{mapping.checkMeterNumberBean.installDate}}</td>
+                                <td class="fw-bold small">Phase : </td>
+                                <td>{{mapping.checkMeterNumberBean.phase}}</td>
+                                <td class="fw-bold small">MF : </td>
+                                <td>{{mapping.checkMeterNumberBean.mf}}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold small">BMF : </td>
+                                <td>{{mapping.checkMeterNumberBean.dialBmf}}</td>
+                                <td class="fw-bold small">Equip Class : </td>
+                                <td>{{mapping.checkMeterNumberBean.equipClass}}</td>
+                                <td class="fw-bold small">Meter Class : </td>
+                                <td>{{mapping.checkMeterNumberBean.meterClass}}</td>
+                                <td class="fw-bold small">Meter CTR : </td>
+                                <td>{{mapping.checkMeterNumberBean.meterCtr}}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold small">Meter PTR : </td>
+                                <td>{{mapping.checkMeterNumberBean.meterPtr}}</td>
+                                <td class="fw-bold small">Group : </td>
+                                <td>{{mapping.checkMeterNumberBean.meterGroup}}</td>
+                                <td class="fw-bold small">ME CTR : </td>
+                                <td>{{mapping.checkMeterNumberBean.meCtr}}</td>
+                                <td class="fw-bold small">ME PTR : </td>
+                                <td>{{mapping.checkMeterNumberBean.mePtr}}</td>
+                            </tr>
+
+                            <ng-container *ngIf="mapping.standbyMeterNumberBean">
+                                <tr class="bg-secondary text-white">
+                                    <td colspan="8">Standby Meter : {{mapping.standbyMeterNumberBean.meterNumber}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold small">Make : </td>
+                                    <td>{{mapping.standbyMeterNumberBean.make}}</td>
+                                    <td class="fw-bold small">Installation Date : </td>
+                                    <td>{{mapping.standbyMeterNumberBean.installDate}}</td>
+                                    <td class="fw-bold small">Phase : </td>
+                                    <td>{{mapping.standbyMeterNumberBean.phase}}</td>
+                                    <td class="fw-bold small">MF : </td>
+                                    <td>{{mapping.standbyMeterNumberBean.mf}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold small">BMF : </td>
+                                    <td>{{mapping.standbyMeterNumberBean.dialBmf}}</td>
+                                    <td class="fw-bold small">Equip Class : </td>
+                                    <td>{{mapping.standbyMeterNumberBean.equipClass}}</td>
+                                    <td class="fw-bold small">Meter Class : </td>
+                                    <td>{{mapping.standbyMeterNumberBean.meterClass}}</td>
+                                    <td class="fw-bold small">Meter CTR : </td>
+                                    <td>{{mapping.standbyMeterNumberBean.meterCtr}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold small">Meter PTR : </td>
+                                    <td>{{mapping.standbyMeterNumberBean.meterPtr}}</td>
+                                    <td class="fw-bold small">Group : </td>
+                                    <td>{{mapping.standbyMeterNumberBean.meterGroup}}</td>
+                                    <td class="fw-bold small">ME CTR : </td>
+                                    <td>{{mapping.standbyMeterNumberBean.meCtr}}</td>
+                                    <td class="fw-bold small">ME PTR : </td>
+                                    <td>{{mapping.standbyMeterNumberBean.mePtr}}</td>
+                                </tr>
+                            </ng-container>
+                        </table>   
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="2" [destroyOnHide]="false">
+                    <a ngbNavLink>Developer</a>
+                    <ng-template ngbNavContent>
+                        <table class="table">
+                            <tr>
+                                <td class="fw-bold small">Developer Name : </td>
+                                <td>{{mapping.developerMasterBean.developerName}}</td>
+                                <td class="fw-bold small">Developer Username : </td>
+                                <td>{{mapping.developerMasterBean.developerUsername}}</td>
+                                <td class="fw-bold small">Type : </td>
+                                <td>{{mapping.developerMasterBean.generatorType}}</td>
+                                <td class="fw-bold small">Status : </td>
+                                <td>{{mapping.developerMasterBean.status}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="fw-bold small">Office Address : </td>
+                                <td>{{mapping.developerMasterBean.officeAddress}}</td>
+                                <td class="fw-bold small">Office Contact Person : </td>
+                                <td>{{mapping.developerMasterBean.officeContactPerson}}</td>
+                                <td class="fw-bold small">Office Contact No : </td>
+                                <td>{{mapping.developerMasterBean.officeContactNo}}</td>
+                                <td class="fw-bold small">Office Email : </td>
+                                <td>{{mapping.developerMasterBean.officeEmail}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="fw-bold small">Site Address : </td>
+                                <td>{{mapping.developerMasterBean.siteAddress}}</td>
+                                <td class="fw-bold small">Site Contact Person : </td>
+                                <td>{{mapping.developerMasterBean.siteContactPerson}}</td>
+                                <td class="fw-bold small">Site Contact No : </td>
+                                <td>{{mapping.developerMasterBean.siteContactNo}}</td>
+                                <td class="fw-bold small">Site Email : </td>
+                                <td>{{mapping.developerMasterBean.siteEmail}}</td>
+                            </tr>
+                        </table>   
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="3" [destroyOnHide]="false">
+                    <a ngbNavLink>Feeder</a>
+                    <ng-template ngbNavContent>
+                        <table class="table">
+                            <tr>
+                                <td class="fw-bold small">Feeder Name : </td>
+                                <td>{{mapping.feederMasterBean.feederName}}</td>
+                                <td class="fw-bold small">Feeder No : </td>
+                                <td>{{mapping.feederMasterBean.feederNumber}}</td>
+                                <td class="fw-bold small">Circuit Voltage : </td>
+                                <td>{{mapping.feederMasterBean.circuitVoltage}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="fw-bold small">Injecting SS Code : </td>
+                                <td>{{mapping.feederMasterBean.injectingSsCode}}</td>
+                                <td class="fw-bold small">Injecting SS Name : </td>
+                                <td>{{mapping.feederMasterBean.injectingSsName}}</td>
+                                <td class="fw-bold small">Status : </td>
+                                <td>{{mapping.feederMasterBean.status}}</td>
+                            </tr>
+                        </table>   
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="4" [destroyOnHide]="false">
+                    <a ngbNavLink>Plant</a>
+                    <ng-template ngbNavContent>
+                        <table class="table">
+                            <tr>
+                                <td class="fw-bold small">Plant Name : </td>
+                                <td>{{mapping.plantMasterBean.plantName}}</td>
+                                <td class="fw-bold small">Plant Code : </td>
+                                <td>{{mapping.plantMasterBean.plantCode}}</td>
+                                <td class="fw-bold small">Type : </td>
+                                <td>{{mapping.plantMasterBean.type}}</td>
+                                <td class="fw-bold small">Commissioned Date : </td>
+                                <td>{{mapping.plantMasterBean.commissionedDate}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="fw-bold small">Address : </td>
+                                <td>{{mapping.plantMasterBean.address}}</td>
+                                <td class="fw-bold small">Contact Person: </td>
+                                <td>{{mapping.plantMasterBean.contactPerson}}</td>
+                                <td class="fw-bold small">Contact No : </td>
+                                <td>{{mapping.plantMasterBean.contactNo}}</td>
+                                <td class="fw-bold small">Email: </td>
+                                <td>{{mapping.plantMasterBean.email}}</td>
+                            </tr>
+                        </table>   
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="5" [destroyOnHide]="false">
+                    <a ngbNavLink>Investors</a>
+                    <ng-template ngbNavContent>
+                        <table class="table table-bordered">
+                            <ng-container *ngFor="let investor of mapping.investorMachineMappingDtoList; let line = index" class="mb-3">
+                                <tr class="bg-dark text-white text-center">
+                                    <td colspan="8">Investor {{line + 1}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold small">Investor Name : </td>
+                                    <td colspan="3">{{investor.investorMasterBean.investorName}}</td>
+                                    <td class="fw-bold small">Investor Code : </td>
+                                    <td>{{investor.investorMasterBean.investorName}}</td>
+                                    <td class="fw-bold small">Buyer : </td>
+                                    <td>{{investor.investorMasterBean.buyer}}</td>
+                                    <!-- <td class="fw-bold small">GST No : </td>
+                                    <td>{{investor.investorMasterBean.gstNo}}</td> -->
+                                </tr>
+
+                                <tr>
+                                    <td class="fw-bold small">PPA Letter No : </td>
+                                    <td>{{investor.investorMasterBean.ppaLetterNo}}</td>
+                                    <td class="fw-bold small">PPA Date : </td>
+                                    <td>{{investor.investorMasterBean.ppaDate}}</td>
+                                    <td class="fw-bold small">PPA Free Unit : </td>
+                                    <td>{{investor.investorMasterBean.ppaFreeUnit}}</td>
+                                    <td class="fw-bold small">fixed Adjustment : </td>
+                                    <td>{{investor.investorMasterBean.fixedAdjust}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="fw-bold small">Office Address : </td>
+                                    <td>{{investor.investorMasterBean.officeAddress}}</td>
+                                    <td class="fw-bold small">Office Contact Person : </td>
+                                    <td>{{investor.investorMasterBean.officeContactPerson}}</td>
+                                    <td class="fw-bold small">Office Contact No : </td>
+                                    <td>{{investor.investorMasterBean.officeContactNo}}</td>
+                                    <td class="fw-bold small">Office Email : </td>
+                                    <td>{{investor.investorMasterBean.officeEmail}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="fw-bold small">Site Address : </td>
+                                    <td>{{investor.investorMasterBean.siteAddress}}</td>
+                                    <td class="fw-bold small">Site Contact Person : </td>
+                                    <td>{{investor.investorMasterBean.siteContactPerson}}</td>
+                                    <td class="fw-bold small">Site Contact No : </td>
+                                    <td>{{investor.investorMasterBean.siteContactNo}}</td>
+                                    <td class="fw-bold small">Site Email : </td>
+                                    <td>{{investor.investorMasterBean.siteEmail}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Particulars</td>
+                                    <td colspan="7">{{investor.investorMasterBean.particulars}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" class="bg-secondary text-white">Machines of {{investor.investorMasterBean.investorName}}</td>
+                                </tr>
+                                <tr>
+                                    <td>SNo</td>
+                                    <td>Name</td>
+                                    <td>Code</td>
+                                    <td>Capacity</td>
+                                    <td>Active Rate</td>
+                                    <td>Reactive Rate</td>
+                                    <td>Commissioned Date</td>
+                                    <td>Status</td>
+                                </tr>
+                                <ng-container *ngFor="let machine of investor.machineMasterBeanList; let i = index">
+                                    <tr>
+                                        <td>{{i + 1}}</td>
+                                        <td>{{machine.machineName}}</td>
+                                        <td>{{machine.machineCode}}</td>
+                                        <td>{{machine.machineName}}</td>
+                                        <td>{{machine.machineCode}}</td>
+                                        <td>{{machine.machineName}}</td>
+                                        <td>{{machine.commissionedDate}}</td>
+                                        <td>{{machine.status}}</td>
+                                    </tr>
+                                </ng-container>
+                                <hr>
+                            </ng-container>
+                        </table>   
+                    </ng-template>
+                </li>
+            </ul>
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+    </div>
+</div>

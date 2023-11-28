@@ -241,4 +241,20 @@ export class ReadService {
     return this.http.post("/rebilling/meter_reading/SR", reading, options);
   }
 
+  getLastMeterReadingforReplacementByMeterNo(meterNo : string, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/meter/replace/last/read/meternumber/" + meterNo, options);
+  }
+
+  replaceMeter(readings : any, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.post("/rebilling/meter/replace", readings, options);
+  }
+
 }

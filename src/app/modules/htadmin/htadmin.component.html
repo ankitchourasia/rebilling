@@ -100,6 +100,9 @@
                     <a href="#" class="list-group-item list-group-item-action" routerLink="reading-view"
                         routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">5 Percent
                         Pass/Fail Report</a>
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="meter-replacement"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Meter
+                        Replacement</a>
                 </div>
             </div>
             <div class="list-group">
@@ -136,6 +139,21 @@
                     <a href="#" class="list-group-item list-group-item-action" routerLink="view-invoice"
                         routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">View
                         Invoice</a>
+                </div>
+            </div>
+            <div class="list-group">
+                <button class="btn rounded-0 bg-dark text-white d-flex justify-content-between"
+                    data-bs-toggle="collapse" href="#mapping" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    Mapping<span class="dropdown-toggle"></span>
+                </button>
+                <div class="collapse" id="mapping">
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="investor-machine-mapping-add"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Create Investor Machine Mapping</a>
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="meter-feeder-plant-mapping-add"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Create Meter Feeder Plant Mapping</a>
+                    <a href="#" class="list-group-item list-group-item-action" routerLink="complete-mapping-view"
+                        routerLinkActive="bg-secondary text-white" [routerLinkActiveOptions]="{exact: true}">Complete Mapping View</a>
                 </div>
             </div>
         </div>

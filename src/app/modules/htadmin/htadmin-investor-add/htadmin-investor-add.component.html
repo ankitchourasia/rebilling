@@ -126,18 +126,35 @@
             </div>
             <div class="col-3 mx-3">
                 <label class="fw-bold">Buyer</label>
-                <input type="text" class="form-control" [(ngModel)]="investor.buyer" name="buyer" #buyer="ngModel" required
-                [ngClass]="{'is-invalid': buyer.errors && (buyer.dirty || buyer.touched)}">
-                <div class="invalid-feedback" *ngIf="buyer.errors && (buyer.dirty || buyer.touched)">
-                    <div *ngIf="buyer.errors['required']">required field</div>
-                </div>
+                <select class="form-select" name="buyer" [(ngModel)]="investor.buyer" required>
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option>MPPMCL</option>
+                    <option>Third Party</option>
+                    <option>Captive</option>
+                    <option>Other</option>
+                </select>
             </div>
+            <!-- <div class="col-3 mx-3">
+                <label class="fw-bold">Division</label>
+                <select class="form-select" name="make" [(ngModel)]="investor.location" required>
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option *ngFor="let location of locations" [ngValue]="location">{{location.divisionName}}</option>
+                </select>
+            </div> -->
             <div class="col-3 mx-3">
-                <label class="fw-bold">Fixed Adjust</label>
+                <label class="fw-bold">Fixed Adjustment</label>
                 <input type="text" class="form-control" [(ngModel)]="investor.fixedAdjust" name="fixedAdjust" #fixedAdjust="ngModel" required
                 [ngClass]="{'is-invalid': fixedAdjust.errors && (fixedAdjust.dirty || fixedAdjust.touched)}">
                 <div class="invalid-feedback" *ngIf="fixedAdjust.errors && (fixedAdjust.dirty || fixedAdjust.touched)">
                     <div *ngIf="fixedAdjust.errors['required']">required field</div>
+                </div>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Supplimentary PPA Free Unit</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.ppaFreeUnit" name="ppaFreeUnit" #ppaFreeUnit="ngModel" required
+                [ngClass]="{'is-invalid': ppaFreeUnit.errors && (ppaFreeUnit.dirty || ppaFreeUnit.touched)}">
+                <div class="invalid-feedback" *ngIf="ppaFreeUnit.errors && (ppaFreeUnit.dirty || ppaFreeUnit.touched)">
+                    <div *ngIf="ppaFreeUnit.errors['required']">required field</div>
                 </div>
             </div>
             <div class="col-3 mx-3">
@@ -189,17 +206,27 @@
                     <div *ngIf="nldc.errors['required']">required field</div>
                 </div>
             </div>
-
+            <div class="col-3 mx-3"></div>
             <div class="col-3 mx-3">
-                <label class="fw-bold">Division</label>
-                <select class="form-select" name="make" [(ngModel)]="investor.location" required>
+                <label class="fw-bold">Region</label>
+                <select class="form-select" name="region" [(ngModel)]="regionName" (change)="getCircleByRegionName()" required>
                     <option disabled selected [ngValue]=undefined>Select</option>
-                    <option *ngFor="let location of locations" [ngValue]="location">{{location.divisionName}}</option>
+                    <option *ngFor="let region of regions" [ngValue]="region">{{region}}</option>
                 </select>
             </div>
             <div class="col-3 mx-3">
-                <label class="fw-bold">Circle</label>
-                <input class="form-control" type="text" name="circle" [ngModel]="investor?.location?.circleName" readonly>
+                <label class="fw-bold">Cicle</label>
+                <select class="form-select" name="circle" [(ngModel)]="circleName" (change)="getDivisionByCircleName()" required>
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option *ngFor="let circle of circles" [ngValue]="circle">{{circle}}</option>
+                </select>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Division</label>
+                <select class="form-select" name="division" [(ngModel)]="investor.location" required>
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option *ngFor="let location of locations" [ngValue]="location">{{location.divisionName}}</option>
+                </select>
             </div>
         </div>
         <div class="d-flex justify-content-center mt-4 pt-4 border-top">

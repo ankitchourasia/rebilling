@@ -135,4 +135,37 @@ export class MeterService {
     }
     return this.http.get("/rebilling/bifurcate/all/meters", options);
   }
+
+  getNewMetersForReplacement(response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/meter/replace/new/meters", options);
+  }
+
+  getOldMetersForReplacementByMeterNo(meterNo : string, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/meter/replace/old/meternumber/" + meterNo, options);
+  }
+
+  getMetersUnmappedByCategory(category : string, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/meter/list/unmapped/category/" + category, options);
+  }
+
+  getMetersForConsumptionReportforDeveloper(response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/meter/list/byUser", options);
+  }
+
 }

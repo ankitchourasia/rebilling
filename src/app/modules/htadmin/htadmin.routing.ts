@@ -24,6 +24,10 @@ import { HtadminMeterStartReadPunchComponent } from './htadmin-meter-start-read-
 import { HTAdminThirdPartyAddComponent } from './htadmin-third-party-add/htadmin-third-party-add.component';
 import { HTAdminThirdPartyViewComponent } from './htadmin-third-party-view/htadmin-third-party-view.component';
 import { DownloadSolarStatementComponent } from 'src/app/components/download-solar-statement/download-solar-statement.component';
+import { MeterReplacementComponent } from 'src/app/components/meter-replacement/meter-replacement.component';
+import { HTAdminAddInvestorMachineMappingComponent } from './htadmin-add-investor-machine-mapping/htadmin-add-investor-machine-mapping.component';
+import { HTAdminAddMeterFeederPlantMappingComponent } from './htadmin-add-meter-feeder-plant-mapping/htadmin-add-meter-feeder-plant-mapping.component';
+import { HTAdminCompleteMappingViewComponent } from './htadmin-complete-mapping-view/htadmin-complete-mapping-view.component';
 
 const htAdminRoutes: Routes = [
   {
@@ -123,6 +127,22 @@ const htAdminRoutes: Routes = [
       {
         path : 'download-solar-statement',
         component : DownloadSolarStatementComponent
+      },
+      {
+        path : 'meter-replacement',
+        component : MeterReplacementComponent
+      },
+      {
+        path : 'investor-machine-mapping-add',
+        component : HTAdminAddInvestorMachineMappingComponent
+      },
+      {
+        path : 'meter-feeder-plant-mapping-add',
+        component : HTAdminAddMeterFeederPlantMappingComponent
+      },
+      {
+        path : 'complete-mapping-view',
+        component : HTAdminCompleteMappingViewComponent
       },
       {
         path: '', redirectTo: 'home', pathMatch: 'full'

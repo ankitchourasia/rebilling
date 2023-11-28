@@ -31,4 +31,12 @@ export class FeederService {
     }
     return this.http.get("/rebilling/feeder/feederNumber/" + feederNo, options);
   }
+
+  getByLocationId(locationId : string, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/feeder/list/locationId/" + locationId, options);
+  }
 }

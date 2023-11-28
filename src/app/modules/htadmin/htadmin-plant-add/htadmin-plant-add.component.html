@@ -73,13 +73,27 @@
                     <div *ngIf="type.errors['required']">required field</div>
                 </div>
             </div>
+            <div class="col-3 mx-3"></div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Region</label>
+                <select class="form-select" name="region" [(ngModel)]="regionName" (change)="getCircleByRegionName()" required>
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option *ngFor="let region of regions" [ngValue]="region">{{region}}</option>
+                </select>
+            </div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Cicle</label>
+                <select class="form-select" name="circle" [(ngModel)]="circleName" (change)="getDivisionByCircleName()" required>
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option *ngFor="let circle of circles" [ngValue]="circle">{{circle}}</option>
+                </select>
+            </div>
             <div class="col-3 mx-3">
                 <label class="fw-bold">Division</label>
-                <select class="form-select" name="make" [(ngModel)]="plant.location" required>
+                <select class="form-select" name="division" [(ngModel)]="plant.location" required>
                     <option disabled selected [ngValue]=undefined>Select</option>
                     <option *ngFor="let location of locations" [ngValue]="location">{{location.divisionName}}</option>
                 </select>
-                <span class="fw-bold" *ngIf="plant?.location">Circle Name : {{plant?.location?.circleName}}</span>
             </div>
             <!-- <div class="col-3 mx-3">
                 <label class="fw-bold">Circle</label>

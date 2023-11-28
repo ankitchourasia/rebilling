@@ -1,0 +1,56 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Create Meter Feeder Plant Mapping
+    </div>
+    <form class="card-body row gx-5 gy-3 justify-content-around" #f="ngForm">
+        <div class="col-3 mx-3">
+            <label class="fw-bold">Developer</label>
+            <select class="form-select" name="devName" [(ngModel)]="developer" required>
+                <option disabled selected [ngValue]=undefined>Select</option>
+                <option *ngFor="let developer of developers" [ngValue]="developer">{{developer.developerName}}</option>
+            </select>
+        </div>
+
+        <div class="col-3 mx-3">
+            <label class="fw-bold">Plant</label>
+            <select class="form-select" name="plantName" [(ngModel)]="plant" (change)="plantChanged(plant.locationId)" required>
+                <option disabled selected [ngValue]=undefined>Select</option>
+                <option *ngFor="let plant of plants" [ngValue]="plant">{{plant.plantName}}</option>
+            </select>
+        </div>
+
+        <div class="col-3 mx-3">
+            <label class="fw-bold">Feeder</label>
+            <select class="form-select" name="feederName" [(ngModel)]="feeder" required>
+                <option disabled selected [ngValue]=undefined>Select</option>
+                <option *ngFor="let feeder of feeders" [ngValue]="feeder">{{feeder.feederName}}</option>
+            </select>
+        </div>
+        <div class="col-3 mx-3">
+            <label class="fw-bold">Main Meter</label>
+            <select class="form-select" name="mainMeter" [(ngModel)]="meter.mainMeter" required>
+                <option disabled selected [ngValue]=undefined>Select</option>
+                <option *ngFor="let mainMeter of meters.mainMeters" [ngValue]="mainMeter">{{mainMeter.meterNumber}}</option>
+            </select>
+        </div>
+
+        <div class="col-3 mx-3">
+            <label class="fw-bold">Check Meter</label>
+            <select class="form-select" name="checkMeter" [(ngModel)]="meter.checkMeter" required>
+                <option disabled selected [ngValue]=undefined>Select</option>
+                <option *ngFor="let checkMeter of meters.checkMeters" [ngValue]="checkMeter">{{checkMeter.meterNumber}}</option>
+            </select>
+        </div>
+
+        <div class="col-3 mx-3">
+            <label class="fw-bold">Standby Meter</label>
+            <select class="form-select" name="standbyMeter" [(ngModel)]="meter.standbyMeter">
+                <option disabled selected [ngValue]=undefined>Select</option>
+                <option *ngFor="let standbyMeter of meters.standbyMeters" [ngValue]="standbyMeter">{{standbyMeter.meterNumber}}</option>
+            </select>
+        </div>
+        <div class="d-flex justify-content-around">
+            <button class="btn btn-primary" [disabled]="loading || f.form.invalid" (click)="onSubmit()">Submit</button>
+        </div>
+    </form>
+</div>

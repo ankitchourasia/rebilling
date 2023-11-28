@@ -31,4 +31,12 @@ export class MachineService {
     }
     return this.http.get("/rebilling/machine/id/" + machineId, options);
   }
+
+  getAllUnmappedMachine(response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/machine/list/unmapped", options);
+  }
 }

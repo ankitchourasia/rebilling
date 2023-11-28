@@ -24,11 +24,22 @@ export class ConsumptionReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = sessionStorage.getItem('role');
-    this.getMeters();
+    if(this.role === 'DEVELOPER'){
+      this.getMetersforDeveloper();
+    } else{
+      this.getMeters();
+    }
   }
 
   getMeters(){
     this.meterService.getMetersForConsumptionReport().subscribe({
+      next: (success: any) =>{ this.meterList = success; },
+      error: (error: any)=>{ console.log(error); }
+    })
+  }
+
+  getMetersforDeveloper(){
+    this.meterService.getMetersForConsumptionReportforDeveloper().subscribe({
       next: (success: any) =>{ this.meterList = success; },
       error: (error: any)=>{ console.log(error); }
     })
