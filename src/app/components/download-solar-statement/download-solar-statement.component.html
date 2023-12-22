@@ -6,11 +6,17 @@
         <div class="d-flex justify-content-around align-items-end">
             <div>
                 <label class="fw-bold">Meter No</label>
-                <select [ngClass]="{'is-invalid': meter.errors && (meter.dirty || meter.touched)}"
+                <!-- <select [ngClass]="{'is-invalid': meter.errors && (meter.dirty || meter.touched)}"
                     class="form-select" name="meter" [ngModel]=null #meter="ngModel" required>
                     <option disabled selected [ngValue]=null>Select</option>
                     <option *ngFor="let meter of meterList" [ngValue]="meter.meterNo">{{meter.meterNo}}</option>
-                </select>
+                </select> -->
+                <input class="form-control" #meter="ngModel" [ngClass]="{'is-invalid': meter.errors && (meter.dirty || meter.touched)}" autocomplete="off"
+                    list="datalistOptions" id="meter" placeholder="Type to search..." name="meter" ngModel required>
+                <datalist id="datalistOptions">
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option *ngFor="let meter of meterList" [value]="meter.meterNo">{{meter.meterCategory}}</option>
+                </datalist>
             </div>
             <div>
                 <label class="fw-bold">Month</label>
@@ -22,4 +28,159 @@
             </div>
         </div>
     </form>
+    <div *ngIf="statement">
+        <p class="text-center bg-light border border-dark m-0 small p-2 text-wrap">
+            <span class="fs-bold h5 mb-2">Solar Statement Report</span> <br>
+            Note : Please Check the difference in the sum of (TOD1, TOD2, TOD3, ADJUSTMENT & TOD4) & Active Energy KWH.<br>
+            Meter reading statement for power generation Solar Power Plant at {{statement.plantSiteLocation}} for the month {{statement.monthYear}} <br>
+            Name of SPV Power Project : {{statement.investorName}}<br>
+            Project Capacity: {{statement.investorProjectCapacity}}
+            (A) Billing Meter (On {{statement.feederCircuitVoltage}}) Export, Import
+            Meter Sr. No. : {{statement.meterNumber}}    Installed on : {{statement.meterInstallDate}}   MF : {{statement.meterMf}}     NLDC : {{statement.investorNldcNumber}}
+        </p>
+        <table class="table text-center">
+            <tr><th colspan="7">1. Energy Supplied by {{statement.investorName}} to {{statement.feederCircuitVoltage}} Bus Of {{statement.feederInjectingSs}}</th></tr>
+            <tr>
+                <td>CURRENT READ DATE</td>
+                <td>CURRENT READ</td>
+                <td>PREVIOUS READ DATE</td>
+                <td>PREVIOUS READ</td>
+                <td>DIFFERENCE</td>
+                <td>MF</td>
+                <td>CONSUMPTION</td>
+            </tr>
+            <tr>
+                <td>{{statement.currentReadingDate  | date : "dd-MMM-yyyy"}}</td>
+                <td>{{statement.eCurrentActiveEnergy}}</td>
+                <td>{{statement.previousReadingDate  | date : "dd-MMM-yyyy"}}</td>
+                <td>{{statement.ePreviousActiveEnergy}}</td>
+                <td>{{statement.eDiffActiveEnergy}}</td>
+                <td>{{statement.meterMf}}</td>
+                <td>{{statement.eConsumptionActiveEnergy}}</td>
+            </tr>
+
+            <tr><th colspan="7">2. Energy Supplied by MPPKVVCL to {{statement.investorName}} (on {{statement.feederCircuitVoltage}}) Import Power</th></tr>
+            <tr>
+                <td>CURRENT READ DATE</td>
+                <td>CURRENT READ</td>
+                <td>PREVIOUS READ DATE</td>
+                <td>PREVIOUS READ</td>
+                <td>DIFFERENCE</td>
+                <td>MF</td>
+                <td>CONSUMPTION</td>
+            </tr>
+            <tr>
+                <td>{{statement.currentReadingDate  | date : "dd-MMM-yyyy"}}</td>
+                <td>{{statement.iCurrentActiveEnergy}}</td>
+                <td>{{statement.previousReadingDate  | date : "dd-MMM-yyyy"}}</td>
+                <td>{{statement.iPreviousActiveEnergy}}</td>
+                <td>{{statement.iDiffActiveEnergy}}</td>
+                <td>{{statement.meterMf}}</td>
+                <td>{{statement.iConsumptionActiveEnergy}}</td>
+            </tr>
+            <tr>
+                <th colspan="7">TOD CONSUMPTION</th>
+            </tr>
+            <tr>
+                <td>Name of Third Party</td>
+                <td>TOD1</td>
+                <td>TOD2</td>
+                <td class="text-danger">TOD3</td>
+                <td class="text-danger">ADJUSTMENT</td>
+                <td>TOD4</td>
+                <td>TOTAL KWH EXPORT</td>
+            </tr>
+            <tr *ngFor="let data of statement.thirdPartyTodSet; let i = index">
+                <td>{{data.tpName}}</td>
+                <td>{{data.tpTod1}}</td>
+                <td>{{data.tpTod2}}</td>
+                <td class="text-danger">{{data.tpTod3}}</td>
+                <td class="text-danger">{{data.tpAdjustment}}</td>
+                <td>{{data.tpTod4}}</td>
+                <td>{{data.tpKwhExport}}</td>
+            </tr>
+            <tr>
+                <th>TOTAL</th>
+                <td>{{statement.totalTod1}}</td>
+                <td>{{statement.totalTod2}}</td>
+                <td class="text-danger">{{statement.totalTod3}}</td>
+                <td class="text-danger">{{statement.totalAdjustment}}</td>
+                <td>{{statement.totalTod4}}</td>
+                <td>{{statement.totalKwhExport}}</td>
+            </tr>
+            <tr>
+                <th colspan="7">RKVAH Reading</th>
+            </tr>
+            <tr>
+                <td>PARTICULAR</td>
+                <td>CURRENT READ DATE</td>
+                <td>CURRENT READ</td>
+                <td>PREVIOUS READ DATE</td>
+                <td>PREVIOUS READ</td>
+                <td>DIFFERENCE</td>
+                <td>CONSUMPTION</td>
+            </tr>
+            <tr>
+                <td>Reactive(IMP)Active(IMP)CH5 KVARH</td>
+                <td>{{statement.currentReadingDate  | date : "dd-MMM-yyyy"}}</td>
+                <td>{{statement.iCurrentReactiveQuad1}}</td>
+                <td>{{statement.previousReadingDate  | date : "dd-MMM-yyyy"}}</td>
+                <td>{{statement.iPreviousReactiveQuad1}}</td>
+                <td>{{statement.iDiffReactiveQuad1}}</td>
+                <td>{{statement.iConsumptionReactiveQuad1}}</td>
+            </tr>
+            <tr>
+                <td>Reactive(EXP)Active(IMP)CH6 KVARH</td>
+                <td>{{statement.currentReadingDate  | date : "dd-MMM-yyyy"}}</td>
+                <td>{{statement.iCurrentReactiveQuad2}}</td>
+                <td>{{statement.previousReadingDate  | date : "dd-MMM-yyyy"}}</td>
+                <td>{{statement.iPreviousReactiveQuad2}}</td>
+                <td>{{statement.iDiffReactiveQuad2}}</td>
+                <td>{{statement.iConsumptionReactiveQuad2}}</td>
+            </tr>
+            <tr>
+                <td>Reactive(IMP)Active(EXP)CH7 KVARH</td>
+                <td>{{statement.currentReadingDate  | date : "dd-MMM-yyyy"}}</td>
+                <td>{{statement.iCurrentReactiveQuad3}}</td>
+                <td>{{statement.previousReadingDate  | date : "dd-MMM-yyyy"}}</td>
+                <td>{{statement.iPreviousReactiveQuad3}}</td>
+                <td>{{statement.iDiffReactiveQuad3}}</td>
+                <td>{{statement.iConsumptionReactiveQuad3}}</td>
+            </tr>
+            <tr>
+                <td>Reactive(EXP)Active(EXP)CH8 KVARH</td>
+                <td>{{statement.currentReadingDate  | date : "dd-MMM-yyyy"}}</td>
+                <td>{{statement.iCurrentReactiveQuad4}}</td>
+                <td>{{statement.previousReadingDate  | date : "dd-MMM-yyyy"}}</td>
+                <td>{{statement.iPreviousReactiveQuad4}}</td>
+                <td>{{statement.iDiffReactiveQuad4}}</td>
+                <td>{{statement.iConsumptionReactiveQuad4}}</td>
+            </tr>
+            <tr>
+                <td>TOTAL KVARH</td>
+                <td class="text-right" colspan="6">{{statement.iConsumptionReactiveQuadTotal}}</td>
+            </tr>
+            <tr>
+                <td>Apparent-Active(IMP)CH9 KVAH</td>
+                <td>{{statement.currentReadingDate  | date : "dd-MMM-yyyy"}}</td>
+                <td>{{statement.iCurrentKvah}}</td>
+                <td>{{statement.previousReadingDate  | date : "dd-MMM-yyyy"}}</td>
+                <td>{{statement.iPreviousKvah}}</td>
+                <td>{{statement.iDiffKvah}}</td>
+                <td>{{statement.iConsumptionKvah}}</td>
+            </tr>
+            <tr>
+                <td>Apparent-Active(EXP)CH10 KVAH</td>
+                <td>{{statement.currentReadingDate  | date : "dd-MMM-yyyy"}}</td>
+                <td>{{statement.eCurrentKvah}}</td>
+                <td>{{statement.previousReadingDate  | date : "dd-MMM-yyyy"}}</td>
+                <td>{{statement.ePreviousKvah}}</td>
+                <td>{{statement.eDiffKvah}}</td>
+                <td>{{statement.eConsumptionKvah}}</td>
+            </tr>
+        </table>
+        <div class="d-flex justify-content-around mb-2">
+            <button class="btn btn-primary" [disabled]="loading" (click)="downloadSolarStatement(statement.meterNumber, statement.monthYear)">Download</button>
+        </div>
+    </div>
 </div>

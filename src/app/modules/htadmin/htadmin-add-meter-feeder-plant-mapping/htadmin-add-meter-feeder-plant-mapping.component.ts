@@ -55,7 +55,7 @@ export class HTAdminAddMeterFeederPlantMappingComponent {
   }
 
   getPlants(){
-    this.plantService.getAllPlant().subscribe({next : success =>{
+    this.plantService.getUnmappedPlants().subscribe({next : success =>{
       this.plants = success;
     }, error : error =>{
       GlobalResourcesService.errorMessageHandeler(error);

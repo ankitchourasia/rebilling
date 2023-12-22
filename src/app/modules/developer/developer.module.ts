@@ -9,7 +9,6 @@ import { DeveloperRoutingModule } from './developer.routing';
 import { DeveloperComponent } from './developer.component';
 import { DeveloperHomeComponent } from './developer-home/developer-home.component';
 import { DeveloperValidateReadingComponent } from './developer-validate-reading/developer-validate-reading.component';
-import { DeveloperInvoiceGenerationComponent } from './developer-invoice-generation/developer-invoice-generation.component';
 import { ViewReadBifurcationComponent } from "../../components/view-read-bifurcation/view-read-bifurcation.component";
 
 
@@ -19,7 +18,6 @@ import { ViewReadBifurcationComponent } from "../../components/view-read-bifurca
         DeveloperComponent,
         DeveloperHomeComponent,
         DeveloperValidateReadingComponent,
-        DeveloperInvoiceGenerationComponent
     ],
     providers: [CanActivateAuthGuard],
     imports: [

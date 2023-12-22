@@ -171,6 +171,10 @@
                         </select>
                     </div>
                     <div class="col-md-4 mb-4">
+                        <label class="fw-bold small">Third Party Commissioned Date</label>
+                        <input type="date" name="thirdPartyCommissionDate" [(ngModel)]="data.thirdPartyCommissionDate" class="form-control" required>
+                    </div>
+                    <div class="col-md-4 mb-4">
                         <label class="fw-bold small">Plant Capacity</label>
                         <input type="text" name="plantCapacity" [(ngModel)]="data.plantCapacity" class="form-control" required>
                     </div>
@@ -182,7 +186,7 @@
                         <label class="fw-bold small">Sanction Date</label>
                         <input type="date" name="sanction_date" [(ngModel)]="data.sanctionDate" class="form-control" required>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-4 mb-4">
                         <label class="fw-bold small">Type Of Category</label>
                         <select class="form-select" name="category" [(ngModel)]="data.typeOfCategory" required>
                             <option value=undefined disabled>Select</option>
@@ -192,7 +196,7 @@
                             <option value="OTHER">OTHER</option>
                         </select>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-4 mb-4">
                         <label class="fw-bold small">Third Party Discom</label>
                         <select class="form-select" name="developer_discom" [(ngModel)]="data.developerDiscomName" required>
                             <option value=undefined disabled>Select</option>
@@ -201,11 +205,11 @@
                             <option>MPMKVVCL(CENTRAL)</option>
                         </select>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-4 mb-4">
                         <label class="fw-bold small">Period Of PPWA</label>
                         <input type="number" name="period_of_ppwa" [(ngModel)]="data.periodOfPpwa" class="form-control" required>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-4 mb-4">
                         <label class="fw-bold small">Re-Adjustment Unit (IN %)</label>
                         <input type="number" name="re_adjustment" [(ngModel)]="data.adjustmentUnitPercent" class="form-control" required>
                     </div>

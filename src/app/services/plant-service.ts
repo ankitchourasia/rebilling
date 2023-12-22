@@ -39,4 +39,12 @@ export class PlantService {
     }
     return this.http.get("/rebilling/plant/list/developerId/" + developerId, options);
   }
+
+  getUnmappedPlants(response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/plant/unmapped", options);
+  }
 }

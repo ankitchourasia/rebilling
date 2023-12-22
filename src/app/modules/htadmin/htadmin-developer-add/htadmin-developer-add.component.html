@@ -14,6 +14,15 @@
             </div>
 
             <div class="col-3 mx-3">
+                <label class="fw-bold">Developer Username</label>
+                <input type="text" class="form-control" [(ngModel)]="developer.developerUsername" name="developerUsername" #username="ngModel" required
+                [ngClass]="{'is-invalid': username.errors && (username.dirty || username.touched)}">
+                <div class="invalid-feedback" *ngIf="username.errors && (username.dirty || username.touched)">
+                    <div *ngIf="username.errors['required']">required field</div>
+                </div>
+            </div>
+
+            <div class="col-3 mx-3">
                 <label class="fw-bold">CIN</label>
                 <input type="text" class="form-control" [(ngModel)]="developer.cin" name="cin" #cin="ngModel" required
                 [ngClass]="{'is-invalid': cin.errors && (cin.dirty || cin.touched)}">
@@ -91,6 +100,17 @@
                 </div>
             </div>
             <div class="col-3 mx-3">
+                <label class="fw-bold">Generator Type</label>
+                <select class="form-select" name="generatorType" [(ngModel)]="developer.generatorType" required>
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option>Solar</option>
+                    <option>Wind</option>
+                    <option>Hydro</option>
+                    <option>Biomass</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <!-- <div class="col-3 mx-3">
                 <label class="fw-bold">Division</label>
                 <select class="form-select" name="make" [(ngModel)]="developer.location" required>
                     <option disabled selected [ngValue]=undefined>Select</option>
@@ -101,6 +121,7 @@
                 <label class="fw-bold">Circle</label>
                 <input class="form-control" type="text" name="circle" [ngModel]="developer?.location?.circleName" readonly>
             </div>
+            <div class="col-3 mx-3"></div> -->
         </div>
         <div class="d-flex justify-content-center mt-4 pt-4 border-top">
             <button class="btn btn-primary me-2" (click)="onSubmit(f)" [disabled]="f.form.invalid || f.form.disabled || loading">Submit</button>

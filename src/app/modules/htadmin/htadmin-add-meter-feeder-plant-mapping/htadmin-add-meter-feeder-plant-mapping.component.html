@@ -15,7 +15,7 @@
             <label class="fw-bold">Plant</label>
             <select class="form-select" name="plantName" [(ngModel)]="plant" (change)="plantChanged(plant.locationId)" required>
                 <option disabled selected [ngValue]=undefined>Select</option>
-                <option *ngFor="let plant of plants" [ngValue]="plant">{{plant.plantName}}</option>
+                <option *ngFor="let plant of plants" [ngValue]="plant">{{plant.plantCode}} - {{plant.plantName}}</option>
             </select>
         </div>
 
@@ -23,7 +23,7 @@
             <label class="fw-bold">Feeder</label>
             <select class="form-select" name="feederName" [(ngModel)]="feeder" required>
                 <option disabled selected [ngValue]=undefined>Select</option>
-                <option *ngFor="let feeder of feeders" [ngValue]="feeder">{{feeder.feederName}}</option>
+                <option *ngFor="let feeder of feeders" [ngValue]="feeder">{{feeder.feederNumber}} - {{feeder.feederName}}</option>
             </select>
         </div>
         <div class="col-3 mx-3">

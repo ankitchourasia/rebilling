@@ -67,11 +67,13 @@
             </div>
             <div class="col-3 mx-3">
                 <label class="fw-bold">Type</label>
-                <input type="text" class="form-control" [(ngModel)]="plant.type" name="type" #type="ngModel" required
-                [ngClass]="{'is-invalid': type.errors && (type.dirty || type.touched)}">
-                <div class="invalid-feedback" *ngIf="type.errors && (type.dirty || type.touched)">
-                    <div *ngIf="type.errors['required']">required field</div>
-                </div>
+                <select class="form-select" name="type" [(ngModel)]="plant.type" #type="ngModel"
+                    [ngClass]="{'is-invalid': type.errors && (type.dirty || type.touched)}" required>
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option>WIND</option>
+                    <option>SOLAR</option>
+                    <option>BIO</option>
+                </select>
             </div>
             <div class="col-3 mx-3"></div>
             <div class="col-3 mx-3">

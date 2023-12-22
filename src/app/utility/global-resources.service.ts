@@ -23,4 +23,16 @@ export class GlobalResourcesService {
     }
   }
 
+  public static downloadExcelByBlob(content : any, dataType : any, fileName : string, extention : string){
+    let file = new Blob([content], {type: dataType});
+    const fileURL = window.URL.createObjectURL(file);
+    //window.open(fileURL, '_blank');
+    //------------------OR----------------------
+    let anchorElement = document.createElement("a");
+    anchorElement.href = fileURL;
+    anchorElement.download = fileName + "." + extention;
+    anchorElement.click();
+    anchorElement.remove();
+  }
+
 }

@@ -17,7 +17,6 @@ export class HtadminMeterStartReadPunchComponent implements OnInit {
   locations : any;
   meters : any = [];
   billMonth : any;
-  meter : any;
   d : Date = new Date();
 
   constructor(private meterService : MeterService, private readService : ReadService){
@@ -37,7 +36,7 @@ export class HtadminMeterStartReadPunchComponent implements OnInit {
   }
 
   onSubmit(f : NgForm){
-    this.reading.meterNo = this.reading.meter.meterNo;
+    // this.reading.meterNo = this.reading.meter.meterNo;
 
     console.log(this.reading);
     if(f.invalid){

@@ -1,16 +1,17 @@
 <div class="card rounded-0">
     <div class="card-header bg-secondary text-white text-center">
-        <b>Consumption Report</b>
+        <b>Invoice</b>
     </div>
     <form class="card-body" #f="ngForm">
         <div class="d-flex justify-content-around align-items-end">
             <div>
                 <label class="fw-bold">Meter</label>
-                <select [ngClass]="{'is-invalid': meter.errors && (meter.dirty || meter.touched)}"
-                    class="form-select" name="meter" [(ngModel)]="data.meterNo" #meter="ngModel" required>
+                <input class="form-control" #meter="ngModel" [ngClass]="{'is-invalid': meter.errors && (meter.dirty || meter.touched)}" autocomplete="off"
+                    list="datalistOptions" id="meter" placeholder="Type to search..." name="meter" [(ngModel)]="data.meterNo" required>
+                <datalist id="datalistOptions">
                     <option disabled selected [ngValue]=undefined>Select</option>
-                    <option *ngFor="let meter of meterList" [ngValue]="meter.meterNumber">{{meter.meterNumber}} | {{meter.meterCategory}}</option>
-                </select>
+                    <option *ngFor="let meter of meterList" [value]="meter.meterNumber">{{meter.meterCategory}}</option>
+                </datalist>
             </div>
             <div>
                 <label class="fw-bold">Month</label>
@@ -41,7 +42,7 @@
             <td>{{read.investorName}}-{{read.investorCode}}</td>
             <td>{{read.plantName}}-{{read.plantCode}}</td>
             <td>
-                {{read.meterNumber}}
+                {{read.meterNumber}}<br>
                 <button type="button" class="badge bg-primary" (click)="viewBifurcationClicked(bifucationModal)">View Bifurcation</button>
             </td>
             <td>{{read.bifurcateTotalKwhConsumption}}</td>
@@ -53,7 +54,7 @@
             <td>
                 <div>
                     <button class="btn btn-sm btn-success mb-1" (click)="viewButtonClicked(read, invoiceModal)" *ngIf="read.invoiceStage !== 'pending'" [disabled]="loading">View</button><br>
-                    <button class="btn btn-sm btn-warning" (click)="generateButtonClicked(read, invoiceModal)" *ngIf="read.invoiceStage === 'pending'" [disabled]="loading">Generate</button>
+                    <button class="btn btn-sm btn-warning" (click)="generateButtonClicked(read, invoiceModal)" *ngIf="read.invoiceStage === 'pending' && role === 'DEVELOPER'" [disabled]="loading">Generate</button>
                 </div>
             </td>
         </tr>

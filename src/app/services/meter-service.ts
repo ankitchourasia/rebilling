@@ -120,6 +120,14 @@ export class MeterService {
     return this.http.get("/rebilling/bifurcate/developer/meters", options);
   }
 
+  getAllMetersForInvoice(response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/bifurcate/all/meters", options);
+  }
+
   getMetersForCircleInvoiceApproval(response : boolean = false){
     let options : any = {};
     if(response){
@@ -166,6 +174,14 @@ export class MeterService {
       options["observe"] = "response";
     }
     return this.http.get("/rebilling/meter/list/byUser", options);
+  }
+
+  getMetersForConsumptionReportforCircle(response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/meter/list/byCircleUser", options);
   }
 
 }

@@ -13,8 +13,8 @@
                 </div>
             </div>
             <div class="col-3 mx-3">
-                <label class="fw-bold">Capacity</label>
-                <input type="text" class="form-control" [(ngModel)]="machine.capacity" name="capacity" #capacity="ngModel" required
+                <label class="fw-bold">Capacity (in MW)</label>
+                <input type="number" class="form-control" [(ngModel)]="machine.capacity" name="capacity" #capacity="ngModel" required
                 [ngClass]="{'is-invalid': capacity.errors && (capacity.dirty || capacity.touched)}">
                 <div class="invalid-feedback" *ngIf="capacity.errors && (capacity.dirty || capacity.touched)">
                     <div *ngIf="capacity.errors['required']">required field</div>

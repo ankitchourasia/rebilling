@@ -7,12 +7,13 @@
             <tr>
                 <td>
                     Meter No: 
-                    <select class="form-select" name="meterNo" [(ngModel)]="reading.meter" required>
-                        <option disabled selected [ngValue]="undefined">Select</option>
-                        <option *ngFor="let meter of meters" [ngValue]="meter">{{meter.meterNo}} | {{meter.meterCategory}}</option>
-                    </select>
+                    <input class="form-control" #meter="ngModel" [ngClass]="{'is-invalid': meter.errors && (meter.dirty || meter.touched)}" autocomplete="off"
+                        list="datalistOptions" id="meter" placeholder="Type to search..." name="meter" [(ngModel)]="reading.meterNo" required>
+                    <datalist id="datalistOptions">
+                        <option disabled selected [ngValue]=undefined>Select</option>
+                        <option *ngFor="let meter of meters" [value]="meter.meterNo">{{meter.meterCategory}}</option>
+                    </datalist>
                 </td>
-                <td>Category : {{reading?.meter?.meterNo}}</td>
                 <td>
                     <div>
                         Reading Date: 
@@ -24,6 +25,7 @@
                         </div>
                     </div>
                 </td>
+                <td></td>
             </tr>
             <tr class="text-center bg-secondary text-white">
                 <td>Particular</td>

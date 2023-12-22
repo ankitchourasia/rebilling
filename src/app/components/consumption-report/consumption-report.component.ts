@@ -24,8 +24,10 @@ export class ConsumptionReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = sessionStorage.getItem('role');
-    if(this.role === 'DEVELOPER'){
+    if(this.role === GlobalResourcesService.ROLE_DEVELOPER){
       this.getMetersforDeveloper();
+    } else if(this.role === GlobalResourcesService.ROLE_CIRCLE){
+      this.getMetersForCircle();
     } else{
       this.getMeters();
     }
@@ -40,6 +42,13 @@ export class ConsumptionReportComponent implements OnInit {
 
   getMetersforDeveloper(){
     this.meterService.getMetersForConsumptionReportforDeveloper().subscribe({
+      next: (success: any) =>{ this.meterList = success; },
+      error: (error: any)=>{ console.log(error); }
+    })
+  }
+
+  getMetersForCircle(){
+    this.meterService.getMetersForConsumptionReportforCircle().subscribe({
       next: (success: any) =>{ this.meterList = success; },
       error: (error: any)=>{ console.log(error); }
     })
@@ -67,5 +76,37 @@ export class ConsumptionReportComponent implements OnInit {
   bifurcateButtonClicked(){
     this.viewBifurcation = true;
   }
+
+  print(id : string){
+    let print = document.getElementById(id);
+    let newWin = window.open("");
+    if(newWin && print){
+      newWin.document.write(print.outerHTML);
+      newWin.print();
+      newWin.close();
+    }
+  }
+
+  // exportTable(tableID : any){
+  //   let dataType = 'data:application/vnd.ms-excel';
+  //   let fileName =  `consumption_report_${this.reading.meterNo}_${this.reading.monthYear}`;
+  //   let htmltable = document.getElementById(tableID);
+  //   if(htmltable){
+  //     let tableHTML = htmltable.outerHTML;
+  //     this.downloadByBlob(tableHTML, dataType, fileName, 'xls');
+  //   }
+  // }
+
+  // downloadByBlob(content : any, dataType : any, fileName : string, extention : string){
+  //   let file = new Blob([content], {type: dataType});
+  //   const fileURL = window.URL.createObjectURL(file);
+  //   //window.open(fileURL, '_blank');
+  //   //------------------OR----------------------
+  //   let anchorElement = document.createElement("a");
+  //   anchorElement.href = fileURL;
+  //   anchorElement.download = fileName + "." + extention;
+  //   anchorElement.click();
+  //   anchorElement.remove();
+  // }
 
 }

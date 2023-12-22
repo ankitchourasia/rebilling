@@ -17,10 +17,11 @@ export class HtadminMeterReadingComponent implements OnInit{
   loading : boolean = false;
   locations : any;
   category : string = "";
-  meters : any = [];
+  meters : any[] = [];
   billMonth : any;
   previousReading : any;
   meter : any;
+  meterNo! : string;
 
   constructor(private meterService : MeterService, private locationService : LocationService, private readService : ReadService){
   }
@@ -33,18 +34,26 @@ export class HtadminMeterReadingComponent implements OnInit{
   }
 
   getMetersByCategory(){
-    this.meterService.getMetersByCategoryStatusAndIsMapped(this.category, "active", "yes").subscribe({next: success =>{
+    this.meters = [];
+    this.meter = undefined;
+    this.meterNo = "";
+    this.meterService.getMetersByCategoryStatusAndIsMapped(this.category, "active", "yes").subscribe({next: (success : any) =>{
       this.meters = success;
     }, error : error => {
       GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
 
-  searchClicked(meter : any){ 
+  searchClicked(){ 
     this.loading = true;
     this.previousReading = undefined;
     let month = formatDate(this.billMonth, "MMM-yyyy", "en-IN");
-    this.getLatestReadingByMeterNo(meter.meterNumber, month);
+    this.meter = this.meters.find(meter => meter.meterNumber === this.meterNo);
+    if(!this.meter){
+      alert("Invalid meter");
+      return;
+    }
+    this.getLatestReadingByMeterNo(this.meter.meterNumber, month);
     this.initialiseReading();
     let nextMonth = new Date(this.billMonth).getMonth() + 1;
     this.reading.readingDate = new Date(this.billMonth).setMonth(nextMonth);

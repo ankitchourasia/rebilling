@@ -1,17 +1,20 @@
-import { formatDate } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { CommonModule, formatDate } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MeterService } from 'src/app/services/meter-service';
 import { ReadService } from 'src/app/services/read-service';
 import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
+import { ViewReadBifurcationComponent } from '../view-read-bifurcation/view-read-bifurcation.component';
 
 @Component({
-  selector: 'app-developer-invoice-generation',
-  templateUrl: './developer-invoice-generation.component.html',
-  styleUrls: ['./developer-invoice-generation.component.css']
+  selector: 'app-invoice-generation',
+  standalone: true,
+  imports: [CommonModule, FormsModule, ViewReadBifurcationComponent],
+  templateUrl: './invoice-generation.component.html',
+  styleUrls: ['./invoice-generation.component.css']
 })
-export class DeveloperInvoiceGenerationComponent implements OnInit{
+export class InvoiceGenerationComponent implements OnInit{
   
   meterList : any;
   loading : boolean = false;
@@ -19,15 +22,28 @@ export class DeveloperInvoiceGenerationComponent implements OnInit{
   invoice : any;
   invoices : any = [];
   data : any = {};
+  role : any;
 
   constructor(private meterService: MeterService, private readService: ReadService, private ngbModal : NgbModal){}
 
   ngOnInit(): void {
-    this.getMeters();
+    this.role = sessionStorage.getItem('role');
+    if(this.role === 'DEVELOPER'){
+      this.getMeters();
+    } else {
+      this.getAllMeter();
+    }
   }
 
   getMeters(){
     this.meterService.getMetersForInvoiceGeneration().subscribe({
+      next: (success: any) =>{ this.meterList = success; },
+      error: (error: any)=>{ console.log(error); }
+    })
+  }
+
+  getAllMeter(){
+    this.meterService.getAllMetersForInvoice().subscribe({
       next: (success: any) =>{ this.meterList = success; },
       error: (error: any)=>{ console.log(error); }
     })
@@ -53,6 +69,10 @@ export class DeveloperInvoiceGenerationComponent implements OnInit{
   }
 
   generateButtonClicked(investor : any, invoiceModal : any){
+    if(this.role !== 'DEVELOPER'){
+      alert("Only Developer can Bifurcate");
+      return;
+    }
     this.invoice = undefined;
     this.invoices = [];
     this.loading = true;

@@ -64,4 +64,20 @@ export class ThirdPartyService {
     return this.http.get("rebilling/statement/solar/meterNo/" + meterNo + "/monthYear/" + billMonth, options);
   }
 
+  generateSolarStatement(meterNo : string, billMonth : string, response : boolean = false){
+    let options : any = {responseType: 'json'};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("rebilling/statement/solar-generate-save/meterNo/" + meterNo + "/monthYear/" + billMonth, options);
+  }
+
+  downloadSolarStatement(meterNo : string, billMonth : string, response : boolean = false){
+    let options : any = {responseType: 'blob'};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("rebilling/statement/solar-download/meterNo/" + meterNo + "/monthYear/" + billMonth, options);
+  }
+
 }

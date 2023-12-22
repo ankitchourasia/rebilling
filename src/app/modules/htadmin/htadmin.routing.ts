@@ -28,6 +28,7 @@ import { MeterReplacementComponent } from 'src/app/components/meter-replacement/
 import { HTAdminAddInvestorMachineMappingComponent } from './htadmin-add-investor-machine-mapping/htadmin-add-investor-machine-mapping.component';
 import { HTAdminAddMeterFeederPlantMappingComponent } from './htadmin-add-meter-feeder-plant-mapping/htadmin-add-meter-feeder-plant-mapping.component';
 import { HTAdminCompleteMappingViewComponent } from './htadmin-complete-mapping-view/htadmin-complete-mapping-view.component';
+import { InvoiceGenerationComponent } from 'src/app/components/invoice-generation/invoice-generation.component';
 
 const htAdminRoutes: Routes = [
   {
@@ -143,6 +144,10 @@ const htAdminRoutes: Routes = [
       {
         path : 'complete-mapping-view',
         component : HTAdminCompleteMappingViewComponent
+      },
+      {
+        path : 'view-meter-invoice',
+        component : InvoiceGenerationComponent
       },
       {
         path: '', redirectTo: 'home', pathMatch: 'full'

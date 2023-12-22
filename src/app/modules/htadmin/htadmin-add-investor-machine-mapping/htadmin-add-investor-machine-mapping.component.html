@@ -15,7 +15,7 @@
             <label class="fw-bold">Plant</label>
             <select class="form-select" name="plantName" [(ngModel)]="plant" required>
                 <option disabled selected [ngValue]=undefined>Select</option>
-                <option *ngFor="let plant of plants" [ngValue]="plant">{{plant.plantName}}</option>
+                <option *ngFor="let plant of plants" [ngValue]="plant"> {{plant.plantCode}} - {{plant.plantName}}</option>
             </select>
         </div>
 
@@ -23,7 +23,7 @@
             <label class="fw-bold">Investor</label>
             <select class="form-select" name="investorName" [(ngModel)]="investor" required>
                 <option disabled selected [ngValue]=undefined>Select</option>
-                <option *ngFor="let investor of investors" [ngValue]="investor">{{investor.investorName}}</option>
+                <option *ngFor="let investor of investors" [ngValue]="investor">{{investor.investorCode}} - {{investor.investorName}}</option>
             </select>
         </div>
 
@@ -33,7 +33,7 @@
             </button>
             <ul class="dropdown-menu">
                 <li class="dropdown-item dropdown-element" name="1" *ngFor="let machine of machines">
-                    <input type="checkbox" name="mach" [(ngModel)]="machine.checked">{{machine.machineName}}
+                    <input type="checkbox" name="mach" [(ngModel)]="machine.checked">{{machine.machineCode}} - {{machine.machineName}}
                 </li>
             </ul>
           </div>

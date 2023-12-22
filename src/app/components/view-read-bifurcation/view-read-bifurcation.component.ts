@@ -93,4 +93,39 @@ export class ViewReadBifurcationComponent implements OnInit{
     }})
   }
 
+//   print(id : string){
+//     let dataType = 'data:application/vnd.ms-excel';
+//     let fileName =  `consumption_report_${this.meterNo}_${this.billMonth}`;
+//     let htmltable = document.getElementById(id); 
+//     if(htmltable){
+//       let tableHTML = htmltable.outerHTML;
+//       // GlobalResourcesService.downloadExcelByBlob(tableHTML, dataType, fileName, 'xls');
+//       let doc = new jsPDF('p', 'pt', 'a4');
+      
+//       doc.save('output.pdf');
+//     }
+
+    
+//     var doc = new jsPDF();
+//     var source = window.document.getElementsByTagName("body")[0];
+//     doc.fromHTML(
+//         source,
+//         15,
+//         15,
+//         {
+//           'width': 180,'elementHandlers': elementHandler
+//         });
+    
+//     doc.output("dataurlnewwindow");
+//     }
+
+  print(id : string){
+    let print = document.getElementById(id);
+    let newWin = window.open("");
+    if(newWin && print){
+      newWin.document.write(print.outerHTML);
+      newWin.print();
+      newWin.close();
+    }
+  }
 }

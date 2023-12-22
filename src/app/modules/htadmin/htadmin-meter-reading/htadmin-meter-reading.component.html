@@ -12,17 +12,23 @@
         </div>
         <div>
             <label class="fw-bold">Meter No</label>
-            <select class="form-select" name="meterNo" [(ngModel)]="meter" required>
+            <!-- <select class="form-select" name="meterNo" [(ngModel)]="meter" required>
                 <option disabled selected [ngValue]="undefined">Select</option>
                 <option *ngFor="let meter of meters" [ngValue]="meter">{{meter.meterNumber}}</option>
-            </select>
+            </select> -->
+            <input type="search" class="form-control" #mtrNo="ngModel" [ngClass]="{'is-invalid': mtrNo.errors && (mtrNo.dirty || mtrNo.touched)}" autocomplete="off"
+                list="datalistOptions" id="meterNo" placeholder="Type to search..." name="meterNo" [(ngModel)]="meterNo" required>
+            <datalist id="datalistOptions">
+                <option disabled selected [ngValue]=undefined>Select</option>
+                <option *ngFor="let meter of meters" [value]="meter.meterNumber"></option>
+            </datalist>
         </div>
         <div>
             <label class="fw-bold">Bill Month</label>
             <input type="month" class="form-control" name="billMonth" [(ngModel)]="billMonth" required>
         </div>
         <div>
-            <button type="button" class="btn btn-success" (click)="searchClicked(meter)" [disabled]="searchForm.invalid">Search</button>
+            <button type="button" class="btn btn-success" (click)="searchClicked()" [disabled]="searchForm.invalid">Search</button>
         </div>
     </fieldset>
     <form class="card-body" #f="ngForm" *ngIf="!loading && previousReading">

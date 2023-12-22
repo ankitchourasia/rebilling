@@ -41,7 +41,7 @@
             <td>{{read.investorName}}-{{read.investorCode}}</td>
             <td>{{read.plantName}}-{{read.plantCode}}</td>
             <td>
-                {{read.meterNumber}}
+                {{read.meterNumber}}<br>
                 <button type="button" class="badge bg-primary" (click)="viewBifurcationClicked(bifucationModal)">View Bifurcation</button>
             </td>
             <td>{{read.bifurcateTotalKwhConsumption}}</td>
@@ -52,7 +52,7 @@
             <td>{{read.invoiceStage}}</td>
             <td>
                 <div>
-                    <button class="btn btn-sm btn-success" (click)="viewButtonClicked(read, invoiceModal)">View</button>
+                    <button class="btn btn-sm btn-success" (click)="viewButtonClicked(read, invoiceModal)" *ngIf="read.invoiceStage !== 'pending'">View</button>
                 </div>
             </td>
         </tr>

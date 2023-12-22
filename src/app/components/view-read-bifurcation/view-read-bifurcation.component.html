@@ -1,113 +1,127 @@
 <div class="card pb-0">
-<div class="card-header bg-dark text-white text-center">View Bifurcation</div>
-<form class="card-body" #f="ngForm" *ngIf="!meterNo && !billMonth">
-    <div class="d-flex justify-content-around align-items-end">
-        <div>
-            <label class="fw-bold">Meter</label>
-            <select [ngClass]="{'is-invalid': meter.errors && (meter.dirty || meter.touched)}"
-                class="form-select" name="meter" ngModel="undefined" #meter="ngModel" required>
-                <option disabled selected value="undefined">Select</option>
-                <option *ngFor="let meter of meterList" [ngValue]="meter.meterNumber">{{meter.meterNumber}} | {{meter.meterCategory}}</option>
-            </select>
+    <div class="card-header bg-dark text-white text-center">View Bifurcation</div>
+    <form class="card-body" #f="ngForm" *ngIf="!meterNo && !billMonth">
+        <div class="d-flex justify-content-around align-items-end">
+            <div>
+                <label class="fw-bold">Meter</label>
+                <!-- <select [ngClass]="{'is-invalid': meter.errors && (meter.dirty || meter.touched)}" class="form-select"
+                    name="meter" ngModel="undefined" #meter="ngModel" required>
+                    <option disabled selected value="undefined">Select</option>
+                    <option *ngFor="let meter of meterList" [ngValue]="meter.meterNumber">{{meter.meterNumber}} |
+                        {{meter.meterCategory}}</option>
+                </select> -->
+                <input class="form-control" #meter="ngModel" [ngClass]="{'is-invalid': meter.errors && (meter.dirty || meter.touched)}" autocomplete="off"
+                    list="datalistOptions" id="meter" placeholder="Type to search..." name="meter" ngModel required>
+                <datalist id="datalistOptions">
+                    <option disabled selected [ngValue]=undefined>Select</option>
+                    <option *ngFor="let meter of meterList" [value]="meter.meterNumber">{{meter.meterCategory}}</option>
+                </datalist>
+            </div>
+            <div>
+                <label class="fw-bold">Month</label>
+                <input [ngClass]="{'is-invalid': month.errors && (month.dirty || month.touched)}" type="month"
+                    class="form-control" name="month" ngModel #month="ngModel" required>
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="onSubmit(f)"
+                    [disabled]="f.form.invalid || f.form.disabled || loading">Search</button>
+            </div>
         </div>
-        <div>
-            <label class="fw-bold">Month</label>
-            <input [ngClass]="{'is-invalid': month.errors && (month.dirty || month.touched)}"
-                type="month" class="form-control" name="month" ngModel #month="ngModel" required >
-        </div>
-        <div>
-            <button class="btn btn-primary" (click)="onSubmit(f)" [disabled]="f.form.invalid || f.form.disabled || loading">Search</button>
-        </div>
+    </form>
+    <div id="viewBifurcation" *ngIf="consumption">
+        <div class="text-center"><h3>Bifurcation View</h3></div>
+        <table class="table text-center m-0" id="bifurcationTable"  border="1" style="border-collapse:collapse">
+            <tr>
+                <td colspan="2">Developer No.</td>
+                <td colspan="2">{{consumption.hdevId}}</td>
+                <td colspan="2">Developer Name</td>
+                <td colspan="2">{{consumption.hdevName}}</td>
+                <td colspan="2">Meter No.</td>
+                <td colspan="2">{{consumption.hmeterNumber}}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Category</td>
+                <td colspan="2">{{consumption.hcategory}}</td>
+                <td colspan="2">MF</td>
+                <td colspan="2">{{consumption.hmf}}</td>
+                <td colspan="2">Max Demand</td>
+                <td colspan="2">{{consumption.hmaxDemand}}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Reading Date</td>
+                <td colspan="2">{{consumption.hReadingDate}}</td>
+                <td colspan="2">KWH Export</td>
+                <td colspan="2">{{consumption.hconsumptionKwh}}</td>
+                <td colspan="2">RKVAH Consumed</td>
+                <td colspan="2">
+                    {{consumption.hrkvah}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">Total Adjustment</td>
+                <td colspan="2">{{consumption.hadjustment}}</td>
+                <td colspan="2">Total Assessment</td>
+                <td colspan="2">{{consumption.hassessment}}</td>
+                <td colspan="2">Grand KWH Export <br>(KWH Export - Total Adjustment)</td>
+                <td colspan="2">{{consumption.hgrandConsumptionKwh}}</td>
+            </tr>
+        <!-- </table> -->
+        <!-- <table class="table text-center" *ngIf="consumption" border="1" style="border-collapse:collapse"> -->
+            <tr class="text-center">
+                <th colspan="12">Generation Details</th>
+            </tr>
+            <tr>
+                <th>S.No.</th>
+                <th>Investor No. & Name</th>
+                <th>Capacity (MW)</th>
+                <th>Active Rate</th>
+                <th>Developer KWH Export</th>
+                <th>Fixed Adjustment</th>
+                <th>KWH Export</th>
+                <th>RKVAH Consumed</th>
+                <th>Assessment</th>
+                <th>Adjustment Units</th>
+                <th>Adjustment</th>
+                <th>Total Consumption</th>
+            </tr>
+            <tr *ngFor="let read of consumption?.bifurcateInvestorDtoList; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{read.linvestorCode}} - {{read.linvestorName}}</td>
+                <td>{{read.lmachineCapacity}}</td>
+                <td>{{read.lmachineActiveRate}}</td>
+                <td>{{read.ldevConsumptionKwh}}</td>
+                <td>{{read.lfixedAdjustmentPer}}</td>
+                <td>
+                    {{read.lconsumptionKwh}}
+                </td>
+                <td>{{read.lrkvah}}</td>
+                <td>
+                    {{read.lassessment}}
+                </td>
+                <td>{{read.ladjustmentUnit}}
+                </td>
+                <td>{{read.ladjustment}}</td>
+                <td>{{read.lconsumptionTotal}}</td>
+            </tr>
+            <tr>
+                <td>Total KWH Export</td>
+                <td colspan="2">{{consumption?.fsumConsumptionKwh}}</td>
+                <td>Total Fixed Adjustment</td>
+                <td colspan="2">{{consumption?.fsumFixedAdjustmentValue}}</td>
+                <td>Total Assessment</td>
+                <td colspan="2">{{consumption?.fsumAssessment}}</td>
+                <td>Total Adjustment</td>
+                <td colspan="2">{{consumption?.fsumAdjustment}}</td>
+            </tr>
+            <tr>
+                <td colspan="3"> Grand Total (KWH Export + Ass - Adj)</td>
+                <td colspan="3">{{consumption?.fgrandConsumptionKwh}}</td>
+                <td colspan="3">Unallocated (KWH Export)</td>
+                <td colspan="3">{{consumption?.funallocatedConsumptionKwh}}</td>
+            </tr>
+        </table>
     </div>
-</form>
-<table class="table text-left m-0" id="bifurcationTable" *ngIf="consumption">
-    <tr>
-        <td>Developer No.</td>
-        <td>{{consumption.hdevId}}</td>
-        <td>Developer Name</td>
-        <td>{{consumption.hdevName}}</td>
-        <td>Meter No.</td>
-        <td>{{consumption.hmeterNumber}}</td>
-    </tr>
-    <tr>
-        <td>Category</td>
-        <td>{{consumption.hcategory}}</td>
-        <td>MF</td>
-        <td>{{consumption.hmf}}</td>
-        <td>Max Demand</td>
-        <td>{{consumption.hmaxDemand}}</td>
-    </tr>
-    <tr>
-        <td>Reading Date</td>
-        <td>{{consumption.hReadingDate}}</td>
-        <td>KWH Export</td>
-        <td>{{consumption.hconsumptionKwh}}</td>
-        <td>RKVAH Consumed</td>
-        <td>
-            {{consumption.hrkvah}}
-        </td>
-    </tr>
-    <tr>
-        <td>Total Adjustment</td>
-        <td>{{consumption.hadjustment}}</td>
-        <td>Total Assessment</td>
-        <td>{{consumption.hassessment}}</td>
-        <td>Grand KWH Export <br>(KWH Export - Total Adjustment)</td>
-        <td>{{consumption.hgrandConsumptionKwh}}</td>
-    </tr>
-</table>
-<table class="table text-center" *ngIf="consumption">
-    <tr>
-        <th colspan="12">Generation Details</th>
-    </tr>
-    <tr>
-        <th>S.No.</th>
-        <th>Investor No. & Name</th>
-        <th>Capacity (MW)</th>
-        <th>Active Rate</th>
-        <th>Developer KWH Export</th>
-        <th>Fixed Adjustment</th>
-        <th>KWH Export</th>
-        <th>RKVAH Consumed</th>
-        <th>Assessment</th>
-        <th>Adjustment Units</th>
-        <th>Adjustment</th>
-        <th>Total Consumption</th>
-    </tr>
-    <tr *ngFor="let read of consumption?.bifurcateInvestorDtoList; let i = index">
-        <td>{{i+1}}</td>
-        <td>{{read.linvestorCode}} - {{read.linvestorName}}</td>
-        <td>{{read.lmachineCapacity}}</td>
-        <td>{{read.lmachineActiveRate}}</td>
-        <td>{{read.ldevConsumptionKwh}}</td>
-        <td>{{read.lfixedAdjustmentPer}}</td>
-        <td>
-            {{read.lconsumptionKwh}}
-        </td>
-        <td>{{read.lrkvah}}</td>
-        <td>
-            {{read.lassessment}}
-        </td>
-        <td>{{read.ladjustmentUnit}}
-        </td>
-        <td>{{read.ladjustment}}</td>
-        <td>{{read.lconsumptionTotal}}</td>
-    </tr>
-    <tr>
-        <td>Total KWH Export</td>
-        <td colspan="2">{{consumption?.fsumConsumptionKwh}}</td>
-        <td>Total Fixed Adjustment</td>
-        <td colspan="2">{{consumption?.fsumFixedAdjustmentValue}}</td>
-        <td>Total Assessment</td>
-        <td colspan="2">{{consumption?.fsumAssessment}}</td>
-        <td>Total Adjustment</td>
-        <td colspan="2">{{consumption?.fsumAdjustment}}</td>
-    </tr>
-    <tr>
-        <td colspan="3"> Grand Total (KWH Export + Ass - Adj)</td>
-        <td colspan="3">{{consumption?.fgrandConsumptionKwh}}</td>
-        <td colspan="3">Unallocated (KWH Export)</td>
-        <td colspan="3">{{consumption?.funallocatedConsumptionKwh}}</td>
-    </tr>
-</table>
+    <div class="d-flex justify-content-around m-2" *ngIf="consumption">
+        <button class="btn btn-sm btn-secondary" (click)="print('viewBifurcation')">Print</button>
+    </div>
 </div>

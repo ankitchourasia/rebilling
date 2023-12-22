@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="col-3 mx-3">
-                <label class="fw-bold">Injecting SS Name</label>
+                <label class="fw-bold">Injecting S/S Name</label>
                 <input type="text" class="form-control" [(ngModel)]="feeder.injectingSsName" name="ssName" #ssName="ngModel" required
                 [ngClass]="{'is-invalid': ssName.errors && (ssName.dirty || ssName.touched)}">
                 <div class="invalid-feedback" *ngIf="ssName.errors && (ssName.dirty || ssName.touched)">
@@ -31,7 +31,7 @@
             </div>
 
             <div class="col-3 mx-3">
-                <label class="fw-bold">Injecting SS Code</label>
+                <label class="fw-bold">Injecting S/S Code</label>
                 <input type="text" class="form-control" [(ngModel)]="feeder.injectingSsCode" name="ssCode" #ssCode="ngModel" required
                 [ngClass]="{'is-invalid': ssCode.errors && (ssCode.dirty || ssCode.touched)}">
                 <div class="invalid-feedback" *ngIf="ssCode.errors && (ssCode.dirty || ssCode.touched)">

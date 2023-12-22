@@ -233,7 +233,7 @@
                                     <td class="fw-bold small">Investor Name : </td>
                                     <td colspan="3">{{investor.investorMasterBean.investorName}}</td>
                                     <td class="fw-bold small">Investor Code : </td>
-                                    <td>{{investor.investorMasterBean.investorName}}</td>
+                                    <td>{{investor.investorMasterBean.investorCode}}</td>
                                     <td class="fw-bold small">Buyer : </td>
                                     <td>{{investor.investorMasterBean.buyer}}</td>
                                     <!-- <td class="fw-bold small">GST No : </td>
@@ -280,23 +280,23 @@
                                     <td colspan="8" class="bg-secondary text-white">Machines of {{investor.investorMasterBean.investorName}}</td>
                                 </tr>
                                 <tr>
-                                    <td>SNo</td>
-                                    <td>Name</td>
-                                    <td>Code</td>
-                                    <td>Capacity</td>
-                                    <td>Active Rate</td>
-                                    <td>Reactive Rate</td>
-                                    <td>Commissioned Date</td>
-                                    <td>Status</td>
+                                    <th>SNo</th>
+                                    <th>Name</th>
+                                    <th>Code</th>
+                                    <th>Capacity</th>
+                                    <th>Active Rate</th>
+                                    <th>Reactive Rate</th>
+                                    <th>Commissioned Date</th>
+                                    <th>Status</th>
                                 </tr>
                                 <ng-container *ngFor="let machine of investor.machineMasterBeanList; let i = index">
                                     <tr>
                                         <td>{{i + 1}}</td>
                                         <td>{{machine.machineName}}</td>
                                         <td>{{machine.machineCode}}</td>
-                                        <td>{{machine.machineName}}</td>
-                                        <td>{{machine.machineCode}}</td>
-                                        <td>{{machine.machineName}}</td>
+                                        <td>{{machine.capacity}}</td>
+                                        <td>{{machine.activeRate}}</td>
+                                        <td>{{machine.reactiveRate}}</td>
                                         <td>{{machine.commissionedDate}}</td>
                                         <td>{{machine.status}}</td>
                                     </tr>
