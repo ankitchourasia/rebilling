@@ -2,13 +2,31 @@
     <div class="container-fluid d-flex fles-direction-between text-white">
         <a href="javascript:void(0)" class="navbar-brand" (click)="homeClicked()">RE Generator Billing</a>
         <div>
-            <span class="me-2">Welcome : {{user}}</span>
+            <!-- <span class="me-2">Welcome : {{user}}</span> -->
             <button class="badge bg-secondary me-2" disabled>
                 Session : <app-session-timer></app-session-timer>
             </button>
-            <button class="badge bg-danger" type="button" (click)="logoutClicked()">
+            <!-- <i class="bi bi-person-gear"></i> -->
+            <!-- <button class="badge bg-danger" type="button" (click)="logoutClicked()">
                 logout
-            </button>
+            </button> -->
+            <div class="btn-group">
+                <button class="badge dropdown-toggle bg-danger" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-gear"></i> {{user}}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="resetPassword()">
+                            <i class="bi bi-gear-fill"></i> Reset password
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="logoutClicked()">
+                            <i class="bi bi-box-arrow-right"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>

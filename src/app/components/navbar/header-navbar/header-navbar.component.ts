@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ResetPasswordComponent } from '../../reset-password/reset-password.component';
 
 @Component({
   selector: 'app-header-navbar',
@@ -8,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderNavbarComponent implements OnInit{
   
-  constructor(private router : Router){
+  constructor(private router : Router, private modal : NgbModal){
   }
   
   user : any;
@@ -34,6 +36,10 @@ export class HeaderNavbarComponent implements OnInit{
     } else if(role === "CIRCLE"){
       this.router.navigate(['/circle/home']);
     }
+  }
+
+  resetPassword(){
+    this.modal.open(ResetPasswordComponent, {keyboard : false, backdrop: 'static', centered : false, size : 'sm'})
   }
 
 }
