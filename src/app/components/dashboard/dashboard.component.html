@@ -1,0 +1,58 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Notification
+    </div>
+    <div class="card-body">
+        <div class="row mb-5">
+            <div class="col-md-3">
+                <select name="type" class="form-control" [(ngModel)]="type">
+                    <option>ALL</option>
+                    <option>UNREAD</option>
+                </select>
+            </div>
+            <ng-container *ngIf="type === 'ALL'">
+                <div class="col-md-3">
+                    <input type="date" class="form-control" name="startDate" [(ngModel)]="startDate"> 
+                </div>
+                <div class="col-md-3">
+                    <input type="date" class="form-control" name="endDate" [(ngModel)]="endDate">
+                </div>
+            </ng-container>
+            <div class="col-md-3">
+                <button class="btn btn-primary" (click)="searchButtonClicked()" [disabled]="type == 'ALL' && (!startDate || !endDate)">Search</button>
+            </div>
+        </div>
+        <div>
+            <table class="table table-striped text-center">
+                <thead>
+                    <tr class="bg-dark text-white">
+                        <td>SNO</td>
+                        <td>SENDER</td>
+                        <td>MESSAGE CATEGORY</td>
+                        <td>REMARK</td>
+                        <td>STATUS</td>
+                        <td>MESSAGE SENT TIME</td>
+                        <td>MESSAGE</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of notifications; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{data.sender}}</td>
+                        <td>{{data.msgCategory}}</td>
+                        <td>{{data.remark ? data.remark : 'NA'}}</td>
+                        <td>{{data.msgStatus}}</td>
+                        <td>{{data.sendOn  | date : "dd-MMM-yyyy"}}</td>
+                        <td *ngIf="data.msgStatus === 'unread' && !data.read">
+                            <a href="javascript:void(0)" (click)="readMessageClicked(data)">Read Message</a>
+                        </td>
+                        <td *ngIf="data.read || data.msgStatus === 'read'">{{data.msg}}</td>
+                    </tr>
+                    <tr *ngIf="!notifications || notifications.length < 1">
+                        <td colspan="7">No Records Found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

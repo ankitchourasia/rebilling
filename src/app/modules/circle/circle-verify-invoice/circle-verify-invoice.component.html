@@ -58,8 +58,8 @@
         </tr>
     </table>
     <div class="d-flex justify-content-center mb-1">
-        <button class="btn btn-warning me-2" *ngIf="viewApprovalButtons()" (click)="rejectClicked()" [disabled]="loading">Reject</button>
-        <button class="btn btn-success" *ngIf="viewApprovalButtons()" (click)="approveClicked()" [disabled]="loading">Approve</button>
+        <button class="btn btn-warning me-2" *ngIf="viewApprovalButtons()" (click)="rejectClicked(remarkModal)" [disabled]="loading">Reject</button>
+        <button class="btn btn-success" *ngIf="viewApprovalButtons()" (click)="approveClicked(remarkModal)" [disabled]="loading">Approve</button>
     </div>
 </div>
 
@@ -231,6 +231,24 @@
         </div> -->
         <div class="modal-body table-responsive">
             <app-view-read-bifurcation [meter-no]="data.meterNo" [bill-month]="data.billMonth"></app-view-read-bifurcation>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="closeButton" (click)="modal.close()">Close</button>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #remarkModal let-modal>
+    <div class="modal-content">
+        <div class="modal-body table-responsive d-flex justify-content-around">
+            <div>
+                <label>Remark</label>
+                <input type="text-area" class="form-control" name="remark" [(ngModel)]="remark" rows="3" required>
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="finalSubmit()" [disabled]="loading">Submit</button>
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" id="closeButton" (click)="modal.close()">Close</button>

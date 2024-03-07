@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -201,16 +201,24 @@ export class ReadService {
     return this.http.post("/rebilling/invoice/submit", readings, options);
   }
 
-  approveClicked(readings : any, response : boolean = false){
-    let options : any = {};
+  approveClicked(remark : string, readings : any, response : boolean = false){
+    let httpParams = new HttpParams();
+    httpParams = httpParams.append("remark", remark);
+    let options : any = {
+      params : httpParams
+    };
     if(response){
       options["observe"] = "response";
     }
     return this.http.post("/rebilling/invoice/approve", readings, options);
   }
 
-  rejectClicked(readings : any, response : boolean = false){
-    let options : any = {};
+  rejectClicked(remark : string,readings : any, response : boolean = false){
+    let httpParams = new HttpParams();
+    httpParams = httpParams.append("remark", remark);
+    let options : any = {
+      params : httpParams
+    };
     if(response){
       options["observe"] = "response";
     }
@@ -255,6 +263,15 @@ export class ReadService {
       options["observe"] = "response";
     }
     return this.http.post("/rebilling/meter/replace", readings, options);
+  }
+
+  getAbsentRead(billMonth : string, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.get("/rebilling/report/absent-present/monthYear/" + billMonth, options);
+    
   }
 
 }

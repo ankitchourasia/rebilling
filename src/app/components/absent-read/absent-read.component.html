@@ -1,0 +1,38 @@
+<div class="card rounded-0">
+    <div class="card-header bg-secondary text-white text-center">
+        Absent Reading
+    </div>
+    <div class="d-flex justify-content-center align-items-end mb-3">
+        <div>
+            <label class="fw-bold">Bill Month</label>
+            <input type="month" class="form-control" id="billMonth" name="billMonth" [(ngModel)]="billMonth" required>
+        </div>
+        <div>
+            <button class="btn btn-primary ms-3" type="button" [disabled]="loading" (click)="searchButtonClicked()">
+                Search
+            </button>
+        </div>
+        
+    </div>
+    <div>
+        <table class="table table-sm table-responsive text-center" id="readTable">
+            <tr class="text-center bg-secondary bg-opacity-25">
+                <th>SNo</th>
+                <th>Meter No</th>
+                <th>Category</th>
+                <th>Reading Date</th>
+                <th>Availability</th>
+            </tr>
+            <tr *ngFor="let read of readings; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{read.meterNo}}</td>
+                <td>{{read.category}}</td>
+                <td>{{read.readingDate}}</td>
+                <td>{{read.availability}}</td>
+            </tr>
+            <tr *ngIf="!readings || readings.length < 1">
+                <td colspan="8">No records found.</td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,14 +1,17 @@
-import { formatDate } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ReadService } from 'src/app/services/read-service';
 import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
-  selector: 'app-htadmin-read-view',
-  templateUrl: './htadmin-read-view.component.html',
-  styleUrls: ['./htadmin-read-view.component.css']
+  standalone: true,
+  selector: 'app-consumption-5percent-view',
+  imports: [CommonModule, FormsModule],
+  templateUrl: './consumption-5percent-view.component.html',
+  styleUrls: ['./consumption-5percent-view.component.css']
 })
-export class HTAdminReadViewComponent implements OnInit {
+export class Consumption5PercentViewComponent implements OnInit {
 
   loading : boolean = false;
   type : string = "";

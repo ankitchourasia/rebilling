@@ -8,6 +8,7 @@ import { CircleVerifyInvoiceComponent } from './circle-verify-invoice/circle-ver
 import { NavbarModule } from 'src/app/components/navbar/navbar.module';
 import { FormsModule } from '@angular/forms';
 import { ViewReadBifurcationComponent } from "../../components/view-read-bifurcation/view-read-bifurcation.component";
+import { DashboardComponent } from 'src/app/components/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ViewReadBifurcationComponent } from "../../components/view-read-bifurca
         CircleRoutingModule,
         NavbarModule,
         FormsModule,
-        ViewReadBifurcationComponent
+        ViewReadBifurcationComponent,
+        DashboardComponent
     ]
 })
 export class CircleModule { }

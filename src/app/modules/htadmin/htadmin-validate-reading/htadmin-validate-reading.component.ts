@@ -13,7 +13,6 @@ export class HTAdminValidateReadingComponent implements OnInit{
   loading : boolean = false;
   billMonth : any;
   readings : any;
-  checked : boolean =  false;
   constructor(private readService : ReadService){
 
   }
@@ -21,6 +20,7 @@ export class HTAdminValidateReadingComponent implements OnInit{
   }
 
   searchButtonClicked(){
+    this.checkAll = false;
     let month = formatDate(this.billMonth, "MMM-yyyy", "en-IN");
     this.getAMRAcceptedReadByBillMonth(month);
   }

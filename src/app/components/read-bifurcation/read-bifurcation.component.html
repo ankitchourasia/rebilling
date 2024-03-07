@@ -49,7 +49,7 @@
             <th>Fixed Adjustment</th>
             <th>KWH Export</th>
             <th>RKVAH Consumed</th>
-            <th>Assessment</th>
+            <!-- <th>Assessment</th> -->
             <th>Adjustment Units</th>
             <th>Adjustment</th>
             <th>Total Consumption</th>
@@ -62,7 +62,7 @@
             <td>{{read.ldevConsumptionKwh}}</td>
             <td>{{read.lfixedAdjustmentPer}}</td>
             <td>
-                <input type="Number" class="form-control" name="consumption{{read.lconsumptionKwh}}" [(ngModel)]="read.lconsumptionKwh" (change)="calculateTotalConsumption(read)"
+                <input type="Number" class="form-control" name="consumption{{i}}" [(ngModel)]="read.lconsumptionKwh" (change)="calculateTotalConsumption(read)"
                 [ngClass]="{'is-invalid': consumption.errors && (consumption.dirty || consumption.touched)}" #consumption="ngModel" [min]="0" required="true">
                 <div class="invalid-feedback p-0" *ngIf="consumption.errors && (consumption.dirty || consumption.touched)">
                     <div [hidden]="!consumption.errors['required']">required field</div>
@@ -70,15 +70,15 @@
                 </div>
             </td>
             <td>{{read.lrkvah}}</td>
-            <td>
+            <!-- <td>
                 <input type="Number" class="form-control" name="assessment{{read.lassessment}}" [(ngModel)]="read.lassessment" (change)="calculateTotalConsumption(read)"
                 [ngClass]="{'is-invalid': assessment.errors && (assessment.dirty || assessment.touched)}" #assessment="ngModel" [min]="0" required="true">
                 <div class="invalid-feedback p-0" *ngIf="assessment.errors && (assessment.dirty || assessment.touched)">
                     <div [hidden]="!assessment.errors['required']">required field</div>
                     <div [hidden]="!assessment.errors['min'] || assessment.errors['required']">can't be negetive</div>
                 </div>
-            </td>
-            <td><input type="Number" class="form-control" name="adjustmentUnits{{read.ladjustmentUnit}}" [(ngModel)]="read.ladjustmentUnit" (change)="adjustmentChanged(read)"
+            </td> -->
+            <td><input type="Number" class="form-control" name="adjustmentUnits{{i}}" [(ngModel)]="read.ladjustmentUnit" (change)="adjustmentChanged(read)"
                 [ngClass]="{'is-invalid': adjustment.errors && (adjustment.dirty || adjustment.touched)}" #adjustment="ngModel" [min]="0" required="true">
                 <div class="invalid-feedback p-0" *ngIf="adjustment.errors && (adjustment.dirty || adjustment.touched)">
                     <div [hidden]="!adjustment.errors['required']">required</div>
@@ -89,24 +89,23 @@
             <td>{{read.lconsumptionTotal}}</td>
         </tr>
         <tr>
-            <td>Total KWH Export</td>
-            <td colspan="2">{{consumption?.fsumConsumptionKwh}}</td>
-            <td>Total Fixed Adjustment</td>
-            <td colspan="2">{{consumption?.fsumFixedAdjustmentValue}}</td>
-            <td>Total Assessment</td>
-            <td colspan="2">{{consumption?.fsumAssessment}}</td>
-            <td>Total Adjustment</td>
-            <td colspan="2">{{consumption?.fsumAdjustment}}</td>
+            <th colspan="5">Total</th>
+            <th>{{consumption?.fsumFixedAdjustmentValue}}</th>
+            <th>{{consumption?.fsumConsumptionKwh}}</th>
+            <!-- <th>{{consumption?.fsumAssessment}}</th> -->
+            <th colspan="2"></th>
+            <th>{{consumption?.fsumAdjustment}}</th>
+            <th>{{consumption?.fgrandConsumptionKwh}}</th>
         </tr>
         <tr>
-            <td colspan="3"> Grand Total (KWH Export + Ass - Adj)</td>
-            <td colspan="3">{{consumption?.fgrandConsumptionKwh}}</td>
-            <td colspan="3">Unallocated (KWH Export)</td>
-            <td colspan="3">{{consumption?.funallocatedConsumptionKwh}}</td>
+            <!-- <td colspan="3"> Grand Total (KWH Export + Ass - Adj)</td>
+            <td colspan="3">{{consumption?.fgrandConsumptionKwh}}</td> -->
+            <th colspan="5">Unallocated (KWH Export)</th>
+            <th colspan="6">{{consumption?.funallocatedConsumptionKwh}}</th>
         </tr>
     </table>
     <div class="d-flex justify-content-center mb-2">
-        <button class="btn btn-success me-3" (click)="submitClicked()" [disabled]="consumption?.fgrandConsumptionKwh !== consumption?.hgrandConsumptionKwh || (consumption?.fgrandConsumptionKwh === consumption?.hgrandConsumptionKwh && loading) || loading">Submit</button>
+        <button class="btn btn-success me-3" (click)="submitClicked()" [disabled]="this.consumption.funallocatedConsumptionKwh !== 0 || loading">Submit</button>
         <button type="reset" class="btn btn-danger">Reset</button>
     </div>
 </form>

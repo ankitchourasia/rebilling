@@ -17,6 +17,7 @@ export class CircleVerifyInvoiceComponent {
   invoice : any;
   invoices : any;
   data : any = {};
+  remark : string = "";
 
   constructor(private meterService: MeterService, private readService: ReadService, private ngbModal : NgbModal){}
 
@@ -63,34 +64,24 @@ export class CircleVerifyInvoiceComponent {
     this.ngbModal.open(invoiceModal, {size : 'xl'});
   }
 
-  rejectClicked(){
+  rejectClicked(remarkModal : any){
+    this.approveButtonClicked = false;
+    this.rejectButtonClicked = true;
     let confirmAlertResponse : any = confirm("All Invoices and Bifurcation will be deleted, Do you want to reject invoices ?");
     if (confirmAlertResponse) {
-      this.loading = true;
-      this.readService.rejectClicked(this.readings).subscribe({next : success =>{
-        this.loading = false;
-        alert("invoice rejected successfully");
-        this.readings = undefined;
-      }, error : error =>{
-        this.loading = false;
-        GlobalResourcesService.errorMessageHandeler(error);
-      }})
+      this.ngbModal.open(this.ngbModal.open(remarkModal));
     }
     
   }
 
-  approveClicked(){
+  rejectButtonClicked : boolean = false;
+  approveButtonClicked : boolean = false;
+  approveClicked(remarkModal : any){
+    this.approveButtonClicked = true;
+    this.rejectButtonClicked = false;
     let confirmAlertResponse : any = confirm("All Invoices will be approved for payment, Do you want to approve invoices ?");
     if (confirmAlertResponse) {
-      this.loading = true;
-      this.readService.approveClicked(this.readings).subscribe({next : success =>{
-        this.loading = false;
-        alert("invoice approved successfully");
-        this.onSubmit();
-      }, error : error =>{
-        this.loading = false;
-        GlobalResourcesService.errorMessageHandeler(error);
-      }})
+      this.ngbModal.open(this.ngbModal.open(remarkModal));
     }
   }
 
@@ -108,5 +99,37 @@ export class CircleVerifyInvoiceComponent {
     newWin.document.write(print.outerHTML);
     newWin.print();
     newWin.close();
+  }
+
+  approveInvoice(){
+    this.loading = true;
+      this.readService.approveClicked(this.remark, this.readings).subscribe({next : success =>{
+        this.loading = false;
+        alert("invoice approved successfully");
+        this.onSubmit();
+      }, error : error =>{
+        this.loading = false;
+        GlobalResourcesService.errorMessageHandeler(error);
+      }})
+  }
+
+  rejectInvoice(){
+    this.loading = true;
+      this.readService.rejectClicked(this.remark, this.readings).subscribe({next : success =>{
+        this.loading = false;
+        alert("invoice rejected successfully");
+        this.readings = undefined;
+      }, error : error =>{
+        this.loading = false;
+        GlobalResourcesService.errorMessageHandeler(error);
+      }})
+  }
+
+  finalSubmit(){
+    if(this.approveButtonClicked){
+      this.approveInvoice();
+    } else if(this.rejectButtonClicked){
+      this.rejectInvoice();
+    }
   }
 }

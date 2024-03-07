@@ -10,6 +10,7 @@ import { DeveloperComponent } from './developer.component';
 import { DeveloperHomeComponent } from './developer-home/developer-home.component';
 import { DeveloperValidateReadingComponent } from './developer-validate-reading/developer-validate-reading.component';
 import { ViewReadBifurcationComponent } from "../../components/view-read-bifurcation/view-read-bifurcation.component";
+import { DashboardComponent } from 'src/app/components/dashboard/dashboard.component';
 
 
 
@@ -27,7 +28,8 @@ import { ViewReadBifurcationComponent } from "../../components/view-read-bifurca
         NavbarModule,
         FormsModule,
         NgbPaginationModule,
-        ViewReadBifurcationComponent
+        ViewReadBifurcationComponent,
+        DashboardComponent
     ]
 })
 export class DeveloperModule { }

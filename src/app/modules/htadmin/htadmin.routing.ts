@@ -14,9 +14,7 @@ import { HTAdminPlantAddComponent } from './htadmin-plant-add/htadmin-plant-add.
 import { HTAdminPlantViewComponent } from './htadmin-plant-view/htadmin-plant-view.component';
 import { HTAdminMachineAddComponent } from './htadmin-machine-add/htadmin-machine-add.component';
 import { HTAdminMachineViewComponent } from './htadmin-machine-view/htadmin-machine-view.component';
-import { HtadminMeterReadingComponent } from './htadmin-meter-reading/htadmin-meter-reading.component';
 import { HTAdminValidateReadingComponent } from './htadmin-validate-reading/htadmin-validate-reading.component';
-import { HTAdminReadViewComponent } from './htadmin-read-view/htadmin-read-view.component';
 import { ConsumptionReportComponent } from 'src/app/components/consumption-report/consumption-report.component';
 import { ViewReadBifurcationComponent } from 'src/app/components/view-read-bifurcation/view-read-bifurcation.component';
 import { ViewInvoiceComponent } from 'src/app/components/view-invoice/view-invoice.component';
@@ -29,6 +27,11 @@ import { HTAdminAddInvestorMachineMappingComponent } from './htadmin-add-investo
 import { HTAdminAddMeterFeederPlantMappingComponent } from './htadmin-add-meter-feeder-plant-mapping/htadmin-add-meter-feeder-plant-mapping.component';
 import { HTAdminCompleteMappingViewComponent } from './htadmin-complete-mapping-view/htadmin-complete-mapping-view.component';
 import { InvoiceGenerationComponent } from 'src/app/components/invoice-generation/invoice-generation.component';
+import { Consumption5PercentViewComponent } from 'src/app/components/htadmin-read-view/consumption-5percent-view.component';
+import { ReadHistoryComponent } from 'src/app/components/read-history/read-history.component';
+import { CompleteMappingViewComponent } from 'src/app/components/complete-mapping-view/complete-mapping-view.component';
+import { AbsentReadComponent } from 'src/app/components/absent-read/absent-read.component';
+import { MeterReadingComponent } from 'src/app/components/meter-reading/meter-reading.component';
 
 const htAdminRoutes: Routes = [
   {
@@ -88,7 +91,7 @@ const htAdminRoutes: Routes = [
       },
       {
         path: 'reading-add', 
-        component: HtadminMeterReadingComponent
+        component: MeterReadingComponent
       },
       {
         path: 'reading-validate', 
@@ -96,7 +99,7 @@ const htAdminRoutes: Routes = [
       },
       {
         path: 'reading-view', 
-        component: HTAdminReadViewComponent
+        component: Consumption5PercentViewComponent
       },
       {
         path: 'consumption-report', 
@@ -143,11 +146,19 @@ const htAdminRoutes: Routes = [
       },
       {
         path : 'complete-mapping-view',
-        component : HTAdminCompleteMappingViewComponent
+        component : CompleteMappingViewComponent
       },
       {
         path : 'view-meter-invoice',
         component : InvoiceGenerationComponent
+      },
+      {
+        path : 'read-history',
+        component : ReadHistoryComponent
+      },
+      {
+        path : 'absent-read',
+        component : AbsentReadComponent
       },
       {
         path: '', redirectTo: 'home', pathMatch: 'full'

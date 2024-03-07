@@ -20,9 +20,7 @@ import { HTAdminPlantAddComponent } from './htadmin-plant-add/htadmin-plant-add.
 import { NgbNavModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { HTAdminMachineViewComponent } from './htadmin-machine-view/htadmin-machine-view.component';
 import { HTAdminMachineAddComponent } from './htadmin-machine-add/htadmin-machine-add.component';
-import { HtadminMeterReadingComponent } from './htadmin-meter-reading/htadmin-meter-reading.component';
 import { HTAdminValidateReadingComponent } from './htadmin-validate-reading/htadmin-validate-reading.component';
-import { HTAdminReadViewComponent } from './htadmin-read-view/htadmin-read-view.component';
 import { HTAdminReadHistoryComponent } from './htadmin-read-history/htadmin-read-history.component';
 import { ReadHistoryComponent } from "../../components/read-history/read-history.component";
 import { ConsumptionReportComponent } from 'src/app/components/consumption-report/consumption-report.component';
@@ -54,9 +52,8 @@ const GlobalComponents = [ ConsumptionReportComponent, SearchFilterPipe, Downloa
         HTAdminPlantAddComponent,
         HTAdminMachineViewComponent,
         HTAdminMachineAddComponent,
-        HtadminMeterReadingComponent,
         HTAdminValidateReadingComponent,
-        HTAdminReadViewComponent,
+        // HTAdminReadViewComponent,
         HTAdminReadHistoryComponent,
         HtadminMeterStartReadPunchComponent,
         HTAdminThirdPartyAddComponent,

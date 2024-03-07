@@ -28,7 +28,7 @@ export class AmrcellReadFileUploadComponent implements OnInit{
       let formData : FormData = new FormData();
       console.log(this.selectedFile[i]);
       formData.append('xmlFile', this.selectedFile[i]);
-      this.readService.uploadFiles(formData).subscribe( {next: (success : any)=>{
+      await this.readService.uploadFiles(formData).subscribe( {next: (success : any)=>{
         this.loading = false;
         let a : any= {};
         a.fileName = this.selectedFile[i].name;

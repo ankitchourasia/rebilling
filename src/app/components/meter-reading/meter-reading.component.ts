@@ -1,17 +1,19 @@
-import { formatDate } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { LocationService } from 'src/app/services/location-service';
 import { MeterService } from 'src/app/services/meter-service';
 import { ReadService } from 'src/app/services/read-service';
 import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
 @Component({
-  selector: 'app-htadmin-meter-reading',
-  templateUrl: './htadmin-meter-reading.component.html',
-  styleUrls: ['./htadmin-meter-reading.component.css']
+  standalone: true,
+  selector: 'app-meter-reading',
+  imports: [CommonModule, FormsModule],
+  templateUrl: './meter-reading.component.html',
+  styleUrls: ['./meter-reading.component.css']
 })
-export class HtadminMeterReadingComponent implements OnInit{
+export class MeterReadingComponent implements OnInit{
   readonly categories = ["MAIN", "CHECK"];
   reading : any;
   loading : boolean = false;

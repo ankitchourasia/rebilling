@@ -211,7 +211,7 @@
     </table>
     <div class="d-flex  justify-content-center mb-2" *ngIf="reading">
         <button class="btn btn-primary me-2" *ngIf="!viewBifurcation && role === 'DEVELOPER'" (click)="bifurcateButtonClicked()">Bifurcate</button>
-        <button class="btn btn-secondary" (click)="print('readDetailsTable')">Export</button>
+        <button class="btn btn-secondary" *ngIf="reading && !viewBifurcation" (click)="print('readDetailsTable')">Export</button>
     </div>
 </div>
 

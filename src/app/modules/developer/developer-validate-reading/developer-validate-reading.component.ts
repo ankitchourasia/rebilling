@@ -21,6 +21,7 @@ export class DeveloperValidateReadingComponent implements OnInit{
   }
 
   searchButtonClicked(){
+    this.checkAll = false;
     let month = formatDate(this.billMonth, "MMM-yyyy", "en-IN");
     this.getReadingsToApprove(month);
   }

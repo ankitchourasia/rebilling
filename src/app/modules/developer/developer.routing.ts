@@ -6,6 +6,8 @@ import { DeveloperValidateReadingComponent } from './developer-validate-reading/
 import { ConsumptionReportComponent } from 'src/app/components/consumption-report/consumption-report.component';
 import { ViewReadBifurcationComponent } from 'src/app/components/view-read-bifurcation/view-read-bifurcation.component';
 import { InvoiceGenerationComponent } from 'src/app/components/invoice-generation/invoice-generation.component';
+import { CompleteMappingViewComponent } from 'src/app/components/complete-mapping-view/complete-mapping-view.component';
+import { DownloadSolarStatementComponent } from 'src/app/components/download-solar-statement/download-solar-statement.component';
 
 const developerRoutes: Routes = [
   {
@@ -34,6 +36,14 @@ const developerRoutes: Routes = [
       {
         path: 'view-bifurcation', 
         component: ViewReadBifurcationComponent
+      },
+      {
+        path: 'Complete-mapping-view', 
+        component: CompleteMappingViewComponent
+      },
+      {
+        path: 'download-solar-statement', 
+        component: DownloadSolarStatementComponent
       },
       {
         path: '', redirectTo: 'home', pathMatch: 'full'
