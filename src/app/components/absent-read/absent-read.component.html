@@ -22,6 +22,7 @@
                 <th>Category</th>
                 <th>Reading Date</th>
                 <th>Availability</th>
+                <th>Remark</th>
             </tr>
             <tr *ngFor="let read of readings; let i = index">
                 <td>{{i + 1}}</td>
@@ -29,9 +30,10 @@
                 <td>{{read.category}}</td>
                 <td>{{read.readingDate}}</td>
                 <td>{{read.availability}}</td>
+                <td>{{read.remark}}</td>
             </tr>
             <tr *ngIf="!readings || readings.length < 1">
-                <td colspan="8">No records found.</td>
+                <td colspan="6">No records found.</td>
             </tr>
         </table>
     </div>

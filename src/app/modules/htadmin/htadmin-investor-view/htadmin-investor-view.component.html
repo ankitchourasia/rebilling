@@ -4,6 +4,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
+        <input class="form-control mb-2" placeholder="Type here to search" type="text" ngModel #searchText="ngModel" (change)="searchChanged(searchText)">
         <table class="table table-bordered">
             <tr class="bg-dark text-white text-center">
                 <td>S.No</td>
@@ -38,7 +39,7 @@
                     </a>
                 </td>
             </tr>
-            <tr *ngIf="!investors || investors.length <= 0" class="text-center">
+            <tr *ngIf="!filteredData || filteredData.length <= 0" class="text-center">
                 <td colspan="12" *ngIf="!loading">No Investor Found</td>
                 <td colspan="12" *ngIf="loading">
                     <span class="spinner-border spinner-border-sm text-secondary"></span> Loading...
@@ -47,8 +48,8 @@
         </table>
     </div>
     
-    <ngb-pagination class="d-flex justify-content-around" *ngIf="pageSize < investors.length + 1"
-                [collectionSize]="investors.length"
+    <ngb-pagination class="d-flex justify-content-around" *ngIf="pageSize < filteredData.length + 1"
+                [collectionSize]="filteredData.length"
                 [(page)]="page"
                 [maxSize]="7"
                 [rotate]="true"

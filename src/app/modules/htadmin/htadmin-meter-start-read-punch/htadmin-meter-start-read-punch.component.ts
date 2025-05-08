@@ -58,4 +58,19 @@ export class HtadminMeterStartReadPunchComponent implements OnInit {
       GlobalResourcesService.errorMessageHandeler(error);
     }})
   }
+
+  selectedFile : any;
+  fileChange(event : any){
+    this.selectedFile = event.target.files;
+  }
+
+  async uploadClicked(){
+    let formData : FormData = new FormData();
+    formData.append('xmlFile', this.selectedFile[0]);
+    await this.readService.uploadReadXMLFile(formData, this.reading.meterNo).subscribe( {next: (success : any)=>{
+      this.reading = success;
+    }, error: (error : any) =>{
+      GlobalResourcesService.errorMessageHandeler(error);
+    }});
+  }
 }

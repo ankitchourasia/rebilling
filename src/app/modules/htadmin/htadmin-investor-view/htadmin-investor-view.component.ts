@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchFilterPipe } from 'src/app/directives/search-filter.pipe';
 import { InvestorService } from 'src/app/services/investor-service';
 import { GlobalResourcesService } from 'src/app/utility/global-resources.service';
 
@@ -25,6 +26,7 @@ export class HTAdminInvestorViewComponent implements OnInit{
     this.investorService.getAllInvestor().subscribe({ next: (success: any)=>{
       this.loading = false;
       this.investors = success;
+      this.filteredData = this.investors;
     }, error:(error)=>{
       this.loading = false;
       GlobalResourcesService.errorMessageHandeler(error);
@@ -32,12 +34,19 @@ export class HTAdminInvestorViewComponent implements OnInit{
   }
 
   getData(){
-    return this.investors.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+    return this.filteredData.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
   investor : any = {};
   viewDetailsClicked(investor : any){
     this.investor = investor;
+  }
+
+  filteredData : any = [];
+  searchChanged(searchedText : any){
+    console.log(searchedText.viewModel);
+    let filter = new SearchFilterPipe();
+    this.filteredData = filter.transform(this.investors, searchedText.viewModel);
   }
 
 }

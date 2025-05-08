@@ -3,6 +3,7 @@
         Punch Start Reading
     </div>
     <form class="card-body" #f="ngForm" *ngIf="!loading">
+        
         <table class="table table-sm table-responsive">
             <tr>
                 <td>
@@ -26,6 +27,20 @@
                     </div>
                 </td>
                 <td></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div>
+                        Upload Start Read File : 
+                        <div class="d-flex mb-2">
+                            <input type="file" class="form-control mr-2" id="fileupload" aria-describedby="fileupload" (change)="fileChange($event)" aria-label="Upload">
+                            <button class="btn btn-primary ml-2" type="button" id="fileupload" (click)="uploadClicked()" [disabled]="loading">
+                                <span class="spinner-border spinner-border-sm text-secondary" *ngIf="loading"></span>
+                                Upload
+                            </button>
+                        </div>
+                    </div>
+                </td>
             </tr>
             <tr class="text-center bg-secondary text-white">
                 <td>Particular</td>

@@ -82,7 +82,7 @@ export class HTAdminThirdPartyAddComponent {
     this.data.developerName = this.thirdPartyDTO.developerName;
     this.data.plantCode = this.thirdPartyDTO.plantCode;
     this.data.plantName = this.thirdPartyDTO.plantName;
-    this.data.plantCapacity = this.thirdPartyDTO.plantCapacity;
+    // this.data.plantCapacity = this.thirdPartyDTO.plantCapacity;
     this.data.investorCode = this.investor.investorCode;
     this.data.investorName = this.investor.investorName;
     this.data.mfpId = this.thirdPartyDTO.mfpId;

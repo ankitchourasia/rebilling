@@ -124,6 +124,16 @@
                 <a ngbNavLink>Old Meter Final Read</a>
                 <ng-template ngbNavContent>
                     <form class="card-body" #f="ngForm" *ngIf="!loading && previousReading">
+                        <div>
+                            Upload Final Read File : 
+                            <div class="d-flex mb-2">
+                                <input type="file" class="form-control mr-2" id="fileupload" aria-describedby="fileupload" (change)="fileChange($event)" aria-label="Upload">
+                                <button class="btn btn-primary ml-2" type="button" id="fileupload" (click)="uploadClicked('FR')" [disabled]="loading">
+                                    <span class="spinner-border spinner-border-sm text-secondary" *ngIf="loading"></span>
+                                    Upload
+                                </button>
+                            </div>
+                        </div>
                         <table class="table table-sm table-responsive">
                             <tr class="text-center">
                                 <td rowspan="2">Particular</td>
@@ -445,6 +455,16 @@
             <li [ngbNavItem]="2" [destroyOnHide]="false" [disabled]="true">
                 <a ngbNavLink>Mew Meter start Read</a>
                 <ng-template ngbNavContent>
+                    <div>
+                        Upload Start Read File : 
+                        <div class="d-flex mb-2">
+                            <input type="file" class="form-control mr-2" id="fileupload" aria-describedby="fileupload" (change)="fileChange($event)" aria-label="Upload">
+                            <button class="btn btn-primary ml-2" type="button" id="fileupload" (click)="uploadClicked('SR')" [disabled]="loading">
+                                <span class="spinner-border spinner-border-sm text-secondary" *ngIf="loading"></span>
+                                Upload
+                            </button>
+                        </div>
+                    </div>
                     <form class="card-body" #f="ngForm" *ngIf="!loading">
                         <table class="table table-sm table-responsive">
                             <tr class="text-center">

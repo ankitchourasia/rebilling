@@ -166,6 +166,16 @@
                                 <td class="fw-bold small">Site Email : </td>
                                 <td>{{mapping.developerMasterBean.siteEmail}}</td>
                             </tr>
+
+                            <tr>
+                                <td class="fw-bold small">Region : </td>
+                                <td>{{mapping.developerMasterBean?.locationMaster?.regionName}}</td>
+                                <td class="fw-bold small">Circle : </td>
+                                <td>{{mapping.developerMasterBean?.locationMaster?.circleName}}</td>
+                                <td class="fw-bold small">Division : </td>
+                                <td>{{mapping.developerMasterBean?.locationMaster?.divisionName}}</td>
+                                <td colspan="2"></td>
+                            </tr>
                         </table>   
                     </ng-template>
                 </li>
@@ -189,6 +199,14 @@
                                 <td>{{mapping.feederMasterBean.injectingSsName}}</td>
                                 <td class="fw-bold small">Status : </td>
                                 <td>{{mapping.feederMasterBean.status}}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold small">Region : </td>
+                                <td>{{mapping.feederMasterBean.locationMaster.regionName}}</td>
+                                <td class="fw-bold small">Circle : </td>
+                                <td>{{mapping.feederMasterBean.locationMaster.circleName}}</td>
+                                <td class="fw-bold small">Division : </td>
+                                <td>{{mapping.feederMasterBean.locationMaster.divisionName}}</td>
                             </tr>
                         </table>   
                     </ng-template>
@@ -217,6 +235,16 @@
                                 <td>{{mapping.plantMasterBean.contactNo}}</td>
                                 <td class="fw-bold small">Email: </td>
                                 <td>{{mapping.plantMasterBean.email}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="fw-bold small">Region : </td>
+                                <td>{{mapping.plantMasterBean.locationMaster.regionName}}</td>
+                                <td class="fw-bold small">Circle : </td>
+                                <td>{{mapping.plantMasterBean.locationMaster.circleName}}</td>
+                                <td class="fw-bold small">Division : </td>
+                                <td>{{mapping.plantMasterBean.locationMaster.divisionName}}</td>
+                                <td colspan="2"></td>
                             </tr>
                         </table>   
                     </ng-template>

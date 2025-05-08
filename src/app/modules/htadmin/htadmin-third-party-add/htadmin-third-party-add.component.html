@@ -128,7 +128,7 @@
                     </div>
                     <div class="col-md-4 mb-4">
                         <label class="fw-bold small">Contract Demand (KVA)</label>
-                        <input type="text" name="contract_demant" [(ngModel)]="data.contractDemand" class="form-control" required>
+                        <input type="number" name="contract_demant" [(ngModel)]="data.contractDemand" class="form-control" required>
                     </div>
                     <div class="col-md-4 mb-4">
                         <label class="fw-bold small">Tariff Category</label>
@@ -175,8 +175,8 @@
                         <input type="date" name="thirdPartyCommissionDate" [(ngModel)]="data.thirdPartyCommissionDate" class="form-control" required>
                     </div>
                     <div class="col-md-4 mb-4">
-                        <label class="fw-bold small">Plant Capacity</label>
-                        <input type="text" name="plantCapacity" [(ngModel)]="data.plantCapacity" class="form-control" required>
+                        <label class="fw-bold small">Plant Capacity (in MW)</label>
+                        <input type="number" name="plantCapacity" [(ngModel)]="data.plantCapacity" class="form-control" required>
                     </div>
                     <div class="col-md-4 mb-4">
                         <label class="fw-bold small">PPWA Date</label>

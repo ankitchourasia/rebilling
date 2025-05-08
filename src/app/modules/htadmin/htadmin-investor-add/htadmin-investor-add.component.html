@@ -206,7 +206,14 @@
                     <div *ngIf="nldc.errors['required']">required field</div>
                 </div>
             </div>
-            <div class="col-3 mx-3"></div>
+            <div class="col-3 mx-3">
+                <label class="fw-bold">Particulars</label>
+                <input type="text" class="form-control" [(ngModel)]="investor.particulars" name="particulars" #particulars="ngModel" required
+                [ngClass]="{'is-invalid': particulars.errors && (particulars.dirty || particulars.touched)}">
+                <div class="invalid-feedback" *ngIf="particulars.errors && (particulars.dirty || particulars.touched)">
+                    <div *ngIf="particulars.errors['required']">required field</div>
+                </div>
+            </div>
             <div class="col-3 mx-3">
                 <label class="fw-bold">Region</label>
                 <select class="form-select" name="region" [(ngModel)]="regionName" (change)="getCircleByRegionName()" required>

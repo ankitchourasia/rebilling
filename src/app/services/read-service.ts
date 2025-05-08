@@ -274,4 +274,12 @@ export class ReadService {
     
   }
 
+  uploadReadXMLFile(file : any, meterNo: string, response : boolean = false){
+    let options : any = {};
+    if(response){
+      options["observe"] = "response";
+    }
+    return this.http.post("/rebilling/xml/parsed-data/meter-no/" + meterNo, file, options);
+  }
+
 }

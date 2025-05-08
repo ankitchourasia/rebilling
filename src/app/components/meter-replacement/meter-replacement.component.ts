@@ -21,8 +21,8 @@ export class MeterReplacementComponent {
   newMeter : any;
   loading : boolean = false;
   previousReading : any;
-  finalRead : any;
-  startRead : any;
+  finalRead : any = {};
+  startRead : any = {};
 
 
   constructor(private meterService : MeterService, private readService : ReadService){
@@ -59,7 +59,7 @@ export class MeterReplacementComponent {
 
   getLastReadByMeterNo(){
     this.loading = true;
-    this.finalRead = undefined;
+    this.finalRead = {};
     this.readService.getLastMeterReadingforReplacementByMeterNo(this.oldMeterNo).subscribe({next : success =>{
       this.loading = false;
       this.previousReading = success;
@@ -99,11 +99,36 @@ export class MeterReplacementComponent {
       this.newMeter = undefined; 
       this.oldMeterNo = undefined;
       this.previousReading = undefined;
-      this.finalRead = undefined;
-      this.startRead = undefined;
+      this.finalRead = {};
+      this.startRead = {};
       
     }, error : error =>{
       GlobalResourcesService.errorMessageHandeler(error);
     }})
+  }
+
+  selectedFile : any;
+  fileChange(event : any){
+    this.selectedFile = event.target.files;
+  }
+
+  async uploadClicked(readType : string){
+    let formData : FormData = new FormData();
+    formData.append('xmlFile', this.selectedFile[0]);
+    let meterNo;
+    if(readType === 'FR'){
+      meterNo = this.oldMeterNo;
+    } else if(readType === 'SR'){
+      meterNo = this.newMeter.meterNumber;
+    }
+    await this.readService.uploadReadXMLFile(formData, meterNo).subscribe( {next: (success : any)=>{
+      if(readType === 'FR'){
+        this.finalRead = success;
+      } else if(readType === 'SR'){
+        this.startRead = success;
+      }
+    }, error: (error : any) =>{
+      GlobalResourcesService.errorMessageHandeler(error);
+    }});
   }
 }
